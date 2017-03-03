@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5" method="upgrade">
+    <name>com_cpamanager</name>
+    <creationDate>May 2016</creationDate>
+    <copyright>Copyright (C) 2016 METIK Marketing, LLC. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <author>Freddy Flores</author>
+    <authorEmail>fflores@metikmarketing.com</authorEmail>
+    <authorUrl>https://www.metikmarketing.com</authorUrl>
+    <version>1.0.0</version>
+    <description>View and control the CPAManager Application Manager</description>
+
+    <install> <!-- Runs on install -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall> <!-- Runs on uninstall -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+    <files folder="site">
+		<filename>router.php</filename>
+		<filename>controller.php</filename>
+		<filename>index.html</filename>
+		<filename>cpamanager.php</filename>
+		<folder>controllers</folder>
+		<folder>assets</folder>
+		<folder>helpers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+    </files>
+  
+    <administration>
+        <menu>COM_CPAMANAGER</menu>
+        <submenu>
+            <menu link="option=com_cpamanager&amp;view=cpas" view="cpas"  alt="CPAManager/cpas">COM_CPAMANAGER_TITLE_CPAS</menu>
+            <menu link="option=com_cpamanager&amp;view=customers" view="customers"  alt="CPAManager/customers">COM_CPAMANAGER_TITLE_CUSTOMERS</menu>
+            <menu link="option=com_cpamanager&amp;view=invoices" view="invoices"  alt="CPAManager/invoices">COM_CPAMANAGER_TITLE_INVOICES</menu>
+            <menu link="option=com_cpamanager&amp;view=expenses" view="expenses"  alt="CPAManager/expenses">COM_CPAMANAGER_TITLE_EXPENSES</menu>
+            <menu link="option=com_cpamanager&amp;view=receipts" view="receipts" alt="CPAManager/receipts">COM_CPAMANAGER_TITLE_RECEIPTS</menu>
+            <menu link="option=com_cpamanager&amp;view=mileages" view="mileages" alt="CPAManager/mileages">COM_CPAMANAGER_TITLE_MILEAGES</menu>
+            <menu link="option=com_cpamanager&amp;view=taxreturns" view="taxreturns" alt="CPAManager/taxreturns">COM_CPAMANAGER_TITLE_TAXRETURNS</menu>
+            <menu link="option=com_cpamanager&amp;view=links" view="links" alt="CPAManager/links">COM_CPAMANAGER_TITLE_LINKS</menu>
+            <menu link="option=com_cpamanager&amp;view=configs" view="configs" alt="CPAManager/configs">COM_CPAMANAGER_TITLE_CONFIG</menu>
+            <menu link="option=com_cpamanager&amp;view=reports" view="reports" alt="CPAManager/reports">COM_CPAMANAGER_TITLE_REPORTS</menu>
+        </submenu>
+        <files folder="administrator">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <filename>controller.php</filename>
+            <filename>index.html</filename>
+            <filename>cpamanager.php</filename>
+            <folder>controllers</folder>
+            <folder>assets</folder>
+            <folder>helpers</folder>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+        </files>
+        <languages folder="languages/administrator">
+			<language tag="en-GB">en-GB/en-GB.com_cpamanager.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_cpamanager.sys.ini</language>
+        </languages>
+    </administration>
+</extension>
+<!-- Component built by the Joomla Component Creator -->
+<!-- http://www.component-creator.com/ -->

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="basic" >
+
+        <field name="id" type="hidden" default="0" label="COM_CPAMANAGER_FORM_LBL_OFFICE_LOCATION_ID"
+            readonly="true" class="readonly"
+            description="JGLOBAL_FIELD_ID_DESC" /> 
+
+       <field name="userid" type="user" label="Username" description="Username"  filter="safehtml" /> 
+       <field name="avatar" type="media" size="40" class="inputbox"  label="Avatar" description="Avatar"   filter="safehtml" /> 
+       <field name="phone" type="text" size="40" class="inputbox"  label="Cell Phone" description="Cell Phone"   filter="safehtml" /> 
+       <field name="church" type="text" size="40" class="inputbox" label="Church" description="Church"  filter="safehtml" /> 
+       <field name="location" type="text" size="40" class="inputbox" label="Location" description="Location"   default=""  filter="safehtml" /> 
+       <field name="pastor" type="text" size="40" class="inputbox" label="Pastor" description="Pastor"  filter="safehtml" /> 
+       <field name="testimonials" type="textarea" size="40" class="inputbox" label="Testimonials" description="Testimonials"/> 
+       
+       <field name="account" type="radio"
+                class="btn-group btn-group-yesno"
+                label="Account Type"
+                description="Account Type"
+                default="0"
+        >
+                <option value="1">VIP</option>
+                <option value="0">Free</option>
+        </field>
+       
+       <field name="bio" type="editor" size="40" class="inputbox" label="User Bio" description="User Bio"  /> 
+ </fieldset> 
+
+</form>

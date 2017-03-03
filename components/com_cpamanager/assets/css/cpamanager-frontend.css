@@ -1,0 +1,439 @@
+/*19.12.2016*/
+#CPAManagerContent input,#CPAManagerContent select,#CPAManagerContent area{
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}
+#CPAManagerContent input,#CPAManagerContent select{
+	height:30px;
+}
+#CPAManagerContent{
+	padding:30px 0 !important;
+	text-align:justify;
+}
+#CPAManagerMenu .jMenu-cpamanager .jsont-menu li{
+	display:inline-block;
+	width:100px;
+	padding-top:75px;
+	text-align:center;
+}
+#CPAManagerMenu{text-align:center}
+#CPAManagerMenu .jMenu-cpamanager .jsont-menu .events{
+	background:url(../images/icon-menu/events.png) no-repeat top center;
+}
+#CPAManagerMenu .jMenu-cpamanager .jsont-menu .links{
+	background:url(../images/icon-menu/link.png) no-repeat top center;
+}
+#CPAManagerMenu .jMenu-cpamanager .jsont-menu .warriors {
+	background:url(../images/icon-menu/prayer.png) no-repeat top center;
+}
+#CPAManagerMenu .jMenu-cpamanager .jsont-menu .requests{
+	background:url(../images/icon-menu/request.png) no-repeat top center;
+}
+#CPAManagerMenu .jMenu-cpamanager .jsont-menu .bibles {
+	background:url(../images/icon-menu/bible.png) no-repeat top center;
+}
+#CPAManagerMenu .jMenu-cpamanager .jsont-menu .frontend {
+	background:url(../images/icon-menu/users.png) no-repeat top center;
+}
+#CPAManagerMenu .jMenu-cpamanager .jsont-menu .configs {
+	background:url(../images/icon-menu/config.png) no-repeat top center;
+}
+#CPAManagerContent .profile .img{
+	position:relative;
+	border-radius:100%;
+	overflow:hidden;
+	height:250px;
+	width:250px;
+}
+#CPAManagerContent .profile .img img{
+	width:100%;
+}
+#CPAManagerContent .profile .img::before{
+	position:absolute;
+	content:url(../images/bg-avt.png);
+	width:70px;
+	height:270px;
+	top:0;
+	left:0;	
+}
+#CPAManagerContent .profile{
+	border-bottom:1px solid #acabab;
+	padding-bottom:10px;
+	margin-bottom:20px;
+}
+#CPAManagerContent .profile .info{
+	padding-top:25px;
+	position:relative;
+}
+#CPAManagerContent .profile .info:before{
+	position:absolute;
+	width:100%;
+	font-size:25px;
+	left:0;
+	top:15px;
+}
+#CPAManagerContent .profile .info .span3{
+	width: 48.936170208%;
+}
+
+#CPAManagerContent .profile .info .span3 p{
+	text-transform:capitalize;
+	font-size: 15px;
+	line-height: 25px;
+}
+
+#CPAManagerContent legend{
+	font-size:25px;
+	color:#0b63b5;
+	border-bottom:none;
+	padding-top:15px;
+	margin-bottom:20px;
+	
+}
+
+#CPAManagerContent .addnew .btn{
+	text-transform: uppercase;
+}
+
+
+button.btn.hasTooltip{
+	font-size:14px;
+	padding: 5px 10px;
+}
+#CPAManagerContent .table th{
+	padding:0 8px 20px 8px;
+	font-size:15px;
+}
+#CPAManagerContent h3{
+	font-size: 25px;
+	color: #0b63b5;
+	border-bottom: none;
+	padding-bottom: 25px;
+	margin-bottom: 0;
+	margin-top:0;
+}
+
+#CPAManagerContent .category{
+	font-weight:700;
+}
+#bible-form  input{
+	width:70%;
+	margin-bottom:10px;
+	border-radius:0;
+	height:30px;
+}
+#bible-form  textarea{
+	height:120px;
+	width:100%;
+	margin-bottom:5px;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	border-radius:0;
+}
+#aside{
+	float:right;
+}
+.cTitle{
+	text-transform:capitalize;
+}
+.listComments .uName,.listComments .dateS{
+	width:50%;
+	display:inline-block;
+}
+.listComments .cContent{
+	font-weight:400;
+	padding-bottom:15px;
+	text-align: justify;
+}
+.listComments  ul{
+	padding:0;
+	list-style:none;
+	margin:0;
+}
+#userProfile:hover{
+    cursor: pointer;
+}
+#loadingmessage {
+    background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
+    height: 100vh;
+    position: fixed;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    z-index: 9;
+}
+.big-avatar img{ max-width: 270px; }
+.small-avatar img {max-width: 110px;}
+.mini-avatar img {max-width: 60px;}
+/*31.13.2016*/
+#CPAManagerContent #bibles-content .bibles table td{
+	width:25%;
+}
+#CPAManagerContent .bibles{
+	position:relative;
+}
+
+.filter-search.btn-group.pull-left{
+	padding-right:15px;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}
+#CPAManagerContent .bodyContents{
+	position:relative;
+}
+
+div#bible-view b {
+    font-size: 15px;
+}
+.listComments h5{
+	font-size:15px;
+}
+#event-view b{
+	font-size:15px;
+}
+
+
+/* STYLE FOR PAGE FRONTEND */
+#CPAManagerContent .lineButtom{
+	border-bottom: 1px solid #acabab;
+	padding-bottom: 25px;
+}
+#CPAManagerContent .bntRight{
+	text-align: right;
+	padding: 0 15px;
+}
+#CPAManagerContent .jSontTextarea{
+	padding: 15px 15px 15px  15px;
+	background: #eee;
+}
+#CPAManagerContent .bible .key{
+	font-weight:bold;
+}
+.table-prayer{width: 100%}
+.table-prayer tr {height:40px}
+
+.jSontTextarea textarea {
+    height: 140px;
+    width: 100%;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 0;
+}
+.bntTopRight{
+	top: 15px;
+	position: absolute;
+	right: 0;
+}
+.imageEvent img{width:120px}
+.imageEvent{
+	text-align:center;
+}
+
+#requests-content .listPrayfor .item {
+    border: 2px solid #6e6558;
+    border-radius: 15px;
+    margin: 5px 5px 25px 0;
+    padding: 15px;
+    position: relative;
+    min-height: 140px; 
+}
+#requests-content .listPrayfor .avatar{
+    float: left;
+    width: 25%;
+}
+#requests-content .listPrayfor .info{
+    float: right;
+    width: 75%
+}
+#requests-content .listPrayfor .more{
+    bottom: 10px;
+    position: absolute;
+    right: 20px;
+}
+#requests-content .listPrayfor .info .head span{
+    display: block;
+    float: left;
+    width: 33.33%;
+    font-weight: bold;
+}
+
+.itemRequest .prayAvatar,
+.listWarriors .witem .prayAvatar{
+	float: left;
+	width: 20%;
+	text-align:center;
+}
+.itemRequest .prayInfo,
+.listWarriors .witem .prayInfo{
+	float: left;
+	width: 75%;
+	border: 1px solid #6e6558;
+	border-radius: 10px;
+	min-height: 130px; 
+	padding: 7px;
+}
+
+
+.listWarriors .witem{
+    margin: 5px 5px 25px 0;
+    padding: 15px;
+    position: relative;
+    min-height: 140px; 
+}
+
+.listWarriors .witem .prayInfo .praying{
+	font-weight:bold;
+}
+
+
+
+.itemWarrior .prayAvatar{
+	float: left;
+	width: 180px;
+	text-align:center;
+}
+.itemWarrior .prayInfo{
+	float: left;
+	width: 70%;
+	border: 1px solid #6e6558;
+	border-radius: 10px;
+	min-height: 130px; 
+	padding: 7px;
+}
+
+
+
+/* BASE STYLES FOR EACH */
+.callouts{
+  display: inline-block;
+  /* Real styles */
+  position: relative;
+	
+  padding: 15px;
+	background-color: #fff;
+  border: 1px solid #c1c1c1;
+	border-radius: 4px;
+	box-shadow: 0 0 10px #c1c1c1;
+}
+
+/* TOP */
+.callouts--top:before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 23px;
+	top: -42px;
+  border: 10px solid transparent;
+  border-bottom: 32px solid rgb(193,193,193); /* IE8 Fallback */
+  border-bottom: 32px solid rgba(193,193,193,0.5);
+  z-index: 2;
+}
+.callouts--top:after {
+  content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 25px;
+	top: -32px;
+  border: 8px solid transparent;
+  border-bottom: 25px solid #fff;
+  z-index: 3;
+}
+
+/* BOTTOM */
+.callouts--bottom:before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 23px;
+	bottom: -42px;
+  border: 10px solid transparent;
+  border-top: 32px solid rgb(193,193,193); /* IE8 Fallback */
+  border-top: 32px solid rgba(193,193,193,0.5);
+  z-index: 2;
+}
+.callouts--bottom:after {
+  content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 25px;
+	bottom: -31px;
+  border: 8px solid transparent;
+  border-top: 24px solid #fff;
+  z-index: 3;
+}
+
+/* LEFT */
+.callouts--left:before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: -42px;
+	top: 17px;
+  border: 10px solid transparent;
+  border-right: 32px solid rgb(193,193,193); /* IE8 Fallback */
+  border-right: 32px solid rgba(193,193,193,0.5);
+  z-index: 2;
+}
+.callouts--left:after {
+  content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: -31px;
+	top: 20px;
+  border: 8px solid transparent;
+  border-right: 24px solid #fff;
+  z-index: 3;
+}
+
+/* RIGHT */
+.callouts--right:before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	right: -42px;
+	top: 17px;
+  border: 10px solid transparent;
+  border-left: 32px solid rgb(193,193,193); /* IE8 Fallback */
+  border-left: 32px solid rgba(193,193,193,0.5);
+  z-index: 2;
+}
+.callouts--right:after {
+  content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	right: -31px;
+	top: 20px;
+  border: 8px solid transparent;
+  border-left: 24px solid #fff;
+  z-index: 3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

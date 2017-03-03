@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Register" option="View">
+        <message>
+                        <![CDATA[Register]]>
+        </message>
+	</layout>
+</metadata>
