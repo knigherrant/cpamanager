@@ -6,13 +6,42 @@
             readonly="true" class="readonly"
             description="JGLOBAL_FIELD_ID_DESC" /> 
 
-       <field name="userid" type="user" label="Username" description="Username"  filter="safehtml" /> 
-       <field name="avatar" type="media" size="40" class="inputbox"  label="Avatar" description="Avatar"   filter="safehtml" /> 
-       <field name="phone" type="text" size="40" class="inputbox"  label="Cell Phone" description="Cell Phone"   filter="safehtml" /> 
-       <field name="church" type="text" size="40" class="inputbox" label="Church" description="Church"  filter="safehtml" /> 
-       <field name="location" type="text" size="40" class="inputbox" label="Location" description="Location"   default=""  filter="safehtml" /> 
-       <field name="pastor" type="text" size="40" class="inputbox" label="Pastor" description="Pastor"  filter="safehtml" /> 
-       <field name="testimonials" type="textarea" size="40" class="inputbox" label="Testimonials" description="Testimonials"/> 
+       <field name="userid" type="user" label="Select User" description="Select User"  filter="safehtml" /> 
+       <field name="company" type="text" size="40" class="inputbox"  label="Company" description="Company"   filter="safehtml" /> 
+       <field name="firstname" type="text" size="40" class="inputbox"  label="First Name" description="First Name"   filter="safehtml" /> 
+       <field name="midname" type="text" size="40" class="inputbox" label="Middle Name" description="Middle Name"  filter="safehtml" /> 
+       <field name="lastname" type="text" size="40" class="inputbox" label="Last Name" description="Last Name"   default=""  filter="safehtml" /> 
+       <field name="address1" type="text" size="40" class="inputbox" label="Address 1" description="Address 1"  filter="safehtml" /> 
+       <field name="address2" type="text" label="Address 2" description="Address 2"  filter="safehtml" /> 
+       <field name="city" type="text" size="40" class="inputbox"  label="City" description="City"   filter="safehtml" /> 
+       <field name="state" type="text" size="40" class="inputbox"  label="State" description="State"   filter="safehtml" /> 
+       <field name="zip" type="text" size="40" class="inputbox" label="Zip Code" description="Zip Code"  filter="safehtml" /> 
+       <field name="phone" type="text" size="40" class="inputbox" label="Phone" description="Phone"   default=""  filter="safehtml" /> 
+       <field name="cell_phone" type="text" size="40" class="inputbox" label="Cell Phone" description="Cell Phone"  filter="safehtml" /> 
+       <field name="fax" type="text" label="Fax" description="Fax"  filter="safehtml" /> 
+       <field name="email" type="text" size="40" class="inputbox"  label="Email" description="Email"   filter="safehtml" /> 
+       <field name="url" type="text" hint="xxxxx" size="40" class="inputbox"  label="Url" description="Url"   filter="safehtml" /> 
+       <field name="logo" type="file" hint="xxxxx" size="40" class="inputbox" label="Logo" description="Logo"  filter="safehtml" /> 
+       <field name="serverip" type="text" size="40" class="inputbox" label="Server IP" description="Server IP"   default=""  filter="safehtml" /> 
+       <field name="dbname" type="text" size="40" class="inputbox" label="Database Name" description="Database Name"  filter="safehtml" /> 
+       <field name="dbuser" type="text" label="Database User" description="Database User"  filter="safehtml" /> 
+       <field name="dbpass" type="text" size="40" class="inputbox"  label="Database Password" description="Database Password"   filter="safehtml" /> 
+       <field name="banner" type="text" size="40" class="inputbox"  label="Banner Ads" description="Banner Ads"   filter="safehtml" /> 
+       
+       <field name="created" type="calendar" class="inputbox" label="Date" description="Date"  filter="safehtml" /> 
+       
+       
+       <field name="notes" type="textarea" size="40" class="inputbox" label="Testimonials" description="Testimonials"/> 
+       
+       <field name="featured" type="radio"
+                class="btn-group btn-group-yesno"
+                label="JFEATURED"
+                description="JFEATURED"
+                default="0"
+        >
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+        </field>
        
        <field name="account" type="radio"
                 class="btn-group btn-group-yesno"
@@ -23,8 +52,7 @@
                 <option value="1">VIP</option>
                 <option value="0">Free</option>
         </field>
-       
-       <field name="bio" type="editor" size="40" class="inputbox" label="User Bio" description="User Bio"  /> 
- </fieldset> 
+
+    </fieldset> 
 
 </form>

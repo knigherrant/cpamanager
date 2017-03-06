@@ -91,8 +91,6 @@ class CPAManagerModelCPA extends JModelAdmin
 	public function getItem($pk = null)
 	{
 		if ($item = parent::getItem($pk)) {
-                        $item->prayerRequest = $item->prayingFor = jSont::getPrayerRequest($item->userid);
-                        $item->bible = jSont::getBibleStudy($item->userid);
                         $item->user = JFactory::getUser($item->userid);
 		}
 

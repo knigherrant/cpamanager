@@ -40,11 +40,8 @@ JHtml::_('behavior.keepalive');
                 <legend><?php echo JText::_('CPA');?></legend>
                 <?php foreach ($this->form->getFieldset('basic') as $field) : ?>
                        <div class="control-group">
-                                <div class="control-label">
-                                        <?php echo $field->label; ?>
-                                </div>
-                                <div class="controls">
-                                        <?php echo $field->input; ?>
+                                <div class="field-input">
+                                        <?php echo jSont::customfield ($field); ?>
                                 </div>
                         </div>
                 <?php endforeach; ?>

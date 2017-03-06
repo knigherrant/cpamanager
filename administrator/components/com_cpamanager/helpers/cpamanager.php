@@ -26,6 +26,10 @@ defined('_JEXEC') or die;
  }
 class jSont extends CPAManagerHelper{
     
+    
+    
+    
+    
     public static  function loadAdminCss(){
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . 'components/com_cpamanager/assets/css/cpamanager-frontend.css');
@@ -54,6 +58,14 @@ class jSont extends CPAManagerHelper{
     public static function getModel($model){
         JModelLegacy::addIncludePath(JPATH_SITE . '/components/com_cpamanager/models', 'CPAManagerModel');
         return JModelLegacy::getInstance(ucwords($model), 'CPAManagerModel', array('ignore_request' => true));
+    }
+    
+    public static function customfield($field){
+       
+        $input = '<input data-original-title="xxxxxxxxxxxx" ';
+        $field->input =  str_replace('<input', $input, $field->input) ;     
+        return str_replace('inputbox', 'inputbox hasTooltip', $field->input) ; 
+                         
     }
     
 	public static function footer(){
