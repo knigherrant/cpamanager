@@ -10,9 +10,9 @@
 defined('_JEXEC') or die;
 
 /**
- * event Table class
+ * location Table class
  */
-class CPAManagerTableEvent extends JTable
+class CPAManagerTableLocation extends JTable
 {
 
 	/**
@@ -22,7 +22,7 @@ class CPAManagerTableEvent extends JTable
 	 */
 	public function __construct(&$db)
 	{
-		parent::__construct('#__cpamanager_events', 'id', $db);
+		parent::__construct('#__cpamanager_locations', 'id', $db);
 	}
 
 	/**
@@ -53,10 +53,10 @@ class CPAManagerTableEvent extends JTable
 			$registry->loadArray($array['metadata']);
 			$array['metadata'] = (string) $registry;
 		}
-		if (!JFactory::getUser()->authorise('core.admin', 'com_cpamanager.event.' . $array['id']))
+		if (!JFactory::getUser()->authorise('core.admin', 'com_cpamanager.location.' . $array['id']))
 		{
-			$actions         = JFactory::getACL()->getActions('com_cpamanager', 'event');
-			$default_actions = JFactory::getACL()->getAssetRules('com_cpamanager.event.' . $array['id'])->getData();
+			$actions         = JFactory::getACL()->getActions('com_cpamanager', 'location');
+			$default_actions = JFactory::getACL()->getAssetRules('com_cpamanager.location.' . $array['id'])->getData();
 			$array_jaccess   = array();
 			foreach ($actions as $action)
 			{
@@ -201,7 +201,7 @@ class CPAManagerTableEvent extends JTable
 	{
 		$k = $this->_tbl_key;
 
-		return 'com_cpamanager.event.' . (int) $this->$k;
+		return 'com_cpamanager.location.' . (int) $this->$k;
 	}
 
 

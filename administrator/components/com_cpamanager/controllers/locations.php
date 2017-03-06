@@ -13,9 +13,9 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.controlleradmin');
 
 /**
- * Events list controller class.
+ * Locations list controller class.
  */
-class CPAManagerControllerEvents extends JControllerAdmin
+class CPAManagerControllerLocations extends JControllerAdmin
 {
     
     public function __construct($config = array()) {
@@ -40,7 +40,7 @@ class CPAManagerControllerEvents extends JControllerAdmin
 		else
 		{
 			$db = JFactory::getDbo();
-                        if(!$db->setQuery("UPDATE #__cpamanager_events SET `featured` ='$value' WHERE id IN (" . implode(',', $ids) . ")")->execute()){
+                        if(!$db->setQuery("UPDATE #__cpamanager_locations SET `featured` ='$value' WHERE id IN (" . implode(',', $ids) . ")")->execute()){
                             JError::raiseWarning(500, $model->getError());
                         }
 			if ($value == 1)
@@ -52,7 +52,7 @@ class CPAManagerControllerEvents extends JControllerAdmin
 				$message = JText::_(count($ids) . ' Item Unfeatured');
 			}
 		}
-                $this->setRedirect(JRoute::_('index.php?option=com_cpamanager&view=events', false), $message);
+                $this->setRedirect(JRoute::_('index.php?option=com_cpamanager&view=locations', false), $message);
 		
 	}
         public function main()
@@ -72,7 +72,7 @@ class CPAManagerControllerEvents extends JControllerAdmin
 		else
 		{
 			$db = JFactory::getDbo();
-                        if(!$db->setQuery("UPDATE #__cpamanager_events SET `main` ='$value' WHERE id IN (" . implode(',', $ids) . ")")->execute()){
+                        if(!$db->setQuery("UPDATE #__cpamanager_locations SET `main` ='$value' WHERE id IN (" . implode(',', $ids) . ")")->execute()){
                             JError::raiseWarning(500, $model->getError());
                         }
 			if ($value == 1)
@@ -84,7 +84,7 @@ class CPAManagerControllerEvents extends JControllerAdmin
 				$message = JText::_(count($ids) . ' Item UnMain');
 			}
 		}
-                $this->setRedirect(JRoute::_('index.php?option=com_cpamanager&view=events', false), $message);
+                $this->setRedirect(JRoute::_('index.php?option=com_cpamanager&view=locations', false), $message);
 		
 	}
     
@@ -92,7 +92,7 @@ class CPAManagerControllerEvents extends JControllerAdmin
 	 * Proxy for getModel.
 	 * @since	1.6
 	 */
-	public function getModel($name = 'event', $prefix = 'CPAManagerModel', $config = array())
+	public function getModel($name = 'location', $prefix = 'CPAManagerModel', $config = array())
 	{
 		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
 		return $model;

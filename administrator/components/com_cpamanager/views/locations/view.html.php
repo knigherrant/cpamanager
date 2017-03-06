@@ -14,7 +14,7 @@ jimport('joomla.application.component.view');
 /**
  * View class for a list of CPAManager.
  */
-class CPAManagerViewEvents extends JViewLegacy {
+class CPAManagerViewLocations extends JViewLegacy {
 
     protected $items;
     protected $pagination;
@@ -53,34 +53,34 @@ class CPAManagerViewEvents extends JViewLegacy {
         $state = $this->get('State');
         $canDo = CPAManagerHelper::getActions($state->get('filter.category_id'));
 
-        JToolBarHelper::title(JText::_('COM_CPAMANAGER_TITLE_EVENTS'), 'events.png');
+        JToolBarHelper::title(JText::_('Locations'), 'locations.png');
 
         //Check if the form exists before showing the add/edit buttons
-        $formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/event';
+        $formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/location';
         if (file_exists($formPath)) {
 
             if ($canDo->get('core.create')) {
-                JToolBarHelper::addNew('event.add', 'JTOOLBAR_NEW');
+                JToolBarHelper::addNew('location.add', 'JTOOLBAR_NEW');
             }
 
             if ($canDo->get('core.edit') && isset($this->items[0])) {
-                JToolBarHelper::editList('event.edit', 'JTOOLBAR_EDIT');
+                JToolBarHelper::editList('location.edit', 'JTOOLBAR_EDIT');
             }
         }
 
          if(!empty($this->items)){
-                    JToolbarHelper::custom('events.featured', 'featured.png', 'featured_f2.png', 'Featured', true);
-                    //JToolbarHelper::custom('events.unfeatured', 'unfeatured.png', 'featured_f2.png', 'Unfeatured', true);
+                    JToolbarHelper::custom('locations.featured', 'featured.png', 'featured_f2.png', 'Featured', true);
+                    //JToolbarHelper::custom('locations.unfeatured', 'unfeatured.png', 'featured_f2.png', 'Unfeatured', true);
                 }
         if ($canDo->get('core.edit.state')) {
 
             if (isset($this->items[0]->state)) {
                 JToolBarHelper::divider();
-                JToolBarHelper::custom('events.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
-                JToolBarHelper::custom('events.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+                JToolBarHelper::custom('locations.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
+                JToolBarHelper::custom('locations.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
             } else if (isset($this->items[0])) {
                 //If this component does not use state then show a direct delete button as we can not trash
-                JToolBarHelper::deleteList('', 'events.delete', 'JTOOLBAR_DELETE');
+                JToolBarHelper::deleteList('', 'locations.delete', 'JTOOLBAR_DELETE');
             }
 
             
@@ -89,10 +89,10 @@ class CPAManagerViewEvents extends JViewLegacy {
         //Show trash and delete for components that uses the state field
         if (isset($this->items[0]->state)) {
             if ($state->get('filter.state') == -2 && $canDo->get('core.delete')) {
-                JToolBarHelper::deleteList('', 'events.delete', 'JTOOLBAR_EMPTY_TRASH');
+                JToolBarHelper::deleteList('', 'locations.delete', 'JTOOLBAR_EMPTY_TRASH');
                 JToolBarHelper::divider();
             } else if ($canDo->get('core.edit.state')) {
-                JToolBarHelper::trash('events.trash', 'JTOOLBAR_TRASH');
+                JToolBarHelper::trash('locations.trash', 'JTOOLBAR_TRASH');
                 JToolBarHelper::divider();
             }
         }

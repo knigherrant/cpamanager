@@ -107,12 +107,8 @@ class CPAManagerModelConfigs extends JModelAdmin {
         $post = JRequest::get('post');
         $post['params'] = JFactory::getApplication()->input->get('params', '', 'raw');
         $post['params'] = json_encode($post['params']);
-        $post['notify_user'] = $_POST['notify_user'];
-        $post['notify_bible'] = $_POST['notify_bible'];
-        $post['notify_event'] = $_POST['notify_event'];
-        $post['notify_request'] = $_POST['notify_request'];
-        $post['notify_for'] = $_POST['notify_for'];
-        $post['notify_vip'] = $_POST['notify_vip'];
+        $post['notify_tax_sn'] = $_POST['notify_tax_sn'];
+        $post['notify_tax_en'] = $_POST['notify_tax_en'];
 
         $table = JTable::getInstance('config','CPAManagerTable');
         $table->load(1);

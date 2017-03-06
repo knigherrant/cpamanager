@@ -5,19 +5,15 @@
         <field name="id" type="hidden" default="0" label="COM_CPAMANAGER_FORM_LBL_OFFICE_LOCATION_ID"
             readonly="true" class="readonly"
             description="JGLOBAL_FIELD_ID_DESC" /> 
-        <field name="created_by" type="user" class="inputbox" label="Posted By" description="Posted By"  filter="safehtml" /> 
-       <field name="subject" type="text" size="40" class="inputbox" label="Event Title" description="Event Title"  filter="safehtml" /> 
-       <field name="date_start" type="calendar" class="inputbox" label="Start" description="Date Start"  filter="safehtml" /> 
-       <field name="date_end" type="calendar" class="inputbox" label="End" description="Date End"  filter="safehtml" /> 
-       <field name="image1" type="media" class="inputbox" label="Image 1" description="Image"  /> 
-       <field name="image2" type="media" class="inputbox" label="Image 2" description="Image"  /> 
-       <field name="image3" type="media" class="inputbox" label="Image 3" description="Image"  /> 
-       <field name="category" type="categoryevent" class="inputbox" label="Category" description="Category"  /> 
-       <field name="description" type="editor"  class="inputbox" label="Description" description="Description" /> 
-       <field name="location" type="text" size="40" class="inputbox" label="Location" description="Location"   default=""  filter="safehtml" /> 
-       <field name="phone" type="text" size="40" class="inputbox" label="Phone" description="Phone"   default=""  filter="safehtml" /> 
-       <field name="contact" type="text" size="40" class="inputbox" label="Contact" description="Contact"   default=""  filter="safehtml" /> 
+        <field name="created_by" type="user" class="inputbox" label="Created By" description="Created By"  filter="safehtml" /> 
+       <field name="name" type="text" size="40" class="inputbox" label="Name" description="Name"  filter="safehtml" /> 
+       <field name="created" type="calendar" class="inputbox" label="Date" description="Date"  filter="safehtml" /> 
+       
+      
        <field name="address" type="text" size="40" class="inputbox" label="Address" description="Address"   default=""  filter="safehtml" /> 
+       <field name="phone" type="text" size="40" class="inputbox" label="Phone" description="Phone"   default=""  filter="safehtml" /> 
+       <field name="email" type="text" size="40" class="inputbox" label="Email" description="Email"   default=""  filter="safehtml" /> 
+       
        <field name="latitude" type="hidden" size="40" class="inputbox"                        
             label="COM_CPAMANAGER_FORM_LBL_OFFICE_LOCATION_LATITUDE"
             description="COM_CPAMANAGER_FORM_DESC_OFFICE_LOCATION_LATITUDE"  
@@ -25,8 +21,7 @@
 
        <field name="longitude" type="hidden" size="40" class="inputbox" label="COM_CPAMANAGER_FORM_LBL_OFFICE_LOCATION_LONGITUDE"
             description="COM_CPAMANAGER_FORM_DESC_OFFICE_LOCATION_LONGITUDE" 
-                                                 
-                                                    
+                                                
                                                     
                                                     filter="safehtml" /> 
        
@@ -55,7 +50,7 @@
                             validate="rules"
                             class="inputbox"
                             component="com_cpamanager"
-                            section="event"
+                            section="location"
                         />
 
 	</fieldset>

@@ -14,7 +14,7 @@ jimport('joomla.application.component.view');
 /**
  * View to edit
  */
-class CPAManagerViewEvent extends JViewLegacy {
+class CPAManagerViewLocation extends JViewLegacy {
 
     protected $state;
     protected $item;
@@ -52,19 +52,19 @@ class CPAManagerViewEvent extends JViewLegacy {
         }
         $canDo = CPAManagerHelper::getActions();
 
-        JToolBarHelper::title(JText::_('COM_CPAMANAGER_TITLE_EVENTS'), 'event.png');
+        JToolBarHelper::title(JText::_('Location'), 'location.png');
         if($this->getLayout() =='view') return;
         // If not checked out, can save the item.
         if (!$checkedOut && ($canDo->get('core.edit') || ($canDo->get('core.create')))) {
 
-            JToolBarHelper::apply('event.apply', 'JTOOLBAR_APPLY');
-            JToolBarHelper::save('event.save', 'JTOOLBAR_SAVE');
+            JToolBarHelper::apply('location.apply', 'JTOOLBAR_APPLY');
+            JToolBarHelper::save('location.save', 'JTOOLBAR_SAVE');
         }
        
         if (empty($this->item->id)) {
-            JToolBarHelper::cancel('event.cancel', 'JTOOLBAR_CANCEL');
+            JToolBarHelper::cancel('location.cancel', 'JTOOLBAR_CANCEL');
         } else {
-            JToolBarHelper::cancel('event.cancel', 'JTOOLBAR_CLOSE');
+            JToolBarHelper::cancel('location.cancel', 'JTOOLBAR_CLOSE');
         }
     }
 

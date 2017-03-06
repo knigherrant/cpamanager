@@ -13,7 +13,7 @@ jimport('joomla.application.component.modellist');
 /**
  * Methods supporting a list of CPAManager records.
  */
-class CPAManagerModelEvents extends JModelList {
+class CPAManagerModelLocations extends JModelList {
 
     /**
      * Constructor.
@@ -26,11 +26,11 @@ class CPAManagerModelEvents extends JModelList {
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = array(
                                 'id', 'a.id',
-                'ordering', 'a.ordering',
-                'subject', 'a.subject',
-                'location', 'a.location',
-                'date', 'a.date',
-                'latitude', 'a.latitude',
+                'name', 'a.name',
+                'address', 'a.address',
+                'phone', 'a.phone',
+                'created', 'a.created',
+                'email', 'a.email',
                 'longitude', 'a.longitude',
                 'featured', 'a.featured',
             );
@@ -101,7 +101,7 @@ class CPAManagerModelEvents extends JModelList {
                         'list.select', 'DISTINCT a.*'
                 )
         );
-        $query->from('`#__cpamanager_events` AS a');
+        $query->from('`#__cpamanager_locations` AS a');
 
         // Filter by search in title
         $search = $this->getState('filter.search');
@@ -110,7 +110,7 @@ class CPAManagerModelEvents extends JModelList {
                 $query->where('a.id = ' . (int) substr($search, 3));
             } else {
                 $search = $db->Quote('%' . $db->escape($search, true) . '%');
-                $query->where('LOWER(a.subject) LIKE ' . $search);
+                $query->where('LOWER(a.name) LIKE ' . $search);
             }
         }
       

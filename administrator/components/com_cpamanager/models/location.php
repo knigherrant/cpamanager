@@ -14,7 +14,7 @@ jimport('joomla.application.component.modeladmin');
 /**
  * CPAManager model.
  */
-class CPAManagerModelEvent extends JModelAdmin
+class CPAManagerModelLocation extends JModelAdmin
 {
 	/**
 	 * @var		string	The prefix to use with controller messages.
@@ -32,7 +32,7 @@ class CPAManagerModelEvent extends JModelAdmin
 	 * @return	JTable	A database object
 	 * @since	1.6
 	 */
-	public function getTable($type = 'Event', $prefix = 'CPAManagerTable', $config = array())
+	public function getTable($type = 'Location', $prefix = 'CPAManagerTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -51,7 +51,7 @@ class CPAManagerModelEvent extends JModelAdmin
 		$app	= JFactory::getApplication();
 
 		// Get the form.
-		$form = $this->loadForm('com_cpamanager.event', 'event', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_cpamanager.location', 'location', array('control' => 'jform', 'load_data' => $loadData));
         
         
 		if (empty($form)) {
@@ -70,7 +70,7 @@ class CPAManagerModelEvent extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_cpamanager.edit.event.data', array());
+		$data = JFactory::getApplication()->getUserState('com_cpamanager.edit.location.data', array());
 
 		if (empty($data)) {
 			$data = $this->getItem();

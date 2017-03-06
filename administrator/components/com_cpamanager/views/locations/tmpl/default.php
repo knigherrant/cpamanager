@@ -23,7 +23,7 @@ $canOrder = $user->authorise('core.edit.state', 'com_cpamanager');
 $saveOrder = $listOrder == 'a.ordering';
 ?>
 <?php echo jSont::menuSiderbar(); ?>
-<form action="<?php echo JRoute::_('index.php?option=com_cpamanager&view=events'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_cpamanager&view=locations'); ?>" method="post" name="adminForm" id="adminForm">
     <?php if (!empty( $this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
@@ -59,22 +59,22 @@ $saveOrder = $listOrder == 'a.ordering';
                 
                              
 				<th class="left">
-					<?php echo JHtml::_('grid.sort',  'Event Title', 'a.subject', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'Name', 'a.name', $listDirn, $listOrder); ?>
 				</th>
 
                                 <th class="left">
-					<?php echo JHtml::_('grid.sort',  'Category', 'a.category', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'Address', 'a.address', $listDirn, $listOrder); ?>
 				</th>
                                 
 				<th class="left">
-					<?php echo JHtml::_('grid.sort',  'Location', 'a.location', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'Phone', 'a.phone', $listDirn, $listOrder); ?>
 				</th>
 
 				<th class="left">
-					<?php echo JHtml::_('grid.sort',  'Date Start', 'a.date_start', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'Email', 'a.email', $listDirn, $listOrder); ?>
 				</th>
                                 <th class="left">
-					<?php echo JHtml::_('grid.sort',  'Date End', 'a.date_end', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'Date', 'a.created', $listDirn, $listOrder); ?>
 				</th>
 				
 
@@ -83,15 +83,6 @@ $saveOrder = $listOrder == 'a.ordering';
                         <?php echo JHtml::_('grid.sort', 'JPUBLISHED', 'a.state', $listDirn, $listOrder); ?>
                     </th>
                 <?php endif; ?>
-
-                <?php /*if (isset($this->items[0]->ordering)) : ?>
-                    <th width="10%">
-                        <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ORDERING', 'a.ordering', $listDirn, $listOrder); ?>
-                        <?php if ($canOrder && $saveOrder) : ?>
-                            <?php echo JHtml::_('grid.order', $this->items, 'filesave.png', 'events.saveorder'); ?>
-                        <?php endif; ?>
-                    </th>
-                <?php endif; */?>
 
                 <?php if (isset($this->items[0]->id)) : ?>
                     <th width="1%" class="nowrap">
@@ -129,44 +120,44 @@ $saveOrder = $listOrder == 'a.ordering';
                     </td>
                     <td data-field="Featured">
                     <?php if($item->featured){ ?>
-                                        <a href="#" onclick="return listItemTask('cb1','articles.unfeatured')" title="Toggle to change article state to 'Unfeatured'"></a>
-                                        <a href="#" onclick="return listItemTask('cb<?php echo $i; ?>','events.unfeatured')" class="btn btn-micro hasTooltip active" title="" data-original-title="Toggle featured status.">
-                                            <img src="<?php echo JURI::base(); ?>components/com_cpamanager/assets/images/featured.png" alt="Featured">
+                                        <a href="#" onclick="return listItemTask('cb1','locations.unfeatured')" title="Toggle to change article state to 'Unfeatured'"></a>
+                                        <a href="#" onclick="return listItemTask('cb<?php echo $i; ?>','locations.unfeatured')" class="btn btn-micro hasTooltip active" title="" data-original-title="Toggle featured status.">
+                                            <span class="icon-featured"></span>
                                         </a>
                                     <?php }else{ ?>
-                                        <a href="#" onclick="return listItemTask('cb<?php echo $i; ?>','events.featured')" class="btn btn-micro hasTooltip" title="" data-original-title="Toggle featured status.">
-                                            <img src="<?php echo JURI::base(); ?>components/com_cpamanager/assets/images/disabled.png" alt="Featured">
+                                        <a href="#" onclick="return listItemTask('cb<?php echo $i; ?>','locations.featured')" class="btn btn-micro hasTooltip" title="" data-original-title="Toggle featured status.">
+                                            <span class="icon-unfeatured"></span>
                                         </a>
                                     <?php } ?>
                                 </td>
                     
-					<td data-field="Event Title">
+					<td data-field="Location Title">
 					<?php if (isset($item->checked_out) && $item->checked_out) : ?>
-						<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'events.', $canCheckin); ?>
+						<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'locations.', $canCheckin); ?>
 					<?php endif; ?>
 					<?php if ($canEdit): ?>
-						<a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=event&layout=view&id=' . (int) $item->id); ?>">
+						<a href="<?php echo JRoute::_('index.php?option=com_cpamanager&task=location.edit&id=' . (int) $item->id); ?>">
 
-							<?php echo $this->escape($item->subject); ?>
+							<?php echo $this->escape($item->name); ?>
 						</a>
 					<?php else: ?>
-						<?php echo $this->escape($item->subject); ?>
+						<?php echo $this->escape($item->name); ?>
 					<?php endif; ?>
 					</td>
 
-                                        <td data-field="Category">
-						<?php echo $item->category; ?>
+                                        <td data-field="Address">
+						<?php echo $item->address; ?>
 					</td>
-                                        <td data-field="Location">
-						<?php echo $item->location; ?>
+                                        <td data-field="Phone">
+						<?php echo $item->phone; ?>
 					</td>
                                         
-					<td data-field="Date Start">
-						<?php echo $item->date_start; ?>
+					<td data-field="Email">
+						<?php echo $item->email; ?>
 					</td>
 
-					<td data-field="Date End">
-						<?php echo $item->date_end; ?>
+					<td data-field="Date">
+						<?php echo $item->created; ?>
 					</td>
 
 					
@@ -176,26 +167,6 @@ $saveOrder = $listOrder == 'a.ordering';
                         </td>
                     <?php } ?>
                    
-                    <?php /*if (isset($this->items[0]->ordering)) { ?>
-                        <td class="order" data-field="Ordering">
-                            <?php if ($canChange) : ?>
-                                <?php if ($saveOrder) : ?>
-                                    <?php if ($listDirn == 'asc') : ?>
-                                        <span><?php echo $this->pagination->orderUpIcon($i, true, 'events.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                                        <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, true, 'events.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-                                    <?php elseif ($listDirn == 'desc') : ?>
-                                        <span><?php echo $this->pagination->orderUpIcon($i, true, 'events.orderdown', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                                        <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, true, 'events.orderup', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                                <?php $disabled = $saveOrder ? '' : 'disabled="disabled"'; ?>
-                                <input type="text" name="order[]" size="5" value="<?php echo $item->ordering; ?>" <?php echo $disabled ?> class="text-area-order" />
-                            <?php else : ?>
-                                <?php echo $item->ordering; ?>
-                            <?php endif; ?>
-                        </td>
-                    <?php }*/ ?>
-
                     <?php if (isset($this->items[0]->id)) { ?>
                         <td class="center" data-field="ID">
                             <?php echo (int) $item->id; ?>

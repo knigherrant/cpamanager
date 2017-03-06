@@ -13,13 +13,13 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.controllerform');
 
 /**
- * Event controller class.
+ * Location controller class.
  */
-class CPAManagerControllerEvent extends JControllerForm
+class CPAManagerControllerLocation extends JControllerForm
 {
 
     function __construct() {
-        $this->view_list = 'events';
+        $this->view_list = 'locations';
         parent::__construct();
     }
 
