@@ -26,13 +26,13 @@ class CPAManagerModelCPAs extends JModelList {
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = array(
                 'id', 'a.id',
-                'username', 'u.username',
-                'name', 'u.name',
-                'testimonials', 'a.testimonials',
+                'firstname', 'a.firstname',
+                'midname', 'u.midname',
+                'lastname', 'a.lastname',
                 'phone', 'a.phone',
                 'email', 'u.email',
-                'account', 'a.account',
-                'location', 'a.location',
+                'company', 'a.company',
+                'created', 'a.created',
                 'account', 'a.account',
             );
         }
@@ -103,7 +103,7 @@ class CPAManagerModelCPAs extends JModelList {
                 )
         );
         $query->from('`#__cpamanager_cpas` AS a');
-        $query->select('u.username, u.name, u.email');
+        $query->select('u.username');
         $query->join( 'LEFT', '`#__users` AS u ON u.id=a.userid');
         // Filter by search in title
         $search = $this->getState('filter.search');
@@ -112,7 +112,12 @@ class CPAManagerModelCPAs extends JModelList {
                 $query->where('a.id = ' . (int) substr($search, 3));
             } else {
                 $search = $db->Quote('%' . $db->escape($search, true) . '%');
-				$query->where('LOWER(u.name) LIKE ' . $search . ' OR LOWER(u.username) LIKE ' . $search);
+				$query->where('LOWER(u.name) LIKE ' . $search 
+                                        . ' OR LOWER(a.firstname) LIKE ' . $search
+                                        . ' OR LOWER(a.lastname) LIKE ' . $search
+                                        . ' OR LOWER(a.midname) LIKE ' . $search
+                                        . ' OR LOWER(a.company) LIKE ' . $search
+                                        );
             }
         }
      
@@ -129,7 +134,9 @@ class CPAManagerModelCPAs extends JModelList {
 
     public function getItems() {
         $items = parent::getItems();
-        
+        foreach ($items as $item){
+            $item->name = $item->firstname . ' ' .$item->midname . ' ' . $item->lastname;
+        }
         return $items;
     }
 

@@ -6,32 +6,28 @@
             readonly="true" class="readonly"
             description="JGLOBAL_FIELD_ID_DESC" /> 
 
-       <field name="userid" type="user" label="Select User" description="Select User"  filter="safehtml" /> 
-       <field name="company" type="text" size="40" class="inputbox"  label="Company" description="Company"   filter="safehtml" /> 
-       <field name="firstname" type="text" size="40" class="inputbox"  label="First Name" description="First Name"   filter="safehtml" /> 
-       <field name="midname" type="text" size="40" class="inputbox" label="Middle Name" description="Middle Name"  filter="safehtml" /> 
-       <field name="lastname" type="text" size="40" class="inputbox" label="Last Name" description="Last Name"   default=""  filter="safehtml" /> 
-       <field name="address1" type="text" size="40" class="inputbox" label="Address 1" description="Address 1"  filter="safehtml" /> 
-       <field name="address2" type="text" label="Address 2" description="Address 2"  filter="safehtml" /> 
-       <field name="city" type="text" size="40" class="inputbox"  label="City" description="City"   filter="safehtml" /> 
-       <field name="state" type="text" size="40" class="inputbox"  label="State" description="State"   filter="safehtml" /> 
-       <field name="zip" type="text" size="40" class="inputbox" label="Zip Code" description="Zip Code"  filter="safehtml" /> 
-       <field name="phone" type="text" size="40" class="inputbox" label="Phone" description="Phone"   default=""  filter="safehtml" /> 
-       <field name="cell_phone" type="text" size="40" class="inputbox" label="Cell Phone" description="Cell Phone"  filter="safehtml" /> 
-       <field name="fax" type="text" label="Fax" description="Fax"  filter="safehtml" /> 
-       <field name="email" type="text" size="40" class="inputbox"  label="Email" description="Email"   filter="safehtml" /> 
-       <field name="url" type="text" hint="xxxxx" size="40" class="inputbox"  label="Url" description="Url"   filter="safehtml" /> 
-       <field name="logo" type="file" hint="xxxxx" size="40" class="inputbox" label="Logo" description="Logo"  filter="safehtml" /> 
-       <field name="serverip" type="text" size="40" class="inputbox" label="Server IP" description="Server IP"   default=""  filter="safehtml" /> 
-       <field name="dbname" type="text" size="40" class="inputbox" label="Database Name" description="Database Name"  filter="safehtml" /> 
-       <field name="dbuser" type="text" label="Database User" description="Database User"  filter="safehtml" /> 
-       <field name="dbpass" type="text" size="40" class="inputbox"  label="Database Password" description="Database Password"   filter="safehtml" /> 
-       <field name="banner" type="text" size="40" class="inputbox"  label="Banner Ads" description="Banner Ads"   filter="safehtml" /> 
-       
-       <field name="created" type="calendar" class="inputbox" label="Date" description="Date"  filter="safehtml" /> 
+       <field name="userid" type="user" hint="Select User" label="Select User" description="Select User"  filter="safehtml" /> 
+       <field name="company" type="text" size="40" class="inputbox" hint="Company" label="Company" description="Company"   filter="safehtml" /> 
+       <field name="firstname" type="text" size="40" class="inputbox" hint="First Name" label="First Name" description="First Name"   filter="safehtml" /> 
+       <field name="midname" type="text" size="40" class="inputbox" hint="Middle Name" label="Middle Name" description="Middle Name"  filter="safehtml" /> 
+       <field name="lastname" type="text" size="40" class="inputbox" hint="Last Name" label="Last Name" description="Last Name"   default=""  filter="safehtml" /> 
+       <field name="address1" type="text" size="40" class="inputbox" hint="Address 1" label="Address 1" description="Address 1"  filter="safehtml" /> 
+       <field name="address2" type="text" label="Address 2" hint="Address 2" description="Address 2"  filter="safehtml" /> 
+       <field name="city" type="text" size="40" class="inputbox" hint="City" label="City" description="City"   filter="safehtml" /> 
+       <field name="state" type="text" size="40" class="inputbox" hint="State" label="State" description="State"   filter="safehtml" /> 
+       <field name="zip" type="text" size="40" class="inputbox" hint="Zip Code" label="Zip Code" description="Zip Code"  filter="safehtml" /> 
+       <field name="phone" type="text" size="40" class="inputbox" hint="Phone" label="Phone" description="Phone"   default=""  filter="safehtml" /> 
+       <field name="cell_phone" type="text" size="40" class="inputbox" hint="Cell Phone" label="Cell Phone" description="Cell Phone"  filter="safehtml" /> 
+       <field name="fax" type="text" label="Fax" description="Fax" hint="Fax"  filter="safehtml" /> 
+       <field name="email" type="text" size="40" class="inputbox" hint="Email" label="Email" description="Email"   filter="safehtml" /> 
+       <field name="url" type="text"  size="40" class="inputbox" hint="Url" label="Url" description="Url"   filter="safehtml" /> 
+       <field name="logo" type="file"  size="40" class="inputbox" hint="Logo" label="Logo" description="Logo"  filter="safehtml" /> 
        
        
-       <field name="notes" type="textarea" size="40" class="inputbox" label="Testimonials" description="Testimonials"/> 
+       <field name="created" type="calendar" class="inputbox" hint="Date" label="Date" description="Date"  filter="safehtml" /> 
+       
+       
+       <field name="notes" type="textarea" size="40" hint="Notes" class="inputbox" label="Notes" description="Notes"/> 
        
        <field name="featured" type="radio"
                 class="btn-group btn-group-yesno"
@@ -54,5 +50,13 @@
         </field>
 
     </fieldset> 
+    
+    <fieldset name="server" >
+       <field name="serverip" type="text" size="40" class="inputbox" hint="Server IP" label="Server IP" description="Server IP"   default=""  filter="safehtml" /> 
+       <field name="dbname" type="text" size="40" class="inputbox" hint="Database Name" label="Database Name" description="Database Name"  filter="safehtml" /> 
+       <field name="dbuser" type="text" label="Database User" hint="Database User" description="Database User"  filter="safehtml" /> 
+       <field name="dbpass" type="text" size="40" class="inputbox" hint="Database Password" label="Database Password" description="Database Password"   filter="safehtml" /> 
+       <field name="banner" type="file" size="40" class="inputbox" hint="Banner Ads" label="Banner Ads" description="Banner Ads"   filter="safehtml" /> 
+    </fieldset>
 
 </form>

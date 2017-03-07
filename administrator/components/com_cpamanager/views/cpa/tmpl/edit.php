@@ -35,18 +35,102 @@ JHtml::_('behavior.keepalive');
 </script>
 
 <form action="<?php echo JRoute::_('index.php?option=com_cpamanager&layout=edit&id=' . (int) $this->item->id); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="cpa-form" class="form-validate">
-    <div class="form-horizontal row-fluid">
-            <div class="clearfix fltlft">
-                <legend><?php echo JText::_('CPA');?></legend>
-                <?php foreach ($this->form->getFieldset('basic') as $field) : ?>
+    <div class="jsont form-horizontal row-fluid span12">
+        <legend><?php echo JText::_('CPA');?></legend>
+            <div class="clearfix fltlft span9">
+                <div class="span12 jsontfirst">
+                    <div class="control-group span6">
+                        <div class="controlsx"><?php echo $this->form->getInput('userid'); ?></div>
+                    </div>
+                    <div class="control-group span6">
+                        <div class="controlsx"><?php echo $this->form->getInput('company'); ?></div>
+                    </div>
+                </div>
+                <div class="span12">
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('firstname'); ?></div>
+                    </div>
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('midname'); ?></div>
+                    </div>
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('lastname'); ?></div>
+                    </div>
+                </div>
+                <div class="span12 full">
+                    <div class="control-group">
+                        <div class="controlsx"><?php echo $this->form->getInput('address1'); ?></div>
+                    </div>
+                </div>
+                <div class="span12 full">
+                    <div class="control-group">
+                        <div class="controlsx"><?php echo $this->form->getInput('address2'); ?></div>
+                    </div>
+                </div>
+                <div class="span12">
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('city'); ?></div>
+                    </div>
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('state'); ?></div>
+                    </div>
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('zip'); ?></div>
+                    </div>
+                </div>
+                <div class="span12">
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('phone'); ?></div>
+                    </div>
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('cell_phone'); ?></div>
+                    </div>
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('fax'); ?></div>
+                    </div>
+                </div>
+                <div class="span12">
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('email'); ?></div>
+                    </div>
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('url'); ?></div>
+                    </div>
+                    <div class="control-group span4">
+                        <div class="controlsx"><span>Logo</span>  <?php echo $this->form->getInput('logo'); ?></div>
+                    </div>
+                </div>
+                <div class="span12 full">
+                    <div class="control-group">
+                        <p>Notes</p>
+                        <div class="controlsx"><?php echo $this->form->getInput('notes'); ?></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="span3" >
+                <div class="control-group">
+                        <div class="controlsx">
+                            <input type="text" placeholder="Longitude" class="inputbox" name="jLong" id="jLong"/>
+                        </div>
+                </div>
+                <div class="control-group">
+                        <div class="controlsx">
+                                <input type="text" placeholder="Latitude" class="inputbox" name="jLat" id="jLat"/>
+                        </div>
+                </div>
+                <legend><?php echo JText::_('SERVER CONFIGURATION');?></legend>
+                <?php foreach ($this->form->getFieldset('server') as $field){  ?>
                        <div class="control-group">
-                                <div class="field-input">
-                                        <?php echo jSont::customfield ($field); ?>
+                                <div class="controlsx">
+                                        <?php if($field->fieldname == 'banner'){ ?> <span>Banner Ads</span> <?php } ?><?php echo $field->input; ?>
                                 </div>
                         </div>
-                <?php endforeach; ?>
+                <?php }; ?>
+
             </div>
-        </div>
+    </div>
+    <?php echo $this->form->getInput('id'); ?>
     <input type="hidden" name="task" value="" />
     <?php echo JHtml::_('form.token'); ?>
     <div class="clr"></div>

@@ -27,9 +27,6 @@ defined('_JEXEC') or die;
 class jSont extends CPAManagerHelper{
     
     
-    
-    
-    
     public static  function loadAdminCss(){
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . 'components/com_cpamanager/assets/css/cpamanager-frontend.css');

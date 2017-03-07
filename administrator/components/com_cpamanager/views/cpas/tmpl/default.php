@@ -53,28 +53,29 @@ $saveOrder = $listOrder == 'a.ordering';
                 <th width="1%">
                     <?php echo JHtml::_('grid.checkall'); ?>
                 </th>
+                
+                 <th width="80" class='left'>
+				<?php echo JHtml::_('grid.sort',  'Featured', 'a.featured', $listDirn, $listOrder); ?>
+				</th>
              
 				<th class="left">
-					<?php echo JHtml::_('grid.sort',  'Username', 'a.username', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'CPA', 'a.firstname', $listDirn, $listOrder); ?>
 				</th>
 
 				<th class="left">
-					<?php echo JHtml::_('grid.sort',  'Name', 'a.name', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'Company', 'a.company', $listDirn, $listOrder); ?>
 				</th>
 
 				<th class="left">
-					<?php echo JHtml::_('grid.sort',  'Cell Phone', 'a.phone', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'Phone', 'a.phone', $listDirn, $listOrder); ?>
 				</th>
 				<th class="left">
 					<?php echo JHtml::_('grid.sort',  'Email', 'u.email', $listDirn, $listOrder); ?>
 				</th>
 
-				<th class="left">
-					<?php echo JHtml::_('grid.sort',  'Account Type', 'a.account', $listDirn, $listOrder); ?>
-				</th>
-                                
+				
                                 <th class="left">
-					<?php echo JHtml::_('grid.sort',  'Location', 'a.location', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'Date', 'a.created', $listDirn, $listOrder); ?>
 				</th>
                                 
 
@@ -84,14 +85,7 @@ $saveOrder = $listOrder == 'a.ordering';
                     </th>
                 <?php endif; ?>
 
-                <?php /*if (isset($this->items[0]->ordering)) : ?>
-                    <th width="10%">
-                        <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ORDERING', 'a.ordering', $listDirn, $listOrder); ?>
-                        <?php if ($canOrder && $saveOrder) : ?>
-                            <?php echo JHtml::_('grid.order', $this->items, 'filesave.png', 'cpas.saveorder'); ?>
-                        <?php endif; ?>
-                    </th>
-                <?php endif; */?>
+             
 
                 <?php if (isset($this->items[0]->id)) : ?>
                     <th width="1%" class="nowrap">
@@ -127,6 +121,18 @@ $saveOrder = $listOrder == 'a.ordering';
                     <td data-field="" class="center">
                         <?php echo JHtml::_('grid.id', $i, $item->id); ?>
                     </td>
+                    <td>
+                    <?php if($item->featured){ ?>
+                                        <a href="#" onclick="return listItemTask('cb1','cpas.unfeatured')" title="Toggle to change article state to 'Unfeatured'"></a>
+                                        <a href="#" onclick="return listItemTask('cb<?php echo $i; ?>','cpas.unfeatured')" class="btn btn-micro hasTooltip active" title="" data-original-title="Toggle featured status.">
+                                            <span class="icon-featured"></span>
+                                        </a>
+                                    <?php }else{ ?>
+                                        <a href="#" onclick="return listItemTask('cb<?php echo $i; ?>','cpas.featured')" class="btn btn-micro hasTooltip" title="" data-original-title="Toggle featured status.">
+                                            <span class="icon-unfeatured"></span>
+                                        </a>
+                                    <?php } ?>
+                                </td>
                     
                     
 					<td data-field="Username">
@@ -134,20 +140,20 @@ $saveOrder = $listOrder == 'a.ordering';
 						<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'cpas.', $canCheckin); ?>
 					<?php endif; ?>
 					<?php if ($canEdit): ?>
-						<a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=cpa&layout=view&id=' . (int) $item->id); ?>">
+						<a href="<?php echo JRoute::_('index.php?option=com_cpamanager&task=cpa.edit&id=' . (int) $item->id); ?>">
 
-							<?php echo $this->escape($item->username); ?>
+							<?php echo $this->escape($item->name); ?>
 						</a>
 					<?php else: ?>
-						<?php echo $this->escape($item->username); ?>
+						<?php echo $this->escape($item->name); ?>
 					<?php endif; ?>
 					</td>
 
-                                        <td data-field="Name">
-						<?php echo $item->name; ?>
+                                        <td data-field="Company">
+						<?php echo $item->company; ?>
 					</td>
                                         
-                                        <td data-field="Cell Phone">
+                                        <td data-field="Phone">
 						<?php echo $item->phone; ?>
 					</td>
                                         
@@ -155,12 +161,8 @@ $saveOrder = $listOrder == 'a.ordering';
 						<?php echo $item->email; ?>
 					</td>
                                         
-                                        <td data-field="Church">
-						<?php echo jSont::accountType($item->account); ?>
-					</td>
-                                        
-                                        <td data-field="Location">
-						<?php echo $item->location; ?>
+                                        <td data-field="Date">
+						<?php echo jSont::format($item->created); ?>
 					</td>
                                         
                                     <?php if (isset($this->items[0]->state)) { ?>
@@ -168,27 +170,6 @@ $saveOrder = $listOrder == 'a.ordering';
                             <?php echo JHtml::_('jgrid.published', $item->state, $i, 'staffs.', $canChange, 'cb'); ?>
                         </td>
                     <?php } ?>
-                   
-                    <?php /*if (isset($this->items[0]->ordering)) { ?>
-                        <td class="order" data-field="Ordering">
-                            <?php if ($canChange) : ?>
-                                <?php if ($saveOrder) : ?>
-                                    <?php if ($listDirn == 'asc') : ?>
-                                        <span><?php echo $this->pagination->orderUpIcon($i, true, 'cpas.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                                        <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, true, 'cpas.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-                                    <?php elseif ($listDirn == 'desc') : ?>
-                                        <span><?php echo $this->pagination->orderUpIcon($i, true, 'cpas.orderdown', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                                        <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, true, 'cpas.orderup', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                                <?php $disabled = $saveOrder ? '' : 'disabled="disabled"'; ?>
-                                <input type="text" name="order[]" size="5" value="<?php echo $item->ordering; ?>" <?php echo $disabled ?> class="text-area-order" />
-                            <?php else : ?>
-                                <?php echo $item->ordering; ?>
-                            <?php endif; ?>
-                        </td>
-                    <?php }*/ ?>
-
                     <?php if (isset($this->items[0]->id)) { ?>
                         <td class="center" data-field="ID">
                             <?php echo (int) $item->id; ?>
