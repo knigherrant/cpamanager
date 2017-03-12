@@ -60,7 +60,13 @@ $document->addStyleSheet('components/com_cpamanager/assets/css/cpamanager.css');
         });
     });
 </script>
-
+<div class="btn-toolbar">
+    <div class="btn-group">
+            <button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('location.save')">
+                    <span class="icon-ok"></span><?php echo JText::_('JSAVE') ?>
+            </button>
+    </div>
+</div>
 <form action="<?php echo JRoute::_('index.php?option=com_cpamanager&layout=edit&id=' . (int) $this->item->id); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="location-form" class="form-validate">
     <div class="form-horizontal row-fluid">
             <div class="clearfix fltlft span12">
@@ -68,45 +74,37 @@ $document->addStyleSheet('components/com_cpamanager/assets/css/cpamanager.css');
                
 
                         <div class="control-group">
-                            <div class="control-label"><?php echo $this->form->getLabel('name'); ?></div>
-                            <div class="controls"><?php echo $this->form->getInput('name'); ?></div>
+                            <div class="controlsx"><?php echo $this->form->getInput('name'); ?></div>
                         </div>
                         <div class="control-group">
-                            <div class="control-label"><?php echo $this->form->getLabel('address'); ?></div>
-                            <div class="controls"><?php echo $this->form->getInput('address'); ?></div>
+                            <div class="controlsx"><?php echo $this->form->getInput('address'); ?></div>
                         </div>
                         <div class="control-group">
-                            <div class="control-label"><?php echo $this->form->getLabel('phone'); ?></div>
-                            <div class="controls"><?php echo $this->form->getInput('phone'); ?></div>
+                            <div class="controlsx"><?php echo $this->form->getInput('phone'); ?></div>
                         </div>
                         <div class="control-group">
-                            <div class="control-label"><?php echo $this->form->getLabel('email'); ?></div>
-                            <div class="controls"><?php echo $this->form->getInput('email'); ?></div>
+                            <div class="controlsx"><?php echo $this->form->getInput('email'); ?></div>
                         </div>
                         
                         <div class="control-group">
-                            <div class="control-label"><?php echo $this->form->getLabel('created'); ?></div>
-                            <div class="controls"><?php echo $this->form->getInput('created'); ?></div>
+                            <div class="controlsx"><?php echo $this->form->getInput('created'); ?></div>
                         </div>
                         <div class="control-group">
-                            <div class="control-label"><?php echo $this->form->getLabel('created_by'); ?></div>
-                            <div class="controls"><?php echo $this->form->getInput('created_by'); ?></div>
+                            <div class="controlsx"><?php echo $this->form->getInput('created_by'); ?></div>
                         </div>
                 
                         <div class="span12">
                             <div class="control-group">
-                                <div class="control-label"><?php echo $this->form->getLabel('description'); ?></div>
-                                <div class="controls"><?php echo $this->form->getInput('description'); ?></div>
-                                <div class="controls"><?php echo $this->form->getInput('longitude'); ?></div>
-                                <div class="controls"><?php echo $this->form->getInput('latitude'); ?></div>
+                                <div class="controlsx"><?php echo $this->form->getInput('longitude'); ?></div>
+                                <div class="controlsx"><?php echo $this->form->getInput('latitude'); ?></div>
                             </div>
                         </div>
 						
 						<div class="clr"></div>
 							<div style="clear:both">
 								<div class="control-group">
-								<div class="control-label">Map</div>
-									<div class="controls">
+								
+									<div class="controlsx">
 								<?php 
 									
 									$cfg = array(

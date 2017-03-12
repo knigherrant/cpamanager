@@ -31,6 +31,7 @@ class jSont extends CPAManagerHelper{
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . 'components/com_cpamanager/assets/css/cpamanager-frontend.css');
         $document->addStyleSheet(JURI::root() . 'administrator/components/com_cpamanager/assets/css/cpamanager.css');
+        $document->addScript(JURI::root() . 'components/com_cpamanager/assets/js/cpamanager.js');
         //self::upgradePermission();
 		
     }
@@ -56,14 +57,34 @@ class jSont extends CPAManagerHelper{
         JModelLegacy::addIncludePath(JPATH_SITE . '/components/com_cpamanager/models', 'CPAManagerModel');
         return JModelLegacy::getInstance(ucwords($model), 'CPAManagerModel', array('ignore_request' => true));
     }
-    
-    public static function customfield($field){
-       
-        $input = '<input data-original-title="xxxxxxxxxxxx" ';
-        $field->input =  str_replace('<input', $input, $field->input) ;     
-        return str_replace('inputbox', 'inputbox hasTooltip', $field->input) ; 
-                         
+   
+    public static function getLocation($id = 0){
+        if(!$id) return false;
+        $db = JFactory::getDbo();
+        $location = $db->setQuery('SELECT * FROM #__cpamanager_locations WHERE id=' . (int) $id)->loadObject();
+        return $location;
     }
+    
+    public static function getOptionCpa(){
+        $db = JFactory::getDbo();
+        $lists = $db->setQuery('SELECT CONCAT(firstname," ",midname," ",lastname) as name, id   FROM #__cpamanager_cpas ')->loadObjectList();
+        $options[] = JHTML::_('select.option','', '- Select CPA -');
+        foreach ($lists as $l){
+            $options[] = JHTML::_('select.option',$l->id, $l->name);
+        }
+	return $options;
+    }
+    
+    public static function getOptionMileage(){
+        $db = JFactory::getDbo();
+        $lists = $db->setQuery('SELECT company as name, id   FROM #__cpamanager_mileages ')->loadObjectList();
+        $options[] = JHTML::_('select.option','', '- Select Mileage -');
+        foreach ($lists as $l){
+            $options[] = JHTML::_('select.option',$l->id, $l->name);
+        }
+	return $options;
+    }
+    
     
 	public static function footer(){
 		?>
@@ -82,6 +103,24 @@ class jSont extends CPAManagerHelper{
 		<?php
 	}
 	
+        public static function toolbar($task){
+            ?>
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                        <button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('<?php echo $task;?>.save')">
+                                <span class="icon-ok"></span><?php echo JText::_('JSAVE') ?>
+                        </button>
+                </div>
+                <div class="btn-group">
+                        <button type="button" class="btn" onclick="Joomla.submitbutton('<?php echo $task;?>.cancel')">
+                                <span class="icon-cancel"></span><?php echo JText::_('JCANCEL') ?>
+                        </button>
+                </div>
+            </div>
+            <?php
+        }
+        
+        
 	public static function playAudio($audio){
 		if(file_exists(JPATH_SITE . '/' . $audio)){
 			?>
@@ -171,14 +210,14 @@ class jSont extends CPAManagerHelper{
 		return JURI::root() . 'administrator/components/com_cpamanager/assets/images/avatar.jpg';
     }
 	
-    public static  function getCategory($type = 'categories_bible'){
+    public static  function getCategory($type = 'category_expenses'){
         $category = jSont::getConfig()->$type;
         $lists = json_decode($category);
         return $lists;
                 
     }
     
-    public static  function getOptionCategory($type = 'categories_bible'){
+    public static  function getOptionCategory($type = 'category_expenses'){
         $lists = self::getCategory($type);
         $options[] = JHTML::_('select.option','', '- Select Category -');
         foreach ($lists as $l){
@@ -264,11 +303,13 @@ class jSont extends CPAManagerHelper{
                     'marker' => '',
                     'icon' => ''
                 );
-                if(!$cfg['id']){
+                if(!$cfg['id'] || !$config->address){
                     $config->address = '';
                     $config->lat = '48.87146';
                     $config->long = '2.35500';      
                 }
+                $width = isset($cfg['width'])?$cfg['width']:'600px';
+                $height = isset($cfg['height'])?$cfg['height']:'300px';
 		$mapid = 'jsmap';
 		if(!$config->apikey) return $html;
 		$doc = JFactory::getDocument();
@@ -326,7 +367,7 @@ class jSont extends CPAManagerHelper{
 			';
                 }
 		$doc->addScriptDeclaration($script);
-		$html = '<div style="width:900px; height: 400px;" id="'.$mapid.'"></div>';
+		$html = '<div style="width:'.$width.'; height: '.$height.';" id="'.$mapid.'"></div>';
 		return $html;
 	}
 	
@@ -360,8 +401,13 @@ class jSont extends CPAManagerHelper{
             <div class="jMenu-cpamanager">
                 <ul class="jsont-menu">
                     <?php foreach ($menus as $view=>$text){ ?>
-                        <li class="frontend">
-                            <a href="index.php?option=com_cpamanager&view=<?php echo $view; ?>" title="<?php echo $text; ?>">
+                        <?php
+                        $page = JFactory::getApplication()->input->getString('view');
+                        $selected = '';
+                        if($page == $view || $page . 's' == $view) $selected = 'active';
+                        ?>
+                        <li class="frontend <?php echo $selected; ?>">
+                            <a class="<?php echo $selected; ?>" href="index.php?option=com_cpamanager&view=<?php echo $view; ?>" title="<?php echo $text; ?>">
                                 <img src="<?php echo JURI::root(); ?>components/com_cpamanager/assets/images/items/<?php echo $view; ?>.png" />
                                 <span><?php echo $text; ?></span>
                             </a>

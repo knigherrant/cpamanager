@@ -14,7 +14,7 @@ jimport('joomla.application.component.modeladmin');
 /**
  * CPAManager model.
  */
-class CPAManagerModelCPA extends JModelAdmin
+class CPAManagerModelCustomer extends JModelAdmin
 {
 	/**
 	 * @var		string	The prefix to use with controller messages.
@@ -32,7 +32,7 @@ class CPAManagerModelCPA extends JModelAdmin
 	 * @return	JTable	A database object
 	 * @since	1.6
 	 */
-	public function getTable($type = 'CPA', $prefix = 'CPAManagerTable', $config = array())
+	public function getTable($type = 'customer', $prefix = 'CPAManagerTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -51,7 +51,7 @@ class CPAManagerModelCPA extends JModelAdmin
 		$app	= JFactory::getApplication();
 
 		// Get the form.
-		$form = $this->loadForm('com_cpamanager.cpa', 'cpa', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_cpamanager.customer', 'customer', array('control' => 'jform', 'load_data' => $loadData));
         
         
 		if (empty($form)) {
@@ -70,7 +70,7 @@ class CPAManagerModelCPA extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_cpamanager.edit.cpa.data', array());
+		$data = JFactory::getApplication()->getUserState('com_cpamanager.edit.customer.data', array());
 
 		if (empty($data)) {
 			$data = $this->getItem();
@@ -94,7 +94,6 @@ class CPAManagerModelCPA extends JModelAdmin
                         $item->user = JFactory::getUser($item->userid);
                         $item->location = jSont::getLocation($item->location_id);
 		}
-
 		return $item;
 	}
 

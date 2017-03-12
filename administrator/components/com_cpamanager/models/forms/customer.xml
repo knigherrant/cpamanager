@@ -6,11 +6,12 @@
             readonly="true" class="readonly"
             description="JGLOBAL_FIELD_ID_DESC" /> 
 
-       <field name="userid" type="user" hint="Select User" label="Select User" description="Select User"  filter="safehtml" /> 
-       <field name="company" type="text" size="40" class="inputbox" hint="Company" label="Company" description="Company"   filter="safehtml" /> 
-       <field name="firstname" type="text" size="40" class="inputbox" hint="First Name" label="First Name" description="First Name"   filter="safehtml" /> 
-       <field name="midname" type="text" size="40" class="inputbox" hint="Middle Name" label="Middle Name" description="Middle Name"  filter="safehtml" /> 
-       <field name="lastname" type="text" size="40" class="inputbox" hint="Last Name" label="Last Name" description="Last Name"   default=""  filter="safehtml" /> 
+       <field name="userid" type="user" required="true" hint="Select User" label="Select User" description="Select User"  filter="safehtml" /> 
+       <field name="cpaid" type="cpa" required="true" hint="Select CPA" label="Select CPA" description="Select CPA"  filter="safehtml" /> 
+       <field name="company" type="text" required="true" size="40" class="inputbox" hint="Company" label="Company" description="Company"   filter="safehtml" /> 
+       <field name="firstname" type="text" required="true" size="40" class="inputbox" hint="First Name" label="First Name" description="First Name"   filter="safehtml" /> 
+       <field name="midname" type="text" required="true" size="40" class="inputbox" hint="Middle Name" label="Middle Name" description="Middle Name"  filter="safehtml" /> 
+       <field name="lastname" type="text" required="true" size="40" class="inputbox" hint="Last Name" label="Last Name" description="Last Name"   default=""  filter="safehtml" /> 
        <field name="address1" type="text" size="40" class="inputbox" hint="Address 1" label="Address 1" description="Address 1"  filter="safehtml" /> 
        <field name="address2" type="text" label="Address 2" hint="Address 2" description="Address 2"  filter="safehtml" /> 
        <field name="city" type="text" size="40" class="inputbox" hint="City" label="City" description="City"   filter="safehtml" /> 
@@ -21,7 +22,14 @@
        <field name="fax" type="text" label="Fax" description="Fax" hint="Fax"  filter="safehtml" /> 
        <field name="email" type="text" size="40" class="inputbox" hint="Email" label="Email" description="Email"   filter="safehtml" /> 
        <field name="url" type="text"  size="40" class="inputbox" hint="Url" label="Url" description="Url"   filter="safehtml" /> 
+       
+       <field name="federal_id" type="text"  size="40" class="inputbox" hint="Federal ID" label="Federal ID" description="Federal ID"  filter="safehtml" /> 
+       <field name="first_tax" type="text"  size="40" class="inputbox" hint="First Month In Tax Year" label="First Month In Tax Year" description="First Month In Tax Year"  filter="safehtml" /> 
+       <field name="first_fiscal" type="text"  size="40" class="inputbox" hint="First Month In Fiscal Year" label="First Month In Fiscal Year" description="First Month In Fiscal Year"  filter="safehtml" /> 
+       <field name="income_tax_form" type="text"  size="40" class="inputbox" hint="Income Tax From User" label="Income Tax From User" description="Income Tax From User"  filter="safehtml" /> 
+       <field name="tax_exempt_form" type="jkfile"  size="40" class="inputbox" hint="Tax Exempt Form" label="Tax Exempt Form" description="Tax Exempt Form"  filter="safehtml" />
        <field name="logo" type="jkfile"  size="40" class="inputbox" hint="Logo" label="Logo" description="Logo"  filter="safehtml" /> 
+       
        <field name="location_id" type="hidden"  size="40" class="inputbox" hint="Location" label="Location" description="Location"  filter="safehtml" /> 
        
        <field name="created" type="calendar" class="inputbox" hint="Date" label="Date" description="Date"  filter="safehtml" /> 

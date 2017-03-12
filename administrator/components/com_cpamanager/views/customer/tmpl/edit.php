@@ -13,20 +13,20 @@ JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.modal', 'a.modal');
-							
+JHtml::_('formbehavior.chosen', 'select');							
 ?>
 <?php echo jSont::menuSiderbar(); ?>
 <script type="text/javascript">
             Joomla.submitbutton = function(task)
             {
-                if (task == 'cpa.cancel') {
-                    Joomla.submitform(task, document.getElementById('cpa-form'));
+                if (task == 'customer.cancel') {
+                    Joomla.submitform(task, document.getElementById('customer-form'));
                 }
                 else{
                     
-                    if (task != 'cpa.cancel' && document.formvalidator.isValid(document.id('cpa-form'))) {
+                    if (task != 'customer.cancel' && document.formvalidator.isValid(document.id('customer-form'))) {
                         
-                        Joomla.submitform(task, document.getElementById('cpa-form'));
+                        Joomla.submitform(task, document.getElementById('customer-form'));
                     }
                     else {
                         alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
@@ -36,15 +36,18 @@ JHtml::_('behavior.modal', 'a.modal');
 
 </script>
 
-<form action="<?php echo JRoute::_('index.php?option=com_cpamanager&layout=edit&id=' . (int) $this->item->id); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="cpa-form" class="form-validate">
-    <div class="jsont form-horizontal row-fluid span12">
-        <legend><?php echo JText::_('CPA');?></legend>
+<form action="<?php echo JRoute::_('index.php?option=com_cpamanager&layout=edit&id=' . (int) $this->item->id); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="customer-form" class="form-validate">
+    <div class="jsont jCustommer form-horizontal row-fluid span12">
+        <legend><?php echo JText::_('Customer');?></legend>
             <div class="clearfix fltlft span9">
                 <div class="span12 jsontfirst">
-                    <div class="control-group span6">
+                    <div class="control-group span4">
                         <div class="controlsx"><?php echo $this->form->getInput('userid'); ?></div>
                     </div>
-                    <div class="control-group span6">
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('cpaid'); ?></div>
+                    </div>
+                    <div class="control-group span4">
                         <div class="controlsx"><?php echo $this->form->getInput('company'); ?></div>
                     </div>
                 </div>
@@ -100,6 +103,25 @@ JHtml::_('behavior.modal', 'a.modal');
                     </div>
                     <div class="control-group span4">
                         <div class="controlsx"><?php echo $this->form->getInput('logo'); ?></div>
+                    </div>
+                </div>
+                <div class="span12">
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('federal_id'); ?></div>
+                    </div>
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('first_tax'); ?></div>
+                    </div>
+                    <div class="control-group span4">
+                        <div class="controlsx"><?php echo $this->form->getInput('first_fiscal'); ?></div>
+                    </div>
+                </div>
+                <div class="span12">
+                    <div class="control-group span6">
+                        <div class="controlsx"><?php echo $this->form->getInput('income_tax_form'); ?></div>
+                    </div>
+                    <div class="control-group span6">
+                        <div class="controlsx"><?php echo $this->form->getInput('tax_exempt_form'); ?></div>
                     </div>
                 </div>
                 <div class="span12 full">

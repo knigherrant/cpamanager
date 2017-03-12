@@ -14,12 +14,11 @@ jimport('joomla.application.component.view');
 /**
  * View to edit
  */
-class CPAManagerViewCPA extends JViewLegacy {
+class CPAManagerViewExpense extends JViewLegacy {
 
     protected $state;
     protected $item;
     protected $form;
-     protected $items;
 
     /**
      * Display the view
@@ -28,7 +27,7 @@ class CPAManagerViewCPA extends JViewLegacy {
         $this->state = $this->get('State');
         $this->item = $this->get('Item');
         $this->form = $this->get('Form');
-        $this->items = $this->get('Locations');
+
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
             throw new Exception(implode("\n", $errors));
@@ -53,22 +52,19 @@ class CPAManagerViewCPA extends JViewLegacy {
         }
         $canDo = CPAManagerHelper::getActions();
 
-        JToolBarHelper::title(JText::_('CPA'), 'cpa.png');
-        $layout = $this->getLayout();
+        JToolBarHelper::title(JText::_('Expense'), 'expense.png');
 		if($this->getLayout() =='view') return;
         // If not checked out, can save the item.
-        if($layout == 'edit'){
-            if (!$checkedOut && ($canDo->get('core.edit') || ($canDo->get('core.create')))) {
+        if (!$checkedOut && ($canDo->get('core.edit') || ($canDo->get('core.create')))) {
 
-                JToolBarHelper::apply('cpa.apply', 'JTOOLBAR_APPLY');
-                JToolBarHelper::save('cpa.save', 'JTOOLBAR_SAVE');
-            }
+            JToolBarHelper::apply('expense.apply', 'JTOOLBAR_APPLY');
+            JToolBarHelper::save('expense.save', 'JTOOLBAR_SAVE');
         }
-
+       
         if (empty($this->item->id)) {
-            JToolBarHelper::cancel('cpa.cancel', 'JTOOLBAR_CANCEL');
+            JToolBarHelper::cancel('expense.cancel', 'JTOOLBAR_CANCEL');
         } else {
-            JToolBarHelper::cancel('cpa.cancel', 'JTOOLBAR_CLOSE');
+            JToolBarHelper::cancel('expense.cancel', 'JTOOLBAR_CLOSE');
         }
     }
 

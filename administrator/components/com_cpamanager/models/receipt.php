@@ -14,7 +14,7 @@ jimport('joomla.application.component.modeladmin');
 /**
  * CPAManager model.
  */
-class CPAManagerModelCPA extends JModelAdmin
+class CPAManagerModelReceipt extends JModelAdmin
 {
 	/**
 	 * @var		string	The prefix to use with controller messages.
@@ -32,7 +32,7 @@ class CPAManagerModelCPA extends JModelAdmin
 	 * @return	JTable	A database object
 	 * @since	1.6
 	 */
-	public function getTable($type = 'CPA', $prefix = 'CPAManagerTable', $config = array())
+	public function getTable($type = 'Receipt', $prefix = 'CPAManagerTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -51,7 +51,7 @@ class CPAManagerModelCPA extends JModelAdmin
 		$app	= JFactory::getApplication();
 
 		// Get the form.
-		$form = $this->loadForm('com_cpamanager.cpa', 'cpa', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_cpamanager.receipt', 'receipt', array('control' => 'jform', 'load_data' => $loadData));
         
         
 		if (empty($form)) {
@@ -70,7 +70,7 @@ class CPAManagerModelCPA extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_cpamanager.edit.cpa.data', array());
+		$data = JFactory::getApplication()->getUserState('com_cpamanager.edit.receipt.data', array());
 
 		if (empty($data)) {
 			$data = $this->getItem();
@@ -91,46 +91,17 @@ class CPAManagerModelCPA extends JModelAdmin
 	public function getItem($pk = null)
 	{
 		if ($item = parent::getItem($pk)) {
-                        $item->user = JFactory::getUser($item->userid);
-                        $item->location = jSont::getLocation($item->location_id);
+
 		}
 
 		return $item;
 	}
 
-        
-        function getLocations(){
-            // Create a new query object.
-            $db = $this->getDbo();
-            $query = $db->getQuery(true);
-
-            // Select the required fields from the table.
-            $query->select('a.*');
-            $query->from('`#__cpamanager_locations` AS a');
-            if (JFactory::getApplication()->isSite()) {
-                $query->where('created_by = ' . JFactory::getUser()->id);
-            }
-            $query->order('id desc');
-            return $db->setQuery($query)->loadObjectList();
-        }
 	
         
         function save($data) {
-            
-            if(isset($_FILES['jform']['name'])){
-                foreach ($_FILES['jform']['name'] as $f=>$file){
-                    if($file){
-                        jimport('joomla.filesystem.folder');
-                        jimport('joomla.filesystem.file');
-                        $path = 'images/cpamanager/';
-                        if(!JFolder::exists(JPATH_ROOT . '/' .$path)) JFolder::create (JPATH_ROOT . '/' . $path);
-                        $filepath = $path . time() . '_' . $file;
-                        if(JFile::upload($_FILES['jform']['tmp_name'][$f], JPATH_ROOT .'/'. $filepath)){
-                            $data[$f] = $filepath;
-                        }
-                    }
-                }
-            }
+            if(empty($data['created'])) $data['created'] = JFactory::getDate ()->toSql ();
+            //jSont::upgradeUser($data['email']);
             return parent::save($data);
         }
 

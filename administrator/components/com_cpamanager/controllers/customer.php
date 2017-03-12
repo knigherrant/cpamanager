@@ -13,25 +13,14 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.controllerform');
 
 /**
- * Location controller class.
+ * CPA controller class.
  */
-class CPAManagerControllerLocation extends JControllerForm
+class CPAManagerControllerCustomer extends JControllerForm
 {
 
     function __construct() {
-        $this->view_list = 'locations';
+        $this->view_list = 'customers';
         parent::__construct();
-    }
-    
-    function save($key = null, $urlVar = null) {
-        parent::save($key, $urlVar);
-        ?>
-        <div style="text-align: center"><h3>Location Added Success</h3></div>
-        <script>
-            //window.parent.location.reload()
-        </script>
-        <?php
-        die;
     }
 
 }

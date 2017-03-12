@@ -10,9 +10,9 @@
 defined('_JEXEC') or die;
 
 /**
- * cpa Table class
+ * receipt Table class
  */
-class CPAManagerTableCPA extends JTable
+class CPAManagerTableReceipt extends JTable
 {
 
 	/**
@@ -22,7 +22,7 @@ class CPAManagerTableCPA extends JTable
 	 */
 	public function __construct(&$db)
 	{
-		parent::__construct('#__cpamanager_cpas', 'id', $db);
+		parent::__construct('#__cpamanager_receipts', 'id', $db);
 	}
 
 	/**
@@ -38,8 +38,8 @@ class CPAManagerTableCPA extends JTable
 	{
 
 		
-                if(!$array['created']) $array['created'] = JFactory::getDate ()->toSql ();
-            
+                if(empty($array['userid'])) $array['userid'] = JFactory::getUser ()->id;
+				if(empty($array['created'])) $array['created'] = JFactory::getDate ()->toSql ();
 		if (isset($array['params']) && is_array($array['params']))
 		{
 			$registry = new JRegistry();
@@ -53,10 +53,10 @@ class CPAManagerTableCPA extends JTable
 			$registry->loadArray($array['metadata']);
 			$array['metadata'] = (string) $registry;
 		}
-		if (!JFactory::getUser()->authorise('core.admin', 'com_cpamanager.cpa.' . $array['id']))
+		if (!JFactory::getUser()->authorise('core.admin', 'com_cpamanager.receipt.' . $array['id']))
 		{
-			$actions         = JFactory::getACL()->getActions('com_cpamanager', 'cpa');
-			$default_actions = JFactory::getACL()->getAssetRules('com_cpamanager.cpa.' . $array['id'])->getData();
+			$actions         = JFactory::getACL()->getActions('com_cpamanager', 'receipt');
+			$default_actions = JFactory::getACL()->getAssetRules('com_cpamanager.receipt.' . $array['id'])->getData();
 			$array_jaccess   = array();
 			foreach ($actions as $action)
 			{
@@ -201,10 +201,11 @@ class CPAManagerTableCPA extends JTable
 	{
 		$k = $this->_tbl_key;
 
-		return 'com_cpamanager.cpa.' . (int) $this->$k;
+		return 'com_cpamanager.receipt.' . (int) $this->$k;
 	}
 
 	
+
 	public function delete($pk = null)
 	{
 		$this->load($pk);

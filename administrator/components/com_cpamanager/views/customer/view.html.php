@@ -14,7 +14,7 @@ jimport('joomla.application.component.view');
 /**
  * View to edit
  */
-class CPAManagerViewCPA extends JViewLegacy {
+class CPAManagerViewCustomer extends JViewLegacy {
 
     protected $state;
     protected $item;
@@ -53,22 +53,22 @@ class CPAManagerViewCPA extends JViewLegacy {
         }
         $canDo = CPAManagerHelper::getActions();
 
-        JToolBarHelper::title(JText::_('CPA'), 'cpa.png');
+        JToolBarHelper::title(JText::_('Customer'), 'customer.png');
         $layout = $this->getLayout();
 		if($this->getLayout() =='view') return;
         // If not checked out, can save the item.
         if($layout == 'edit'){
             if (!$checkedOut && ($canDo->get('core.edit') || ($canDo->get('core.create')))) {
 
-                JToolBarHelper::apply('cpa.apply', 'JTOOLBAR_APPLY');
-                JToolBarHelper::save('cpa.save', 'JTOOLBAR_SAVE');
+                JToolBarHelper::apply('customer.apply', 'JTOOLBAR_APPLY');
+                JToolBarHelper::save('customer.save', 'JTOOLBAR_SAVE');
             }
         }
 
         if (empty($this->item->id)) {
-            JToolBarHelper::cancel('cpa.cancel', 'JTOOLBAR_CANCEL');
+            JToolBarHelper::cancel('customer.cancel', 'JTOOLBAR_CANCEL');
         } else {
-            JToolBarHelper::cancel('cpa.cancel', 'JTOOLBAR_CLOSE');
+            JToolBarHelper::cancel('customer.cancel', 'JTOOLBAR_CLOSE');
         }
     }
 
