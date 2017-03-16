@@ -53,7 +53,7 @@ class CPAManagerViewCPAs extends JViewLegacy {
         $state = $this->get('State');
         $canDo = CPAManagerHelper::getActions($state->get('filter.category_id'));
 
-        JToolBarHelper::title(JText::_('CPA Manager'), 'cpas.png');
+        JToolBarHelper::title(JText::_('CPA Manager'), 'user');
 		if($this->getLayout() =='testimonials'){
 			JToolBarHelper::title(JText::_('CPAs Testimonials'), 'cpas.png');
 			return;

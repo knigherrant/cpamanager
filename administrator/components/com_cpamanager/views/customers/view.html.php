@@ -53,7 +53,7 @@ class CPAManagerViewCustomers extends JViewLegacy {
         $state = $this->get('State');
         $canDo = CPAManagerHelper::getActions($state->get('filter.category_id'));
 
-        JToolBarHelper::title(JText::_('Customers Manager'), 'customers.png');
+        JToolBarHelper::title(JText::_('Customers Manager'), 'user');
 		
         //Check if the form exists before showing the add/edit buttons
         $formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/customer';

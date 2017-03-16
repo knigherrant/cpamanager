@@ -18,8 +18,15 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_cpamanager'))
 }
 require_once JPATH_COMPONENT . '/helpers/cpamanager.php';
 // Include dependancies
-jSont::loadAdminCss();
+
 jimport('joomla.application.component.controller');
 $controller	= JControllerLegacy::getInstance('CPAManager');
 $controller->execute(JFactory::getApplication()->input->get('task'));
 $controller->redirect();
+
+$dispatcher = JDispatcher::getInstance(); 
+$dispatcher->register('onBeforeCompileHead','triggerScriptjQuery'); 
+function triggerScriptjQuery(){ 
+    $document = JFactory::getDocument(); 
+    jSont::loadAdminCss(); 
+} 

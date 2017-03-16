@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2017 at 11:49 AM
+-- Generation Time: Mar 16, 2017 at 11:38 AM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -42,7 +42,7 @@ CREATE TABLE `cpa_assets` (
 --
 
 INSERT INTO `cpa_assets` (`id`, `parent_id`, `lft`, `rgt`, `level`, `name`, `title`, `rules`) VALUES
-(1, 0, 0, 107, 0, 'root.1', 'Root Asset', '{"core.login.site":{"6":1,"2":1},"core.login.admin":{"6":1},"core.login.offline":{"6":1},"core.admin":{"8":1},"core.manage":{"7":1},"core.create":{"6":1,"3":1},"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1},"core.edit.own":{"6":1,"3":1}}'),
+(1, 0, 0, 109, 0, 'root.1', 'Root Asset', '{"core.login.site":{"6":1,"2":1},"core.login.admin":{"6":1},"core.login.offline":{"6":1},"core.admin":{"8":1},"core.manage":{"7":1},"core.create":{"6":1,"3":1},"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1},"core.edit.own":{"6":1,"3":1}}'),
 (2, 1, 1, 2, 1, 'com_admin', 'com_admin', '{}'),
 (3, 1, 3, 6, 1, 'com_banners', 'com_banners', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
 (4, 1, 7, 8, 1, 'com_cache', 'com_cache', '{"core.admin":{"7":1},"core.manage":{"7":1}}'),
@@ -95,7 +95,8 @@ INSERT INTO `cpa_assets` (`id`, `parent_id`, `lft`, `rgt`, `level`, `name`, `tit
 (53, 18, 72, 73, 2, 'com_modules.module.86', 'Joomla Version', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
 (54, 16, 38, 39, 2, 'com_menus.menu.1', 'Main Menu', '{}'),
 (55, 1, 105, 106, 1, 'com_cpamanager', 'com_cpamanager', '{}'),
-(56, 27, 19, 20, 3, 'com_content.article.1', 'test', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}');
+(56, 27, 19, 20, 3, 'com_content.article.1', 'test', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}'),
+(57, 1, 107, 108, 1, 'com_cpamanager.cpa.1', 'com_cpamanager.cpa.1', '{}');
 
 -- --------------------------------------------------------
 
@@ -462,7 +463,6 @@ CREATE TABLE `cpa_cpamanager_cpas` (
   `address1` varchar(255) NOT NULL,
   `address2` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
-  `state` varchar(255) NOT NULL,
   `zip` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `cell_phone` varchar(255) NOT NULL,
@@ -478,19 +478,25 @@ CREATE TABLE `cpa_cpamanager_cpas` (
   `notes` text NOT NULL,
   `created` datetime NOT NULL,
   `account` tinyint(2) NOT NULL,
-  `featred` tinyint(2) NOT NULL
+  `featured` tinyint(2) NOT NULL,
+  `location_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cpa_cpamanager_cpas`
+--
+
+INSERT INTO `cpa_cpamanager_cpas` (`id`, `asset_id`, `ordering`, `userid`, `company`, `firstname`, `midname`, `lastname`, `address1`, `address2`, `city`, `zip`, `phone`, `cell_phone`, `fax`, `email`, `url`, `logo`, `serverip`, `dbname`, `dbuser`, `dbpass`, `banner`, `notes`, `created`, `account`, `featured`, `location_id`) VALUES
+(1, 57, 1, 911, '43423', '343242', '423423', '43243', '4324', '4324', '2432', '432423423', '432', '432423', '432432423', '423432', '43432', 'images/cpamanager/1489249459_anh-nen-canh-dong-hoa-huong-duong.jpg', '43423', '312', '312', '24342', 'images/cpamanager/1489249444_1471514129602_3899.jpg', '4324', '0000-00-00 00:00:00', 0, 0, 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cpa_cpamanager_custommers`
+-- Table structure for table `cpa_cpamanager_customers`
 --
 
-CREATE TABLE `cpa_cpamanager_custommers` (
+CREATE TABLE `cpa_cpamanager_customers` (
   `id` int(11) UNSIGNED NOT NULL,
-  `asset_id` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `ordering` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `cpaid` int(11) NOT NULL,
   `company` varchar(255) NOT NULL,
@@ -521,8 +527,16 @@ CREATE TABLE `cpa_cpamanager_custommers` (
   `notes` text NOT NULL,
   `created` datetime NOT NULL,
   `account` tinyint(2) NOT NULL,
-  `featred` tinyint(2) NOT NULL
+  `featured` tinyint(2) NOT NULL,
+  `location_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cpa_cpamanager_customers`
+--
+
+INSERT INTO `cpa_cpamanager_customers` (`id`, `userid`, `cpaid`, `company`, `firstname`, `midname`, `lastname`, `address1`, `address2`, `city`, `state`, `zip`, `phone`, `cell_phone`, `fax`, `email`, `url`, `federal_id`, `first_tax`, `first_fiscal`, `income_tax_form`, `tax_exempt_form`, `logo`, `serverip`, `dbname`, `dbuser`, `dbpass`, `banner`, `notes`, `created`, `account`, `featured`, `location_id`) VALUES
+(1, 912, 1, '43423', 'Dinh', 'Van', 'Nam', '13 duong dinh dinh, tinh tinh dinh', '', 'Ho Chi MInh', '432', '432432', '4234242442342', '4242343442', '423432442422', 'knigherrant@gm43ail.com', '43432', '4234324234242', '4234324324242', '44233244242', '4242342342342342', 'images/cpamanager/1489327914_Captura.JPG', 'images/cpamanager/1489327914_1471514128408_3893.jpg', '3424242', '44242342342', '42342342342432', '423423434242', 'images/cpamanager/1489327914_1471514129462_3898.jpg', '4444444444444444444444444444444444444444444', '2017-03-12 14:15:07', 0, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -534,7 +548,7 @@ CREATE TABLE `cpa_cpamanager_expenses` (
   `id` int(11) UNSIGNED NOT NULL,
   `cpaid` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `company` varchar(255) NOT NULL,
-  `mechant` varchar(255) NOT NULL,
+  `merchant` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `comments` text NOT NULL,
   `category` varchar(255) NOT NULL,
@@ -550,6 +564,44 @@ CREATE TABLE `cpa_cpamanager_expenses` (
   `odometer_end` varchar(225) NOT NULL,
   `total_mileage` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cpa_cpamanager_expenses`
+--
+
+INSERT INTO `cpa_cpamanager_expenses` (`id`, `cpaid`, `company`, `merchant`, `created`, `comments`, `category`, `image`, `billable`, `reimbursable`, `total`, `start_point`, `destination`, `mileage_id`, `rate`, `odometer_start`, `odometer_end`, `total_mileage`) VALUES
+(1, 1, '43423xxxxxxxx', 'xxxxxxxxxxxxxxxxx', '2017-03-12 00:00:00', 'ffffffffffffffffffffffff', 'Expenses 1', 'images/powered_by.png', 1, 0, '111', '33333', '333333333333', '', '55555', '66666', '77777', '888888');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cpa_cpamanager_invoices`
+--
+
+CREATE TABLE `cpa_cpamanager_invoices` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `company` varchar(255) NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `storage_type` varchar(255) NOT NULL,
+  `storage_path_file` varchar(255) NOT NULL,
+  `storage_path_remote` varchar(255) NOT NULL,
+  `filesize` varchar(255) NOT NULL DEFAULT '0',
+  `image` varchar(255) NOT NULL,
+  `icon` varchar(255) NOT NULL,
+  `icon_custom` tinyint(1) NOT NULL DEFAULT '0',
+  `description` text NOT NULL,
+  `ext` varchar(10) NOT NULL,
+  `access` tinyint(1) NOT NULL DEFAULT '0',
+  `state` tinyint(1) NOT NULL,
+  `publish_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `unpublish_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_by` int(11) NOT NULL,
+  `modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `admin` int(11) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -592,7 +644,13 @@ CREATE TABLE `cpa_cpamanager_locations` (
 --
 
 INSERT INTO `cpa_cpamanager_locations` (`id`, `name`, `address`, `latitude`, `longitude`, `featured`, `phone`, `created_by`, `email`, `created`) VALUES
-(2, 'test front-end', 'Viet Nam', '48.872130400777785', '2.3600425529480162', 0, '4324234234234', 911, '31312', '2017-03-06 00:00:00');
+(2, 'test front-end', 'Viet Nam', '48.872130400777785', '2.3600425529480162', 0, '4324234234234', 911, '31312', '2017-03-06 00:00:00'),
+(3, 'Location 1', 'Ho chi minh', '48.87229270698384', '2.3559226799011412', 0, '01234567892', 911, 'dev@joomlavi.com2', '2017-03-11 00:00:00'),
+(4, '44', '44444444444444444444', '', '', 0, '44444', 911, 'info@kungfupups.com', '2017-03-11 00:00:00'),
+(5, 'Location 1', 'Ho chi minh', '', '', 0, '123456', 911, 'dev@joomlavi.com22', '2017-03-11 00:00:00'),
+(6, 'Location 1', '44444444444444tret', '', '', 0, '012345678922222', 911, 'dev@joomlavi.com2', '2017-03-11 00:00:00'),
+(7, 'Location 2222', '44444444444444tret', '', '', 0, '012345678933', 911, 'dev@joomlavi.com22', '2017-03-11 00:00:00'),
+(8, 'Location 222243', '44444444444444444444', '', '', 0, '42342342', 911, 'dev@joomlavi.com2', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -875,7 +933,7 @@ INSERT INTO `cpa_extensions` (`extension_id`, `name`, `type`, `element`, `folder
 (449, 'plg_authentication_cookie', 'plugin', 'cookie', 'authentication', 0, 1, 1, 0, '{"name":"plg_authentication_cookie","type":"plugin","creationDate":"July 2013","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_AUTH_COOKIE_XML_DESCRIPTION","group":"","filename":"cookie"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (450, 'plg_twofactorauth_yubikey', 'plugin', 'yubikey', 'twofactorauth', 0, 0, 1, 0, '{"name":"plg_twofactorauth_yubikey","type":"plugin","creationDate":"September 2013","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.2.0","description":"PLG_TWOFACTORAUTH_YUBIKEY_XML_DESCRIPTION","group":"","filename":"yubikey"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (451, 'plg_search_tags', 'plugin', 'tags', 'search', 0, 1, 1, 0, '{"name":"plg_search_tags","type":"plugin","creationDate":"March 2014","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_SEARCH_TAGS_XML_DESCRIPTION","group":"","filename":"tags"}', '{"search_limit":"50","show_tagged_items":"1"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(452, 'plg_system_updatenotification', 'plugin', 'updatenotification', 'system', 0, 1, 1, 0, '{"name":"plg_system_updatenotification","type":"plugin","creationDate":"May 2015","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_SYSTEM_UPDATENOTIFICATION_XML_DESCRIPTION","group":"","filename":"updatenotification"}', '{"lastrun":1488791590}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(452, 'plg_system_updatenotification', 'plugin', 'updatenotification', 'system', 0, 1, 1, 0, '{"name":"plg_system_updatenotification","type":"plugin","creationDate":"May 2015","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_SYSTEM_UPDATENOTIFICATION_XML_DESCRIPTION","group":"","filename":"updatenotification"}', '{"lastrun":1489649334}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (453, 'plg_editors-xtd_module', 'plugin', 'module', 'editors-xtd', 0, 1, 1, 0, '{"name":"plg_editors-xtd_module","type":"plugin","creationDate":"October 2015","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_MODULE_XML_DESCRIPTION","group":"","filename":"module"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (454, 'plg_system_stats', 'plugin', 'stats', 'system', 0, 1, 1, 0, '{"name":"plg_system_stats","type":"plugin","creationDate":"November 2013","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_SYSTEM_STATS_XML_DESCRIPTION","group":"","filename":"stats"}', '{"mode":3,"lastrun":1488530582,"unique_id":"7de989aaf3ca83f10ca02950c505aee4d24e18c0","interval":12}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (455, 'plg_installer_packageinstaller', 'plugin', 'packageinstaller', 'installer', 0, 1, 1, 1, '{"name":"plg_installer_packageinstaller","type":"plugin","creationDate":"May 2016","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.0","description":"PLG_INSTALLER_PACKAGEINSTALLER_PLUGIN_XML_DESCRIPTION","group":"","filename":"packageinstaller"}', '', '', '', 0, '0000-00-00 00:00:00', 1, 0),
@@ -1561,7 +1619,7 @@ INSERT INTO `cpa_modules` (`id`, `asset_id`, `title`, `note`, `content`, `orderi
 (14, 48, 'User Status', '', '', 2, 'status', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_status', 3, 1, '', 1, '*'),
 (15, 49, 'Title', '', '', 1, 'title', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_title', 3, 1, '', 1, '*'),
 (16, 50, 'Login Form', '', '', 7, 'position-7', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_login', 1, 1, '{"greeting":"1","name":"0"}', 0, '*'),
-(17, 51, 'Breadcrumbs', '', '', 1, 'position-2', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_breadcrumbs', 1, 1, '{"moduleclass_sfx":"","showHome":"1","homeText":"","showComponent":"1","separator":"","cache":"0","cache_time":"0","cachemode":"itemid"}', 0, '*'),
+(17, 51, 'Breadcrumbs', '', '', 1, 'position-2', 911, '2017-03-06 15:16:32', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_breadcrumbs', 1, 1, '{"moduleclass_sfx":"","showHome":"1","homeText":"","showComponent":"1","separator":"","cache":"0","cache_time":"0","cachemode":"itemid"}', 0, '*'),
 (79, 52, 'Multilanguage status', '', '', 1, 'status', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 'mod_multilangstatus', 3, 1, '{"layout":"_:default","moduleclass_sfx":"","cache":"0"}', 1, '*'),
 (86, 53, 'Joomla Version', '', '', 1, 'footer', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_version', 3, 1, '{"format":"short","product":"1","layout":"_:default","moduleclass_sfx":"","cache":"0"}', 1, '*');
 
@@ -1742,7 +1800,8 @@ CREATE TABLE `cpa_session` (
 --
 
 INSERT INTO `cpa_session` (`session_id`, `client_id`, `guest`, `time`, `data`, `userid`, `username`) VALUES
-('rps303n3bsvldbqpitb2mp6dh3', 1, 0, '1488796784', 'joomla|s:1380:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo0OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aTo5NztzOjU6InRpbWVyIjtPOjg6InN0ZENsYXNzIjozOntzOjU6InN0YXJ0IjtpOjE0ODg3OTE1ODk7czo0OiJsYXN0IjtpOjE0ODg3OTY3NzY7czozOiJub3ciO2k6MTQ4ODc5Njc4Mzt9czo1OiJ0b2tlbiI7czozMjoiRXY1bFpVM3NkSlQ5VUtSQ0dFTDFpZ3RJTTQ2SUVDazQiO31zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjM6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6Mzp7czoxMzoiY29tX2luc3RhbGxlciI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo3OiJtZXNzYWdlIjtzOjA6IiI7czoxNzoiZXh0ZW5zaW9uX21lc3NhZ2UiO3M6MDoiIjt9czoxNDoiY29tX2NwYW1hbmFnZXIiO086ODoic3RkQ2xhc3MiOjI6e3M6NToibGlua3MiO086ODoic3RkQ2xhc3MiOjE6e3M6ODoib3JkZXJjb2wiO3M6NDoiYS5pZCI7fXM6NDoiZWRpdCI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo0OiJsaW5rIjtPOjg6InN0ZENsYXNzIjoxOntzOjQ6ImRhdGEiO047fXM6ODoibG9jYXRpb24iO086ODoic3RkQ2xhc3MiOjI6e3M6MjoiaWQiO2E6MDp7fXM6NDoiZGF0YSI7Tjt9fX1zOjExOiJjb21fY29udGVudCI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJlZGl0IjtPOjg6InN0ZENsYXNzIjoxOntzOjc6ImFydGljbGUiO086ODoic3RkQ2xhc3MiOjE6e3M6NDoiZGF0YSI7Tjt9fX19czoxNDoiACoAaW5pdGlhbGl6ZWQiO2I6MTtzOjk6InNlcGFyYXRvciI7czoxOiIuIjt9czo0OiJ1c2VyIjtPOjU6IkpVc2VyIjoxOntzOjI6ImlkIjtzOjM6IjkxMSI7fXM6MTE6ImFwcGxpY2F0aW9uIjtPOjg6InN0ZENsYXNzIjoxOntzOjU6InF1ZXVlIjtOO319fXM6MTQ6IgAqAGluaXRpYWxpemVkIjtiOjA7czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fQ==";', 911, 'admin');
+('87ricfnprl0m88vc1iemf9rul7', 1, 0, '1489659916', 'joomla|s:724:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjozOntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aToxNjtzOjU6InRpbWVyIjtPOjg6InN0ZENsYXNzIjozOntzOjU6InN0YXJ0IjtpOjE0ODk2NTkwNjc7czo0OiJsYXN0IjtpOjE0ODk2NTk5MTY7czozOiJub3ciO2k6MTQ4OTY1OTkxNjt9czo1OiJ0b2tlbiI7czozMjoiTmc4YWJUbXJnb2lFZFNoU0FScVVDaFJkTEhCZzhPOEsiO31zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjM6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6MDp7fXM6MTQ6IgAqAGluaXRpYWxpemVkIjtiOjE7czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fXM6NDoidXNlciI7Tzo1OiJKVXNlciI6MTp7czoyOiJpZCI7czozOiI5MTEiO319fXM6MTQ6IgAqAGluaXRpYWxpemVkIjtiOjA7czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fQ==";', 911, 'admin'),
+('rqnmjddci2i3cjg9fdqsi390f1', 1, 0, '1489660521', 'joomla|s:1440:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjozOntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aToxMDk7czo1OiJ0aW1lciI7Tzo4OiJzdGRDbGFzcyI6Mzp7czo1OiJzdGFydCI7aToxNDg5NjQ5MzMzO3M6NDoibGFzdCI7aToxNDg5NjYwNTIwO3M6Mzoibm93IjtpOjE0ODk2NjA1MjE7fXM6NToidG9rZW4iO3M6MzI6IlJ5ZGd1ZWF2NU1BTWZ1RUhJbkZMWmZKVnBRT2pBYk9SIjt9czo4OiJyZWdpc3RyeSI7TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjM6e3M6MTM6ImNvbV9pbnN0YWxsZXIiO086ODoic3RkQ2xhc3MiOjI6e3M6NzoibWVzc2FnZSI7czowOiIiO3M6MTc6ImV4dGVuc2lvbl9tZXNzYWdlIjtzOjA6IiI7fXM6MTQ6ImNvbV9jYXRlZ29yaWVzIjtPOjg6InN0ZENsYXNzIjoxOntzOjEwOiJjYXRlZ29yaWVzIjtPOjg6InN0ZENsYXNzIjoxOntzOjc6ImNvbnRlbnQiO086ODoic3RkQ2xhc3MiOjI6e3M6NjoiZmlsdGVyIjtPOjg6InN0ZENsYXNzIjoxOntzOjk6ImV4dGVuc2lvbiI7czoxMToiY29tX2NvbnRlbnQiO31zOjQ6Imxpc3QiO2E6NDp7czo5OiJkaXJlY3Rpb24iO3M6MzoiYXNjIjtzOjU6ImxpbWl0IjtzOjI6IjIwIjtzOjg6Im9yZGVyaW5nIjtzOjU6ImEubGZ0IjtzOjU6InN0YXJ0IjtkOjA7fX19fXM6MTQ6ImNvbV9jcGFtYW5hZ2VyIjtPOjg6InN0ZENsYXNzIjoxOntzOjQ6ImVkaXQiO086ODoic3RkQ2xhc3MiOjI6e3M6MzoiY3BhIjtPOjg6InN0ZENsYXNzIjoxOntzOjQ6ImRhdGEiO047fXM6NzoiaW52b2ljZSI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJkYXRhIjtOO319fX1zOjE0OiIAKgBpbml0aWFsaXplZCI7YjoxO3M6OToic2VwYXJhdG9yIjtzOjE6Ii4iO31zOjQ6InVzZXIiO086NToiSlVzZXIiOjE6e3M6MjoiaWQiO3M6MzoiOTExIjt9fX1zOjE0OiIAKgBpbml0aWFsaXplZCI7YjowO3M6OToic2VwYXJhdG9yIjtzOjE6Ii4iO30=";', 911, 'admin');
 
 -- --------------------------------------------------------
 
@@ -1939,8 +1998,8 @@ CREATE TABLE `cpa_update_sites` (
 --
 
 INSERT INTO `cpa_update_sites` (`update_site_id`, `name`, `type`, `location`, `enabled`, `last_check_timestamp`, `extra_query`) VALUES
-(1, 'Joomla! Core', 'collection', 'https://update.joomla.org/core/list.xml', 1, 1488791600, ''),
-(2, 'Joomla! Extension Directory', 'collection', 'https://update.joomla.org/jed/list.xml', 1, 1488791600, ''),
+(1, 'Joomla! Core', 'collection', 'https://update.joomla.org/core/list.xml', 1, 1489649378, ''),
+(2, 'Joomla! Extension Directory', 'collection', 'https://update.joomla.org/jed/list.xml', 1, 1489649378, ''),
 (3, 'Accredited Joomla! Translations', 'collection', 'https://update.joomla.org/language/translationlist_3.xml', 1, 0, ''),
 (4, 'Joomla! Update Component Update Site', 'extension', 'https://update.joomla.org/core/extensions/com_joomlaupdate.xml', 1, 0, '');
 
@@ -2024,7 +2083,8 @@ CREATE TABLE `cpa_users` (
 --
 
 INSERT INTO `cpa_users` (`id`, `name`, `username`, `email`, `password`, `block`, `sendEmail`, `registerDate`, `lastvisitDate`, `activation`, `params`, `lastResetTime`, `resetCount`, `otpKey`, `otep`, `requireReset`) VALUES
-(911, 'Super User', 'admin', 'knigherrant@gmail.com', '$2y$10$R/URjqaGUPSNaZJSnzt21e2KAYTwmWVMopeGYXgvB2iB9EKPnBboG', 0, 1, '2017-03-03 07:31:25', '2017-03-06 09:13:16', '0', '', '0000-00-00 00:00:00', 0, '', '', 0);
+(911, 'Super User', 'admin', 'knigherrant@gmail.com', '$2y$10$R/URjqaGUPSNaZJSnzt21e2KAYTwmWVMopeGYXgvB2iB9EKPnBboG', 0, 1, '2017-03-03 07:31:25', '2017-03-16 10:11:09', '0', '', '0000-00-00 00:00:00', 0, '', '', 0),
+(912, 'Test Customer', 'dev', 'dev@joomlavi.com22', '$2y$10$9VVX4Olt0O9vkqR9ThIMWeI84eAKpucjf9OhjdeO90izDi1edsOMy', 0, 0, '2017-03-12 14:06:55', '0000-00-00 00:00:00', '', '{"admin_style":"","admin_language":"","language":"","editor":"","helpsite":"","timezone":""}', '0000-00-00 00:00:00', 0, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2095,7 +2155,8 @@ CREATE TABLE `cpa_user_usergroup_map` (
 --
 
 INSERT INTO `cpa_user_usergroup_map` (`user_id`, `group_id`) VALUES
-(911, 8);
+(911, 8),
+(912, 2);
 
 -- --------------------------------------------------------
 
@@ -2268,15 +2329,21 @@ ALTER TABLE `cpa_cpamanager_cpas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cpa_cpamanager_custommers`
+-- Indexes for table `cpa_cpamanager_customers`
 --
-ALTER TABLE `cpa_cpamanager_custommers`
+ALTER TABLE `cpa_cpamanager_customers`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cpa_cpamanager_expenses`
 --
 ALTER TABLE `cpa_cpamanager_expenses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cpa_cpamanager_invoices`
+--
+ALTER TABLE `cpa_cpamanager_invoices`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2766,7 +2833,7 @@ ALTER TABLE `cpa_viewlevels`
 -- AUTO_INCREMENT for table `cpa_assets`
 --
 ALTER TABLE `cpa_assets`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=57;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `cpa_banners`
 --
@@ -2806,16 +2873,21 @@ ALTER TABLE `cpa_cpamanager_config`
 -- AUTO_INCREMENT for table `cpa_cpamanager_cpas`
 --
 ALTER TABLE `cpa_cpamanager_cpas`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `cpa_cpamanager_custommers`
+-- AUTO_INCREMENT for table `cpa_cpamanager_customers`
 --
-ALTER TABLE `cpa_cpamanager_custommers`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `cpa_cpamanager_customers`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `cpa_cpamanager_expenses`
 --
 ALTER TABLE `cpa_cpamanager_expenses`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `cpa_cpamanager_invoices`
+--
+ALTER TABLE `cpa_cpamanager_invoices`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `cpa_cpamanager_links`
@@ -2826,7 +2898,7 @@ ALTER TABLE `cpa_cpamanager_links`
 -- AUTO_INCREMENT for table `cpa_cpamanager_locations`
 --
 ALTER TABLE `cpa_cpamanager_locations`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `cpa_cpamanager_mileages`
 --
@@ -2956,7 +3028,7 @@ ALTER TABLE `cpa_usergroups`
 -- AUTO_INCREMENT for table `cpa_users`
 --
 ALTER TABLE `cpa_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=912;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=913;
 --
 -- AUTO_INCREMENT for table `cpa_user_keys`
 --

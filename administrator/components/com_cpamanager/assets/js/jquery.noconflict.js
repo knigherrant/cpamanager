@@ -1,0 +1,1 @@
+$JVDAM = jQuery.noConflict();

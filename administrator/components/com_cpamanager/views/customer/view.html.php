@@ -53,7 +53,7 @@ class CPAManagerViewCustomer extends JViewLegacy {
         }
         $canDo = CPAManagerHelper::getActions();
 
-        JToolBarHelper::title(JText::_('Customer'), 'customer.png');
+        JToolBarHelper::title(JText::_('Customer'), 'user');
         $layout = $this->getLayout();
 		if($this->getLayout() =='view') return;
         // If not checked out, can save the item.

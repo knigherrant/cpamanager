@@ -26,11 +26,154 @@ defined('_JEXEC') or die;
  }
 class jSont extends CPAManagerHelper{
     
+    public static $file_ext =  array(
+        'archive' => array('7z', 'ace', 'bz2', 'dmg', 'gz', 'rar', 'tgz', 'zip'),
+        'document' => array('csv', 'doc', 'docx', 'html', 'key', 'keynote', 'odp', 'ods', 'odt', 'pages', 'pdf', 'pps', 'ppt', 'pptx', 'rtf', 'tex', 'txt', 'xls', 'xlsx', 'xml'),
+        'image' => array('bmp', 'exif', 'gif', 'ico', 'jpeg', 'jpg', 'png', 'psd', 'tif', 'tiff'),
+        'audio' => array('aac', 'aif', 'aiff', 'alac', 'amr', 'au', 'cdda', 'flac', 'm3u', 'm3u', 'm4a', 'm4a', 'm4p', 'mid', 'mp3', 'mp4', 'mpa', 'ogg', 'pac', 'ra', 'wav', 'wma'),
+        'video' => array('3gp', 'asf', 'avi', 'flv', 'm4v', 'mkv', 'mov', 'mp4', 'mpeg', 'mpg', 'ogg', 'rm', 'swf', 'vob', 'wmv')
+    );
+	public static function getFileType($file){
+        $pathinfo = pathinfo($file);
+        $extension = strtolower(@$pathinfo['extension']);
+        $imageTypes = array('bmp','exif','gif','ico','jpeg','jpg','png','psd','tif','tiff');
+        $icon = JURI::root().'administrator/components/com_cpamanager/assets/images/file-icons/'.$extension.'.png';
+        if(!is_file(JPATH_SITE.'/administrator/components/com_cpamanager/assets/images/file-icons/'.$extension.'.png'))
+            $icon = JURI::root().'administrator/components/com_cpamanager/assets/images/file-icons/_blank.png';
+        if(in_array($extension,$imageTypes)){
+            return array('type'=>'image', 'extension'=>$extension, 'icon'=>$icon);
+        }else{
+            return array('type'=>$extension, 'extension'=>$extension, 'icon'=>$icon);
+        }
+    }
+	
+	public static function formatFileSize($bytes){
+        if ($bytes >= 1073741824){
+            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+        }elseif ($bytes >= 1048576){
+            $bytes = number_format($bytes / 1048576, 2) . ' MB';
+        }elseif ($bytes >= 1024){
+            $bytes = number_format($bytes / 1024, 2) . ' KB';
+        }elseif ($bytes > 1){
+            $bytes = $bytes . ' bytes';
+        }elseif ($bytes == 1){
+            $bytes = $bytes . ' byte';
+        }else{
+            $bytes = '0 bytes';
+        }
+        return $bytes;
+    }
+
+	public static function checkFileUpload($file, $type){
+        if($file['error']>0 && $file['error']<4){
+            switch ($file['error'])
+            {
+                case 1:
+                    return JText::_('File uplad large than php.ini').' '.ini_get( 'upload_max_filesize' );
+                    break;
+                case 2:
+                    return JText::_('File uplad large than HTML');
+                    break;
+                case 3:
+                    return JText::_('File uplad error');
+                    break;
+            }
+        }
+        if(!self::checkFileType($file['name'], $type)){
+            return JText::_('Invalid Type');
+        }
+        return true;
+    }
+	
+	public static function downloadFile($file){
+        $file = str_replace(JUri::root(), JPATH_SITE.'/', $file);
+        if (file_exists($file)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename='.basename($file));
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file));
+            ob_clean();
+            flush();
+            readfile($file);
+            exit;
+        }
+    }
+
+	
+	public static function checkFileType($file, $type){
+		return true;
+        //$configs = self::getConfigs();
+        $extension = pathinfo($file, PATHINFO_EXTENSION);
+        if($type == 'file'){
+            $fileTypes = explode(',', $configs->get('allowed_extensions'));
+        }elseif($type == 'import'){
+            $fileTypes = array('csv');
+        }else{
+            $fileTypes = self::$file_ext['image'];
+        }
+        if(!in_array($extension, $fileTypes)) return false;
+        return true;
+    }
+	
+	
+	
+	
+	public static function sanitizeFileName($dangerous_filename){
+        // our list of "dangerous characters", add/remove characters if necessary
+        $dangerous_characters = array(" ", '"', "'", "&", "/", "\\", "?", "#");
+        // every forbidden character is replace by an underscore
+        return str_replace($dangerous_characters, '_', $dangerous_filename);
+    }
+	
+	  public static function getMaximumUploadSize(){
+        $max_upload = self::convertToBytes(ini_get('upload_max_filesize'));
+        $max_post   = self::convertToBytes(ini_get('post_max_size'));
+        return min($max_post, $max_upload);
+    }
+
+    public static function convertToBytes($value){
+        $keys = array('k', 'm', 'g');
+        $last_char = strtolower(substr($value, -1));
+        $value = (int) $value;
+        if (in_array($last_char, $keys)) {
+            $value *= pow(1024, array_search($last_char, $keys)+1);
+        }
+        return $value;
+    }
+	
+	public static function addMedia(){
+    
+        $document = JFactory::getDocument();
+        
+        JHtml::_('behavior.framework');
+		JHtml::_('Jquery.framework');
+		JHtml::_('bootstrap.framework');
+        
+        $document->addScript(JUri::root().'administrator/components/com_cpamanager/assets/libs/knockout.js');
+        $document->addScript(JUri::root().'administrator/components/com_cpamanager/assets/libs/underscore-min.js');
+        $document->addScript(JUri::root().'administrator/components/com_cpamanager/assets/libs/knockout.simpleGrid.js');
+        $document->addScript(JUri::root().'administrator/components/com_cpamanager/assets/js/jquery.noconflict.js');
+        $document->addStyleSheet(JUri::root().'administrator/components/com_cpamanager/assets/libs/font-awesome/css/font-awesome.css');
+       
+		$document->addStyleSheet(JUri::root().'administrator/components/com_cpamanager/assets/libs/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css');
+		$document->addScript(JUri::root().'administrator/components/com_cpamanager/assets/libs/plupload/js/plupload.full.min.js');
+		$document->addScript(JUri::root().'administrator/components/com_cpamanager/assets/libs/plupload/js/jquery.plupload.queue/jquery.plupload.queue.js');
+		$document->addScript(JUri::root().'administrator/components/com_cpamanager/assets/js/files.js');
+		$document->addStyleSheet(JUri::root().'administrator/components/com_cpamanager/assets/css/files.css');
+                   
+    }
+	
+	
+    
     
     public static  function loadAdminCss(){
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . 'components/com_cpamanager/assets/css/cpamanager-frontend.css');
         $document->addStyleSheet(JURI::root() . 'administrator/components/com_cpamanager/assets/css/cpamanager.css');
+        $document->addScript(JUri::root().'administrator/components/com_cpamanager/assets/js/jquery.noconflict.js');
         $document->addScript(JURI::root() . 'components/com_cpamanager/assets/js/cpamanager.js');
         //self::upgradePermission();
 		
@@ -85,6 +228,26 @@ class jSont extends CPAManagerHelper{
 	return $options;
     }
     
+    public static function getDirPath($type){
+        if($type == 'files'){
+            return 'images/cpamanage/files';
+        }elseif($type == 'import'){
+            return 'images/cpamanage/files/mobile';
+        }else{
+            return 'images/cpamanage/'.$type;
+        }
+    }
+    
+    
+    public static function getIcon($fileName, $isCustom = 0){
+        if($fileName && $isCustom){
+            return JUri::root().self::getDirPath('icons').'/'.$fileName;
+        }elseif($fileName){
+            return JUri::root().'administrator/components/com_cpamanager/assets/images/file-icons/'.$fileName;
+        }
+        return JUri::root().'administrator/components/com_cpamanager/assets/images/file-icons/_blank.png';
+    }
+
     
 	public static function footer(){
 		?>

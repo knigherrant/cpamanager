@@ -53,7 +53,7 @@ class CPAManagerViewCPA extends JViewLegacy {
         }
         $canDo = CPAManagerHelper::getActions();
 
-        JToolBarHelper::title(JText::_('CPA'), 'cpa.png');
+        JToolBarHelper::title(JText::_('CPA'), 'user');
         $layout = $this->getLayout();
 		if($this->getLayout() =='view') return;
         // If not checked out, can save the item.
