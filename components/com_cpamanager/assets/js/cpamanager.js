@@ -1,4 +1,4 @@
-var jSont = (function($){
+var JST = (function($){
     var fn = {
         log : function(knigherrant){
             console.log(knigherrant);

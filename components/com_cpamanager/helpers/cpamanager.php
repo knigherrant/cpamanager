@@ -16,29 +16,164 @@ defined('_JEXEC') or die;
  */
 
 require_once JPATH_ADMINISTRATOR.'/components/com_cpamanager/helpers/cpamanager.php';
-class frontend extends jSont{
+class JST extends jSont{
     
-    public static function menus($view=''){
-        $input = JFactory::getApplication()->input;
-        $Itemid = $input->getInt('Itemid', 0);
-        if(!$view) $view = $input->getString('view', 'frontend');
-        ?>
-		<div id="CPAManagerMenu">
-            <div class="jMenu-cpamanager">
-                <ul class="jsont-menu">
-                        <li class="frontend <?php if($view=='frontend') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=frontend&Itemid='.$Itemid); ?>" >Frontend</a></li>
-                        <li class="bibles <?php if($view=='bibles') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=bibles&Itemid='.$Itemid); ?>" >Bibles Study</a></li>
-                        <li class="requests <?php if($view=='requests') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=requests&Itemid='.$Itemid); ?>" >Prayer Request</a></li>
-                        <li class="warriors <?php if($view=='warriors') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=warriors&Itemid='.$Itemid); ?>" >Prayer Warrior</a></li>
-                        <li class="links <?php if($view=='links') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=links&Itemid='.$Itemid); ?>" >Links</a></li>
-                        <li class="events <?php if($view=='events') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=events&Itemid='.$Itemid); ?>" >Events Calendar</a></li>
-                </ul>
+   
+    public static function toolbar($task = ''){
+        if(!$task) return;
+            ?>
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                        <button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('<?php echo $task;?>.save')">
+                                <span class="icon-ok"></span><?php echo JText::_('JSAVE') ?>
+                        </button>
+                </div>
+                <div class="btn-group">
+                        <button type="button" class="btn" onclick="Joomla.submitbutton('<?php echo $task;?>.cancel')">
+                                <span class="icon-cancel"></span><?php echo JText::_('JCANCEL') ?>
+                        </button>
+                </div>
             </div>
-		</div>
+            <?php
+        }
+    public static function cpaLeft(){
+        echo self::Menu();
+        echo self::logo();
+        echo self::userInfo();
+        echo self::logout();
+    }    
+    public static function isCom(){
+        return true;
+    }
+    
+     public static function logout(){
+        ?>
+        <form id="jkLogout" action="<?php echo JRoute::_('index.php?option=com_users&task=user.logout'); ?>" method="post">
+                <input type="hidden" name="return" value="<?php echo base64_encode('index.php?option=com_users&view=login'); ?>" />
+                <input type="hidden" name="option" value="com_users" />
+                <input type="hidden" name="task" value="user.logout" />
+                <?php echo JHtml::_('form.token'); ?>
+        </form>
+        <a class="jk-logout" href="javascript:void(0)">[Log Out]</a>
+        <script>
+                jQuery(function($){
+                        $('a.jk-logout').click(function(){
+                            $('#jkLogout').submit();
+                        });
+						return false;
+                })
+        </script>
         <?php
     }
     
+    public static function Menu($view = ''){
+        
+        $input = JFactory::getApplication()->input;
+        $Itemid = $input->getInt('Itemid', 0);
+        if(!$view) $view = $input->getString('view', 'frontend');
+        ob_start();
+        ?>
+        <div id="menu">
+            <ul>
+                <li class="homepage <?php if($view=='homepage') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=homepage&Itemid='.$Itemid); ?>"><?php echo JText::_('Home'); ?></a></li>
+                <li class="profiles <?php if($view=='profiles') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=cpa&Itemid='.$Itemid); ?>"><?php echo JText::_('Profile'); ?></a></li>
+                <li class="customers <?php if($view=='customers') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=customers&Itemid='.$Itemid); ?>"><?php echo JText::_('Customers'); ?></a></li>
+                <li class="taxreturns <?php if($view=='taxreturns') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=taxreturns&Itemid='.$Itemid); ?>"><?php echo JText::_('Tax Returns'); ?></a></li>
+            </ul>
+        </div>
+        <?php
+        return ob_get_clean();
+    }
     
+    
+     public static function logo(){
+         $input = JFactory::getApplication()->input;
+        $Itemid = $input->getInt('Itemid', 0);
+        return '<a id="logo" alt="Dynamic Media" href="'. JRoute::_('index.php?option=com_cpamanager&view=homepage&Itemid='.$Itemid) .'">Dynamic Media</a>';
+    }
+    
+    public static function userInfo($userid = 0){
+        ob_start();
+        echo '<div id="userInfo">';
+        if($cpa = self::isCPA($userid)){
+            ?>
+            <div id="uinfo">
+                <h4 class="key"><?php echo $cpa->company; ?></h4>
+                <p class="key">Contact</p> <p class="value"><?php echo $cpa->cpa; ?></p>
+                <p class="key">Address 1</p> <p class="value"><?php echo $cpa->address1; ?></p>
+                <p class="key">Address 2</p> <p class="value"><?php echo $cpa->address2; ?></p>
+            </div>
+
+            <div id="ucontact">
+                <table width="100%">
+                    <tr>
+                        <td class="key">City</td> <td class="key">State</td> <td class="key">Zip Code</td>
+                    </tr>
+                    <tr>
+                        <td class="value"><?php echo $cpa->city; ?></td> <td class="value"><?php echo $cpa->state; ?></td> <td class="value"><?php echo $cpa->zip; ?></td>
+                    </tr>
+                </table>
+                <?php
+                $cpainfo = array(
+                    'phone' => 'Phone',
+                    'cell_phone' => 'Cell Phone',
+                    'fax' => 'Fax',
+                    'email' => 'Email',
+                    'url' => 'Url',
+                    );
+                foreach ($cpainfo as $k=>$t){ ?>
+                    <p class="key"><?php echo $t; ?></p> <p class="value"><?php echo $cpa->$k; ?></p>
+                <?php } ?>
+            </div>
+                
+            <?php
+        }else if($customer = self::isCustomer($userid)){
+            ?>
+
+            <?php
+        }
+        echo '</div>';
+        return ob_get_clean();
+    }
+    
+    public static function isCustomer($userid = 0){
+        if(!$userid) $userid = JFactory::getUser ()->id;
+        if(!$userid) return false;
+        static $customer;
+        if(!isset($cpa[$userid])){
+            $db = JFactory::getDbo();
+            $customer[$userid] = $db->setQuery('SELECT *, CONCAT(firstname, " " ,midname, " " ,lastname) as customer FROM #__cpamanager_customers WHERE userid=' . $userid)->loadObject();
+        }
+        return $customer[$userid];
+    }
+    
+    public static function isCPA($userid = 0){
+        if(!$userid) $userid = JFactory::getUser ()->id;
+        if(!$userid) return false;
+        static $cpa;
+        if(!isset($cpa[$userid])){
+            $db = JFactory::getDbo();
+            $cpa[$userid] = $db->setQuery('SELECT *, CONCAT(firstname, " " ,midname, " " ,lastname) as cpa FROM #__cpamanager_cpas WHERE userid=' . $userid)->loadObject();
+        }
+        return $cpa[$userid];
+    }
+    
+    public static function header(){
+        if(self::isCom()){
+            echo '<div id="cpaMain" class="">';
+            echo '<div class="jMain span12">';
+            echo '<div id="cpaLeft" class="span3">';
+            echo self::cpaLeft();
+            echo '</div>';
+            echo '<div id="mainContent" class="span9">';
+        }
+    }
+    
+    public static function footer(){
+        if(self::isCom()){
+            echo '</div></div></div>';
+        }
+    }
     
         
 }

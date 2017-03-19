@@ -37,7 +37,7 @@ class CPAManagerTableCustomer extends JTable
 	public function bind($array, $ignore = '')
 	{
 
-		if(!$array['created']) $array['created'] = JFactory::getDate ()->toSql ();
+		if(!$array['created'] || $array['created'] = '0000-00-00 00:00:00') $array['created'] = JFactory::getDate ()->toSql ();
 
 		if (isset($array['params']) && is_array($array['params']))
 		{

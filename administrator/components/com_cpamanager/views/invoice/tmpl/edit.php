@@ -20,7 +20,7 @@ JHtml::_('behavior.keepalive');
 <script type="text/javascript">
     Joomla.submitbutton = function(task)
     {
-        if (task == 'document.cancel') {
+        if (task == 'invoice.cancel') {
             Joomla.submitform(task, document.getElementById('invoice-form'));
         }
         else {
@@ -51,6 +51,10 @@ JHtml::_('behavior.keepalive');
                     <div class="controls"><?php echo $this->form->getInput('title'); ?></div>
                 </div>
    
+                <div class="control-group">
+                    <div class="control-label"><?php echo $this->form->getLabel('cpaid'); ?></div>
+                    <div class="controls"><?php echo $this->form->getInput('cpaid'); ?></div>
+                </div>
                 <div class="control-group">
                     <div class="control-label"><?php echo $this->form->getLabel('category'); ?></div>
                     <div class="controls"><?php echo $this->form->getInput('category'); ?></div>

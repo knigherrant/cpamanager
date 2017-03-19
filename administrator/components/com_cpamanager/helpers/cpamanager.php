@@ -171,7 +171,7 @@ class jSont extends CPAManagerHelper{
     
     public static  function loadAdminCss(){
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . 'components/com_cpamanager/assets/css/cpamanager-frontend.css');
+        //$document->addStyleSheet(JURI::root() . 'components/com_cpamanager/assets/css/cpamanager-frontend.css');
         $document->addStyleSheet(JURI::root() . 'administrator/components/com_cpamanager/assets/css/cpamanager.css');
         $document->addScript(JUri::root().'administrator/components/com_cpamanager/assets/js/jquery.noconflict.js');
         $document->addScript(JURI::root() . 'components/com_cpamanager/assets/js/cpamanager.js');
@@ -266,22 +266,6 @@ class jSont extends CPAManagerHelper{
 		<?php
 	}
 	
-        public static function toolbar($task){
-            ?>
-            <div class="btn-toolbar">
-                <div class="btn-group">
-                        <button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('<?php echo $task;?>.save')">
-                                <span class="icon-ok"></span><?php echo JText::_('JSAVE') ?>
-                        </button>
-                </div>
-                <div class="btn-group">
-                        <button type="button" class="btn" onclick="Joomla.submitbutton('<?php echo $task;?>.cancel')">
-                                <span class="icon-cancel"></span><?php echo JText::_('JCANCEL') ?>
-                        </button>
-                </div>
-            </div>
-            <?php
-        }
         
         
 	public static function playAudio($audio){

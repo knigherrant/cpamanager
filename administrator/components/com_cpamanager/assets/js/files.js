@@ -8,8 +8,7 @@ var FilesModel = (function($){
             $(element).pluploadQueue({
                 // General settings
                 runtimes : 'html5,flash,silverlight,html4',
-                //url : viewModel.prefix_url + '&task=files.upload',
-				url : 'http://www.prayerlineapp.org/prayerline.php?Action=upload',
+                url : viewModel.prefix_url + '&task=files.upload',
                 rename : true,
                 dragdrop: true,
                 filters : {
@@ -33,9 +32,9 @@ var FilesModel = (function($){
             uploader.bind('BeforeUpload', function(uploader, file) {
                 // set directory in the request
                 if(viewModel.folderSelected().path()){
-                    uploader.settings.url = 'http://www.prayerlineapp.org/prayerline.php?Action=upload&path='+viewModel.folderSelected().path();
+                    uploader.settings.url = viewModel.prefix_url + '&task=files.upload&path='+viewModel.folderSelected().path();
                 }else{
-                    uploader.settings.url = 'http://www.prayerlineapp.org/prayerline.php?Action=upload';
+                    uploader.settings.url = viewModel.prefix_url + '&task=files.upload';
                 }
             });
             uploader.bind('UploadComplete', function(uploader) {

@@ -111,10 +111,10 @@ class CPAManagerModelInvoice extends JModelAdmin
         }
 
         if($data['storage_type'] == 'file'){
-            if(is_file(JPATH_SITE.'/'.CPAManagerHelper::getDirPath('files').'/'.$data['storage_path_file'])){
+            if(is_file(JPATH_SITE.'/'.  jSont::getDirPath('files').'/'.$data['storage_path_file'])){
                 $data['storage_path_remote'] = '';
-                $data['filesize'] = filesize(JPATH_SITE.'/'.CPAManagerHelper::getDirPath('files').'/'.$data['storage_path_file']);
-                $fileType = CPAManagerHelper::getFileType($data['storage_path_file']);
+                $data['filesize'] = filesize(JPATH_SITE.'/'.jSont::getDirPath('files').'/'.$data['storage_path_file']);
+                $fileType = jSont::getFileType($data['storage_path_file']);
                 $data['ext'] = $fileType['extension'];
             }else{
                 JFactory::getApplication()->enqueueMessage(JText::_('COM_CPAMANAGER_MSG_FILE_NOT_FOUND'), 'error');
@@ -129,6 +129,7 @@ class CPAManagerModelInvoice extends JModelAdmin
         if (parent::save($data)){
             $db = JFactory::getDbo();
             if(!$data['id']) $data['id'] = $db->insertid();
+            /*
             $signs = JFactory::getApplication()->input->getString('signs');
             if($signs){
                 $signs = explode(',', $signs);
@@ -149,6 +150,8 @@ class CPAManagerModelInvoice extends JModelAdmin
                 $db->setQuery('DELETE FROM #__signaturedoc_user_signatures WHERE docid='.$data['id']);
                 $db->execute();
             }
+             * 
+             */
             return true;
         }
 

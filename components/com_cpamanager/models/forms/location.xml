@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+        <field name="id" type="hidden" default="0" label="COM_CPAMANAGER_FORM_LBL_OFFICE_LOCATION_ID"
+            readonly="true" class="readonly"
+            description="JGLOBAL_FIELD_ID_DESC" /> 
+        <field name="created_by" type="user" class="inputbox" hint="Created By" label="Created By" description="Created By"  filter="safehtml" /> 
+       <field name="name" type="text" size="40" class="inputbox" hint="Name" label="Name" description="Name"  filter="safehtml" /> 
+       <field name="created" type="calendar" class="inputbox" hint="Date" label="Date" description="Date"  filter="safehtml" /> 
+       
+      
+       <field name="address" type="text" size="40" class="inputbox" hint="Address" label="Address" description="Address"   default=""  filter="safehtml" /> 
+       <field name="phone" type="text" size="40" class="inputbox" hint="Phone" label="Phone" description="Phone"   default=""  filter="safehtml" /> 
+       <field name="email" type="text" size="40" class="inputbox" hint="Email" label="Email" description="Email"   default=""  filter="safehtml" /> 
+       
+       <field name="latitude" type="hidden" size="40" hint="COM_CPAMANAGER_FORM_LBL_OFFICE_LOCATION_LATITUDE" class="inputbox"                        
+            label="COM_CPAMANAGER_FORM_LBL_OFFICE_LOCATION_LATITUDE"
+            description="COM_CPAMANAGER_FORM_DESC_OFFICE_LOCATION_LATITUDE"  
+                                                    filter="safehtml" /> 
+
+       <field name="longitude" type="hidden" size="40" class="inputbox" hint="COM_CPAMANAGER_FORM_LBL_OFFICE_LOCATION_LONGITUDE" label="COM_CPAMANAGER_FORM_LBL_OFFICE_LOCATION_LONGITUDE"
+            description="COM_CPAMANAGER_FORM_DESC_OFFICE_LOCATION_LONGITUDE" 
+                                                
+                                                    
+                                                    filter="safehtml" /> 
+       
+     		
+       
+<field name="featured" type="radio" hint="JFEATURED"
+                class="btn-group btn-group-yesno"
+                label="JFEATURED"
+                description="JFEATURED"
+                default="0"
+        >
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+        </field>
+        
+ </fieldset> 
+
+ <fieldset 
+                        name="accesscontrol">
+                       <field name="asset_id" type="hidden" filter="unset" />
+                       <field name="rules"
+                            type="rules"
+                            label="JFIELD_RULES_LABEL"
+                            translate_label="false"
+                            filter="rules"
+                            validate="rules"
+                            class="inputbox"
+                            component="com_cpamanager"
+                            section="location"
+                        />
+
+	</fieldset>
+
+</form>

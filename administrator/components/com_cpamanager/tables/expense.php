@@ -39,7 +39,7 @@ class CPAManagerTableExpense extends JTable
 
 		
                 if(empty($array['userid'])) $array['userid'] = JFactory::getUser ()->id;
-				if(empty($array['created'])) $array['created'] = JFactory::getDate ()->toSql ();
+				if(!$array['created'] || $array['created'] = '0000-00-00 00:00:00') $array['created'] = JFactory::getDate ()->toSql ();
 		if (isset($array['params']) && is_array($array['params']))
 		{
 			$registry = new JRegistry();
