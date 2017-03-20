@@ -11,6 +11,7 @@
        <field name="odometer_start" type="text" size="40" class="inputbox" hint="Odometer Start" label="Odometer Start" description="Odometer Start" /> 
        <field name="odometer_end" type="text" size="40" class="inputbox" hint="Odometer End" label="Odometer End" description="Odometer End" /> 
        <field name="total_mileage" type="text" size="40" class="inputbox" hint="Total Mileage" label="Total Mileage" description="Total Mileage" /> 
+       <field name="created_by" type="user" class="inputbox" hint="Created By" label="Created By" description="Created By"  filter="safehtml" /> 
       <field name="id" type="hidden" default="0" label="COM_CPAMANAGER_FORM_LBL_OFFICE_LOCATION_ID"
             readonly="true" class="readonly"
             description="JGLOBAL_FIELD_ID_DESC" /> 

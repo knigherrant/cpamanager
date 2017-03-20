@@ -18,7 +18,6 @@ $user	= JFactory::getUser();
 $userId	= $user->get('id');
 $listOrder	= $this->state->get('list.ordering');
 $listDirn	= $this->state->get('list.direction');
-$sortFields = $this->getSortFields();
 ?>
 
 <script type="text/javascript">
@@ -38,19 +37,13 @@ $sortFields = $this->getSortFields();
         Joomla.tableOrdering(order, dirn, '');
     }
 </script>
-<?php echo JST::toolbar(); ?>
-<div class="signaturedoc">
-
+<?php echo JST::header(); ?>
+<?php echo JST::toolbar('invoice', true); ?>
     <form action="<?php echo JRoute::_('index.php?option=com_cpamanager&view=invoices'); ?>" method="post" name="adminForm" id="adminForm">
-        <?php if(!empty($this->sidebar)): ?>
-        <div id="j-sidebar-container" class="span2">
-            <?php echo $this->sidebar; ?>
-        </div>
-        <div id="j-main-container" class="span10">
-            <?php else : ?>
+         <div class="jsContents form-horizontal row-fluid jscustom12">  
             <div id="j-main-container">
-                <?php endif;?>
-
+               <legend><?php echo JText::_('Invoices');?></legend>
+                <?php JST::tabsMenu(); ?>
                 <div id="filter-bar" class="btn-toolbar">
                     <div class="filter-search btn-group pull-left">
                         <label for="filter_search" class="element-invisible"><?php echo JText::_('JSEARCH_FILTER');?></label>
@@ -72,13 +65,7 @@ $sortFields = $this->getSortFields();
                             <option value="desc" <?php if ($listDirn == 'desc') echo 'selected="selected"'; ?>><?php echo JText::_('JGLOBAL_ORDER_DESCENDING');?></option>
                         </select>
                     </div>
-                    <div class="btn-group pull-right">
-                        <label for="sortTable" class="element-invisible"><?php echo JText::_('JGLOBAL_SORT_BY');?></label>
-                        <select name="sortTable" id="sortTable" class="input-medium" onchange="Joomla.orderTable()">
-                            <option value=""><?php echo JText::_('JGLOBAL_SORT_BY');?></option>
-                            <?php echo JHtml::_('select.options', $sortFields, 'value', 'text', $listOrder);?>
-                        </select>
-                    </div>
+                    
                 </div>
                 <div class="clearfix"> </div>
                 <table class="table table-striped" id="invoiceList">
@@ -180,6 +167,6 @@ $sortFields = $this->getSortFields();
                 <input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
                 <?php echo JHtml::_('form.token'); ?>
             </div>
+         </div>
     </form>
-</div>
-
+<?php echo JST::footer(); ?>

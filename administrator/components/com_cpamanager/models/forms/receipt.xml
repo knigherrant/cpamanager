@@ -24,7 +24,7 @@
        <field name="created" type="calendar" size="40" class="inputbox" hint="Date" label="Date" description="Date" /> 
        
        <field name="comments" type="textarea" size="40" class="inputbox" label="Comments" description="Comments"  filter="safehtml" /> 
-       
+       <field name="created_by" type="user" class="inputbox" hint="Created By" label="Created By" description="Created By"  filter="safehtml" /> 
    	
         
  </fieldset> 

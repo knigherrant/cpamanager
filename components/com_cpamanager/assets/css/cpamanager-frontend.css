@@ -62,12 +62,78 @@ body.site,
 #mainContent{
     position: relative;
 }
-#mainContent .btn-toolbar{
+#mainContent #btn-toolbar{
     position: absolute;
     right: 10px;
+    top: 6px;
 }
 
+#cpaMain legend,
+.jscustom12{
+    width: 98%;
+}
+
+.jscustom6{
+    width: 50%;
+}
+
+.jscustom3{
+    width: 25%;
+}
+
+.jscustom4{
+    width: 33%;
+}
+
+.jscustom8{
+    width: 66%;
+}
+
+.row-fluid [class*="jscustom"] {
+    display: block;
+    min-height: 28px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+   
+}
+
+
+#cpaMain #mainContent input[type="file"]{
+    width: 64% !important;
+}
+#cpaMain #mainContent textarea,
 #cpaMain #mainContent input{
-    width: 100%;
+    width: 95%;
 }
 
+#cpaMain #mainContent .field3 input{
+    width: 92%;
+}
+
+#cpaMain #mainContent .field2 input{
+    width: 96%;
+}
+
+#cpaMain .jsContents{
+    padding: 15px;
+}
+
+#cpaMain #mainContent #j-main-container{
+    width: 98%;
+}
+
+#cpaMain #mainContent .jCustommer #jform_dependent1_birthday,
+#cpaMain #mainContent .jCustommer #jform_dependent2_birthday,
+#cpaMain #mainContent .jCustommer #jform_dependent3_birthday,
+#cpaMain #mainContent .jCustommer #jform_dependent4_birthday,
+#cpaMain #mainContent .jCustommer #jform_dependent5_birthday,
+#cpaMain #mainContent .jCustommer #jform_tax_expiration_date,
+#cpaMain #mainContent .jCustommer #jform_tax_issue_date,
+#cpaMain #mainContent .jCustommer #jform_spouse_issue_date,
+#cpaMain #mainContent .jCustommer #jform_spouse_expiration_date,
+#cpaMain #mainContent .jCustommer #jform_tax_birthday,
+#cpaMain #mainContent .jCustommer #jform_userid{
+    width: 73%
+}

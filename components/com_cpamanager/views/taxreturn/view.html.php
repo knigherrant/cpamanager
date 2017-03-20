@@ -28,48 +28,12 @@ class CPAManagerViewTaxreturn extends JViewLegacy {
         $this->state = $this->get('State');
         $this->item = $this->get('Item');
         $this->form = $this->get('Form');
-        $this->items = $this->get('Locations');
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
             throw new Exception(implode("\n", $errors));
         }
 
-        $this->addToolbar();
         parent::display($tpl);
-    }
-
-    /**
-     * Add the page title and toolbar.
-     */
-    protected function addToolbar() {
-        JFactory::getApplication()->input->set('hidemainmenu', true);
-
-        $user = JFactory::getUser();
-        $isNew = ($this->item->id == 0);
-        if (isset($this->item->checked_out)) {
-            $checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
-        } else {
-            $checkedOut = false;
-        }
-        $canDo = CPAManagerHelper::getActions();
-
-        JToolBarHelper::title(JText::_('Taxreturn'), 'user');
-        $layout = $this->getLayout();
-		if($this->getLayout() =='view') return;
-        // If not checked out, can save the item.
-        if($layout == 'edit'){
-            if (!$checkedOut && ($canDo->get('core.edit') || ($canDo->get('core.create')))) {
-
-                JToolBarHelper::apply('taxreturn.apply', 'JTOOLBAR_APPLY');
-                JToolBarHelper::save('taxreturn.save', 'JTOOLBAR_SAVE');
-            }
-        }
-
-        if (empty($this->item->id)) {
-            JToolBarHelper::cancel('taxreturn.cancel', 'JTOOLBAR_CANCEL');
-        } else {
-            JToolBarHelper::cancel('taxreturn.cancel', 'JTOOLBAR_CLOSE');
-        }
     }
 
 }

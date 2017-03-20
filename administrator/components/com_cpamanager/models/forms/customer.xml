@@ -65,6 +65,7 @@
        <field name="dbuser" type="text" label="Database User" hint="Database User" description="Database User"  filter="safehtml" /> 
        <field name="dbpass" type="text" size="40" class="inputbox" hint="Database Password" label="Database Password" description="Database Password"   filter="safehtml" /> 
        <field name="banner" type="jkfile" size="40" class="inputbox" hint="Banner Ads" label="Banner Ads" description="Banner Ads"   filter="safehtml" /> 
+        <field name="created_by" type="user" class="inputbox" hint="Created By" label="Created By" description="Created By"  filter="safehtml" /> 
     </fieldset>
 
 </form>

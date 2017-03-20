@@ -44,7 +44,7 @@ $user = JFactory::getUser();
             <th class="left"> Address </th>
             <th class="left"> Phone </th>
             <th class="left"> Email </th>
-            <th class="left"> Date </th>
+            <!--<th class="left"> Date </th>-->
             <?php if (isset($this->items[0]->id)) : ?>
                 <th width="1%" class="nowrap"> ID </th>
             <?php endif; ?>
@@ -85,7 +85,7 @@ $user = JFactory::getUser();
                 <td data-field="Address"> <?php echo $item->address; ?> </td>
                 <td data-field="Phone"> <?php echo $item->phone; ?> </td>
                 <td data-field="Email"> <?php echo $item->email; ?> </td>
-                <td data-field="Date"> <?php echo $item->created; ?> </td>
+                <!--<td data-field="Date"> <?php echo $item->created; ?> </td>-->
                 <?php if (isset($this->items[0]->id)) { ?>
                     <td class="center" data-field="ID">
                         <?php echo (int) $item->id; ?>

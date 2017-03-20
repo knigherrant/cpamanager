@@ -19,7 +19,7 @@ class CPAManagerControllerCPA extends JControllerForm
 {
 
     function __construct() {
-        $this->view_list = 'cpas';
+        $this->view_list = 'cpa';
         parent::__construct();
     }
 

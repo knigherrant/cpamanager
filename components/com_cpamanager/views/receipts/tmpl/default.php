@@ -22,16 +22,13 @@ $listDirn = $this->state->get('list.direction');
 $canOrder = $user->authorise('core.edit.state', 'com_cpamanager');
 $saveOrder = $listOrder == 'a.ordering';
 ?>
-<?php echo JST::toolbar(); ?>
+<?php echo JST::header(); ?>
+<?php echo JST::toolbar('receipt', true); ?>
 <form action="<?php echo JRoute::_('index.php?option=com_cpamanager&view=receipts'); ?>" method="post" name="adminForm" id="adminForm">
-    <?php if (!empty( $this->sidebar)) : ?>
-	<div id="j-sidebar-container" class="span2">
-		<?php echo $this->sidebar; ?>
-	</div>
-	<div id="j-main-container" class="span10">
-    <?php else : ?>
-        <div id="j-main-container">
-    <?php endif;?>
+    <div class="jsContents form-horizontal row-fluid jscustom12">  
+            <div id="j-main-container">
+               <legend><?php echo JText::_('Receipts');?></legend>
+                <?php JST::tabsMenu(); ?>
         <div id="filter-bar" class="btn-toolbar">
                 <div class="filter-search btn-group pull-left">
                         <input type="text" name="filter_search" id="filter_search" placeholder="<?php echo JText::_('JSEARCH_FILTER'); ?>" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" class="hasTooltip" title="<?php echo JHtml::tooltipText('Search'); ?>" />
@@ -172,4 +169,6 @@ $saveOrder = $listOrder == 'a.ordering';
         <input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
         <?php echo JHtml::_('form.token'); ?>
     </div>
-</form>
+         </div>
+    </form>
+<?php echo JST::footer(); ?>

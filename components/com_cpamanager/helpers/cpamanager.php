@@ -19,20 +19,28 @@ require_once JPATH_ADMINISTRATOR.'/components/com_cpamanager/helpers/cpamanager.
 class JST extends jSont{
     
    
-    public static function toolbar($task = ''){
+    public static function toolbar($task = '',$bnt = ''){
         if(!$task) return;
             ?>
-            <div class="btn-toolbar">
-                <div class="btn-group">
-                        <button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('<?php echo $task;?>.save')">
-                                <span class="icon-ok"></span><?php echo JText::_('JSAVE') ?>
-                        </button>
-                </div>
-                <div class="btn-group">
-                        <button type="button" class="btn" onclick="Joomla.submitbutton('<?php echo $task;?>.cancel')">
-                                <span class="icon-cancel"></span><?php echo JText::_('JCANCEL') ?>
-                        </button>
-                </div>
+            <div id="btn-toolbar" class="btn-toolbar">
+                <?php if($bnt){ ?>
+                    <button onclick="Joomla.submitbutton('<?php echo $task; ?>.add')" class="btn btn-small btn-success">
+                        <span class="icon-new icon-white"></span> New
+                    </button>
+                <?php } else{ ?>
+                    <div class="btn-group">
+                            <button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('<?php echo $task;?>.save')">
+                                    <span class="icon-ok"></span><?php echo JText::_('JSAVE') ?>
+                            </button>
+                    </div>
+                    <?php if($task !=='cpa'){ ?>
+                    <div class="btn-group">
+                            <button type="button" class="btn" onclick="Joomla.submitbutton('<?php echo $task;?>.cancel')">
+                                    <span class="icon-cancel"></span><?php echo JText::_('JCANCEL') ?>
+                            </button>
+                    </div>
+                    <?php } ?>
+                <?php } ?>
             </div>
             <?php
         }
@@ -71,13 +79,14 @@ class JST extends jSont{
         $input = JFactory::getApplication()->input;
         $Itemid = $input->getInt('Itemid', 0);
         if(!$view) $view = $input->getString('view', 'frontend');
+        $customers = array('customers','customer','invoices','invoice','expenses','expense','receipts','receipt','mileages','mileage');
         ob_start();
         ?>
         <div id="menu">
             <ul>
                 <li class="homepage <?php if($view=='homepage') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=homepage&Itemid='.$Itemid); ?>"><?php echo JText::_('Home'); ?></a></li>
-                <li class="profiles <?php if($view=='profiles') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=cpa&Itemid='.$Itemid); ?>"><?php echo JText::_('Profile'); ?></a></li>
-                <li class="customers <?php if($view=='customers') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=customers&Itemid='.$Itemid); ?>"><?php echo JText::_('Customers'); ?></a></li>
+                <li class="profiles <?php if($view=='cpa') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=cpa&Itemid='.$Itemid); ?>"><?php echo JText::_('Profile'); ?></a></li>
+                <li class="customers <?php if(in_array($view, $customers)) echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=customers&Itemid='.$Itemid); ?>"><?php echo JText::_('Customers'); ?></a></li>
                 <li class="taxreturns <?php if($view=='taxreturns') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=taxreturns&Itemid='.$Itemid); ?>"><?php echo JText::_('Tax Returns'); ?></a></li>
             </ul>
         </div>
@@ -173,6 +182,22 @@ class JST extends jSont{
         if(self::isCom()){
             echo '</div></div></div>';
         }
+    }
+    
+    public static function tabsMenu($v =''){
+        $input = JFactory::getApplication()->input;
+        $Itemid = $input->getInt('Itemid', 0);
+        if(!$v) $v = $input->getString('view');
+        ?>
+        <ul class="nav nav-tabs" id="myTabTabs">
+            <li class="<?php if($v == 'customers' || $v =='customer') echo 'active'; ?>"><a  href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=customers&Itemid='.$Itemid); ?>" >Customers</a></li>
+            <li class="<?php if($v == 'invoices' || $v =='invoice') echo 'active'; ?>"><a  href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=invoices&Itemid='.$Itemid); ?>"  >Invoices</a></li>
+            <li class="<?php if($v == 'expenses' || $v =='expense') echo 'active'; ?>"><a  href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=expenses&Itemid='.$Itemid); ?>" >Expenses</a></li>
+            <li class="<?php if($v == 'receipts' || $v =='receipt') echo 'active'; ?>"><a  href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=receipts&Itemid='.$Itemid); ?>" >Receipts</a></li>
+            <li class="<?php if($v == 'mileages' || $v =='mileage') echo 'active'; ?>"><a  href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=mileages&Itemid='.$Itemid); ?>"  >Mileages</a></li>
+                        
+        </ul>
+        <?php
     }
     
         

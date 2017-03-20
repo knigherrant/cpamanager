@@ -15,117 +15,131 @@ JHtml::_('behavior.keepalive');
 JHtml::_('behavior.modal', 'a.modal');
 JHtml::_('formbehavior.chosen', 'select');							
 ?>
-<?php echo JST::toolbar(); ?>
+<?php echo JST::header(); ?>
+<?php echo JST::toolbar('customer'); ?>
+<script type="text/javascript">
+            Joomla.submitbutton = function(task)
+            {
+                if (task == 'customer.cancel') {
+                    Joomla.submitform(task, document.getElementById('customer-form'));
+                }
+                else{
+                    
+                    if (task != 'customer.cancel' && document.formvalidator.isValid(document.id('customer-form'))) {
+                        
+                        Joomla.submitform(task, document.getElementById('customer-form'));
+                    }
+                    else {
+                        alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
+                    }
+                }
+            }
+
+</script>
 
 <form action="<?php echo JRoute::_('index.php?option=com_cpamanager&layout=edit&id=' . (int) $this->item->id); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="customer-form" class="form-validate">
-    <div class="jsont jCustommer form-horizontal row-fluid span12">
+    <div class="jsContents form-horizontal row-fluid jscustom12">
         <legend><?php echo JText::_('Customer');?></legend>
-            <div class="clearfix fltlft span9">
-                <div class="span12 jsontfirst">
-                    <div class="control-group span4">
-                        <div class="controlsx"><?php echo $this->form->getInput('userid'); ?></div>
-                    </div>
-                    <div class="control-group span4">
-                        <div class="controlsx"><?php echo $this->form->getInput('cpaid'); ?></div>
-                    </div>
-                    <div class="control-group span4">
-                        <div class="controlsx"><?php echo $this->form->getInput('company'); ?></div>
-                    </div>
+            <div class="clearfix fltlft jscustom12">
+            
+                <div class="control-group field1">
+                    <div class="controlsx"><?php echo $this->form->getInput('company'); ?></div>
                 </div>
-                <div class="span12">
-                    <div class="control-group span4">
+           
+                <div class="jscustom12">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('firstname'); ?></div>
                     </div>
-                    <div class="control-group span4">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('midname'); ?></div>
                     </div>
-                    <div class="control-group span4">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('lastname'); ?></div>
                     </div>
                 </div>
-                <div class="span12 full">
-                    <div class="control-group">
-                        <div class="controlsx"><?php echo $this->form->getInput('address1'); ?></div>
-                    </div>
+               
+                <div class="control-group field1">
+                    <div class="controlsx"><?php echo $this->form->getInput('address1'); ?></div>
                 </div>
-                <div class="span12 full">
-                    <div class="control-group">
-                        <div class="controlsx"><?php echo $this->form->getInput('address2'); ?></div>
-                    </div>
+
+                <div class="control-group field1">
+                    <div class="controlsx"><?php echo $this->form->getInput('address2'); ?></div>
                 </div>
-                <div class="span12">
-                    <div class="control-group span4">
+                
+                <div class="jscustom12">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('city'); ?></div>
                     </div>
-                    <div class="control-group span4">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('state'); ?></div>
                     </div>
-                    <div class="control-group span4">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('zip'); ?></div>
                     </div>
                 </div>
-                <div class="span12">
-                    <div class="control-group span4">
+                <div class="jscustom12">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('phone'); ?></div>
                     </div>
-                    <div class="control-group span4">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('cell_phone'); ?></div>
                     </div>
-                    <div class="control-group span4">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('fax'); ?></div>
                     </div>
                 </div>
-                <div class="span12">
-                    <div class="control-group span4">
+                <div class="jscustom12">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('email'); ?></div>
                     </div>
-                    <div class="control-group span4">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('url'); ?></div>
                     </div>
-                    <div class="control-group span4">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('logo'); ?></div>
                     </div>
                 </div>
-                <div class="span12">
-                    <div class="control-group span4">
+                <div class="jscustom12">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('federal_id'); ?></div>
                     </div>
-                    <div class="control-group span4">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('first_tax'); ?></div>
                     </div>
-                    <div class="control-group span4">
+                    <div class="control-group jscustom4 field3">
                         <div class="controlsx"><?php echo $this->form->getInput('first_fiscal'); ?></div>
                     </div>
                 </div>
-                <div class="span12">
-                    <div class="control-group span6">
+                <div class="jscustom12">
+                    <div class="control-group jscustom6 field2">
                         <div class="controlsx"><?php echo $this->form->getInput('income_tax_form'); ?></div>
                     </div>
-                    <div class="control-group span6">
+                    <div class="control-group jscustom6 field2">
                         <div class="controlsx"><?php echo $this->form->getInput('tax_exempt_form'); ?></div>
                     </div>
                 </div>
-                <div class="span12 full">
+                <div class="jscustom12 field1">
                     <div class="control-group">
                         <p>Notes</p>
                         <div class="controlsx"><?php echo $this->form->getInput('notes'); ?></div>
                     </div>
                 </div>
               
-                <div class="span12">
-                    <div class="control-group span6">
+                <div class="jscustom12">
+                    <div class="control-group jscustom6 field2">
                         <div class="controlsx"><a href="index.php?option=com_cpamanager&view=location&layout=edit&tmpl=component" rel="{handler: 'iframe', size: {x:600, y:600}}" class="btn btn-small btn-success modal">Add Location</a></div>
                     </div>
-                    <div class="control-group span6" style="text-align: right">
+                    <div class="control-group jscustom6 field2" style="text-align: right">
                         <div class="control-label"><?php echo $this->form->getLabel('featured'); ?></div>
                         <div class="controls"><?php echo $this->form->getInput('featured'); ?></div>
                     </div>
                 </div>
             </div>
             
-            <div class="span3" >
+            <div class="jscustom6 " >
+                <legend><?php echo JText::_('Map');?></legend>
                 <div class="control-group">
-                        <div class="controlsx">
+                        <div class="controlsx ">
                             <input type="text" value="<?php echo @$this->item->location->longitude ;?>" placeholder="Longitude" class="inputbox" name="jLong" id="jLong"/>
                         </div>
                 </div>
@@ -150,7 +164,8 @@ JHtml::_('formbehavior.chosen', 'select');
                             ?>
                     </div>
                 </div>
-                
+            </div>
+            <div class="jscustom6">
                 
                 <legend><?php echo JText::_('SERVER CONFIGURATION');?></legend>
                 <?php foreach ($this->form->getFieldset('server') as $field){  ?>
@@ -162,7 +177,7 @@ JHtml::_('formbehavior.chosen', 'select');
                 <?php }; ?>
 
             </div>
-        <div class="span12" style="padding: 10px">
+        <div class="jscustom12" style="padding: 10px">
             <?php echo $this->loadTemplate('locations');?>
         </div>
         
@@ -172,3 +187,5 @@ JHtml::_('formbehavior.chosen', 'select');
     <?php echo JHtml::_('form.token'); ?>
     <div class="clr"></div>
 </form>
+
+<?php echo JST::footer(); ?>

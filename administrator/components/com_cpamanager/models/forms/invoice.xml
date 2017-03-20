@@ -30,6 +30,7 @@
             <option value="1">JPUBLISHED</option>
             <option value="0">JUNPUBLISHED</option>
         </field>
+        <field name="created_by" type="user" class="inputbox" hint="Created By" label="Created By" description="Created By"  filter="safehtml" /> 
         <field name="icon_custom" type="hidden" default="0"/>
         <field name="ext" type="hidden" default=""/>
         <field name="filesize" type="hidden" default="0"/>

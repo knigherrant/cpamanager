@@ -40,6 +40,8 @@ class CPAManagerTableInvoice extends JTable
 		
                 if(!$array['created'] || $array['created'] = '0000-00-00 00:00:00') $array['created'] = JFactory::getDate ()->toSql ();
             
+                if(!$array['created_by']) $array['created_by'] = JFactory::getUser ()->id;
+                
 		if (isset($array['params']) && is_array($array['params']))
 		{
 			$registry = new JRegistry();

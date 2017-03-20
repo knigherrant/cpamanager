@@ -14,13 +14,33 @@ JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.keepalive');
 JHtml::_('formbehavior.chosen', 'select', null, array('disable_search_threshold' => 0 ));
 ?>
-<?php echo JST::toolbar(); ?>
+<?php echo JST::header(); ?>
+<?php echo JST::toolbar('mileage'); ?>
+<script type="text/javascript">
+            Joomla.submitbutton = function(task)
+            {
+                if (task == 'mileage.cancel') {
+                    Joomla.submitform(task, document.getElementById('mileage-form'));
+                }
+                else{
+                    
+                    if (task != 'mileage.cancel' && document.formvalidator.isValid(document.id('mileage-form'))) {
+                        
+                        Joomla.submitform(task, document.getElementById('mileage-form'));
+                    }
+                    else {
+                        alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
+                    }
+                }
+            }
+
+</script>
 <form action="<?php echo JRoute::_('index.php?option=com_cpamanager&layout=edit&id=' . (int) $this->item->id); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="mileage-form" class="form-validate">
-    <div class="form-horizontal row-fluid">
-        <div class="clearfix fltlft">
+    <div class="jsContents form-horizontal row-fluid jscustom12">
+        <legend><?php echo JText::_('Mileage');?></legend>
+            <div class="clearfix fltlft jscustom12">
                 <div class="clearfix fltlft span">
-                    <legend><?php echo JText::_('Mileage');?></legend>
-                    <?php foreach ($this->form->getFieldset('basic') as $field) : ?>
+                    <?php foreach ($this->form->getFieldset('basic') as $field) : if($field->type == 'cpa') continue; ?>
                            <div class="control-group">
                                     <div class="control-label">
                                             <?php echo $field->label; ?>
@@ -39,3 +59,5 @@ JHtml::_('formbehavior.chosen', 'select', null, array('disable_search_threshold'
     <?php echo JHtml::_('form.token'); ?>
     <div class="clr"></div>
 </form>
+
+<?php echo JST::footer(); ?>
