@@ -35,40 +35,7 @@ class CPAManagerViewInvoice extends JViewLegacy
             throw new Exception(implode("\n", $errors));
 		}
         
-		$this->addToolbar();
 		parent::display($tpl);
 	}
 
-	/**
-	 * Add the page title and toolbar.
-	 */
-	protected function addToolbar()
-	{
-		JFactory::getApplication()->input->set('hidemainmenu', true);
-
-		$user		= JFactory::getUser();
-		$isNew		= ($this->item->id == 0);
-       
-		$canDo		= CPAManagerHelper::getActions();
-
-       
-            JToolBarHelper::title(JText::_('Invoice'), 'file');
-        
-
-		// If not checked out, can save the item.
-		if (($canDo->get('core.edit')||($canDo->get('core.create'))))
-		{
-
-			JToolBarHelper::apply('invoice.apply', 'JTOOLBAR_APPLY');
-			JToolBarHelper::save('invoice.save', 'JTOOLBAR_SAVE');
-		}
-		
-		if (empty($this->item->id)) {
-			JToolBarHelper::cancel('invoice.cancel', 'JTOOLBAR_CANCEL');
-		}
-		else {
-			JToolBarHelper::cancel('invoice.cancel', 'JTOOLBAR_CLOSE');
-		}
-
-	}
 }

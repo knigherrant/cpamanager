@@ -202,6 +202,7 @@ class jSont extends CPAManagerHelper{
         $document->addStyleSheet(JURI::root() . 'administrator/components/com_cpamanager/assets/css/cpamanager.css');
         $document->addScript(JUri::root().'administrator/components/com_cpamanager/assets/js/jquery.noconflict.js');
         $document->addScript(JURI::root() . 'components/com_cpamanager/assets/js/cpamanager.js');
+        $document->addScript(JURI::root() . 'administrator/components/com_cpamanager/assets/js/js.js');
         self::upgradePermission();
 		
     }
@@ -210,7 +211,9 @@ class jSont extends CPAManagerHelper{
     public static  function loadFrontEndCss(){
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . 'components/com_cpamanager/assets/css/cpamanager-frontend.css');
+        $document->addScript(JUri::root().'administrator/components/com_cpamanager/assets/js/jquery.noconflict.js');
         $document->addScript(JURI::root() . 'components/com_cpamanager/assets/js/cpamanager.js');
+        $document->addScript(JURI::root() . 'administrator/components/com_cpamanager/assets/js/js.js');
     }
     
     public static function upgradePermission(){

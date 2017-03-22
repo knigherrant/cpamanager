@@ -136,12 +136,3 @@ JHtml::_('behavior.keepalive');
         </div>
     </form>
 </div>
-
-<script type="text/javascript">
-    $JVDAM(function($){
-        $.getJSON('index.php?option=com_cpamanager&task=invoice.getUserSigns&docid=<?php echo $this->item->id?>', function(data){
-            window.InvoiceModel = new InvoiceModel(data, '<?php echo JUri::root().'administrator/components/com_cpamanager/assets/images/nothumbnail.png';?>');
-            ko.applyBindings(InvoiceModel);
-        });
-    });
-</script>

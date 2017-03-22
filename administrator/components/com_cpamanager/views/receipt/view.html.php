@@ -52,7 +52,7 @@ class CPAManagerViewReceipt extends JViewLegacy {
         }
         $canDo = CPAManagerHelper::getActions();
 
-        JToolBarHelper::title(JText::_('Receipt'), 'receipt.png');
+        JToolBarHelper::title(JText::_('Receipt'), 'file');
 		if($this->getLayout() =='view') return;
         // If not checked out, can save the item.
         if (!$checkedOut && ($canDo->get('core.edit') || ($canDo->get('core.create')))) {

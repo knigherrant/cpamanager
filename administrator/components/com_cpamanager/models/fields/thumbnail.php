@@ -66,7 +66,7 @@ class JFormFieldThumbnail extends JFormField
                     <li id="thumbnail-choose-existing" class="dropdown-link">
                         <div id="image-selector" class="image-selector">
                             <input name="<?php echo $this->name;?>" id="<?php echo $this->id;?>" value="<?php echo $this->value;?>" type="text">
-                            <a class="modal modal-button btn" rel="{'handler': 'iframe', 'size': {'x': 690}}" href="index.php?option=com_cpamanager&view=files&layout=select&tmpl=component&ctn=thumbs&ctn_type=image&field=<?php echo $this->id;?>"><?php echo JText::_('Choose Thumb')?></a>
+                            <a class="modal modal-button btn" rel="{'handler': 'iframe', 'size': {'x': 690}}" href="index.php?option=com_cpamanager&view=files&layout=select&tmpl=component&ctn=thumbs&ctn_type=image&field=<?php echo $this->id;?>"><?php echo JText::_('Choose existing image')?></a>
                         </div>
                     </li>
                     <li class="divider"></li>
@@ -74,9 +74,9 @@ class JFormFieldThumbnail extends JFormField
                         <a href="javascript:void(0)" class="dropdown-link btn" id="image-selector-clear"><?php echo JText::_('Clear')?></a>
                     </li>
                 </ul>
-                <p class="help-inline automatic-enabled" style="<?php if(!$general) echo 'display:none';?>"><?php echo JText::_('COM_SIGNATUREDOC_THUMBNAIL_AUTO_GENERATED')?></p>
-                <p class="help-inline automatic-unsupported-format" style="<?php if(!$format) echo 'display:none';?>"><?php echo JText::_('COM_SIGNATUREDOC_AUTO_GENERATED_THUMBNAIL_ONLY_SUPPORT_IMAGE')?></p>
-                <p class="help-inline automatic-unsupported-location"  style="<?php if(!$remote) echo 'display:none';?>"><?php echo JText::_('COM_SIGNATUREDOC_AUTO_GENERATED_THUMBNAIL_ONLY_SUPPORT_LOCAL')?></p>
+                <p class="help-inline automatic-enabled" style="<?php if(!$general) echo 'display:none';?>"><?php echo JText::_('Thumbnail is automatically generated.')?></p>
+                <p class="help-inline automatic-unsupported-format" style="<?php if(!$format) echo 'display:none';?>"><?php echo JText::_('Automatically generated thumbnails are only supported on image files.')?></p>
+                <p class="help-inline automatic-unsupported-location"  style="<?php if(!$remote) echo 'display:none';?>"><?php echo JText::_('Automatically generated thumbnails are only supported on local files')?></p>
             </div>
         </div>
         <?php

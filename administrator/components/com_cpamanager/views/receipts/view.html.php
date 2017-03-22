@@ -53,7 +53,7 @@ class CPAManagerViewReceipts extends JViewLegacy {
         $state = $this->get('State');
         $canDo = CPAManagerHelper::getActions($state->get('filter.category_id'));
 
-        JToolBarHelper::title(JText::_('Receipts'), 'receipts.png');
+        JToolBarHelper::title(JText::_('Receipts'), 'file');
 
         //Check if the form exists before showing the add/edit buttons
         $formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/receipt';

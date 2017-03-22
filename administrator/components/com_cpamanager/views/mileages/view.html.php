@@ -53,7 +53,7 @@ class CPAManagerViewMileages extends JViewLegacy {
         $state = $this->get('State');
         $canDo = CPAManagerHelper::getActions($state->get('filter.category_id'));
 
-        JToolBarHelper::title(JText::_('Mileages'), 'mileages.png');
+        JToolBarHelper::title(JText::_('Mileages'), 'file');
 
         //Check if the form exists before showing the add/edit buttons
         $formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/mileage';

@@ -44,7 +44,7 @@ class CPAManagerViewConfigs extends JViewLegacy
     protected function addToolbar(){
         $canDo		= CPAManagerHelper::getActions();
        
-        JToolBarHelper::title(JText::_('Configs'), 'configs');
+        JToolBarHelper::title(JText::_('Configs'), 'file');
 
         // If not checked out, can save the item.
         if (($canDo->get('core.create'))){

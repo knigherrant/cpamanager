@@ -52,7 +52,7 @@ class CPAManagerViewMileage extends JViewLegacy {
         }
         $canDo = CPAManagerHelper::getActions();
 
-        JToolBarHelper::title(JText::_('Mileage'), 'mileage.png');
+        JToolBarHelper::title(JText::_('Mileage'), 'file');
 		if($this->getLayout() =='view') return;
         // If not checked out, can save the item.
         if (!$checkedOut && ($canDo->get('core.edit') || ($canDo->get('core.create')))) {
