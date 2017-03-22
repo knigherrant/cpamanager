@@ -17,6 +17,8 @@ JHtml::_('formbehavior.chosen', 'select');
 
 JHtml::_('behavior.keepalive');
 ?>
+<?php echo JST::header(); ?>
+<?php echo JST::toolbar('invoice'); ?>
 <script type="text/javascript">
     Joomla.submitbutton = function(task)
     {
@@ -40,88 +42,63 @@ JHtml::_('behavior.keepalive');
         }
     }
 </script>
-<?php echo JST::toolbar(); ?>
 <div class="cpamanager">
     <form action="<?php echo JRoute::_('index.php?option=com_cpamanager&layout=edit&id=' . (int) $this->item->id); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="invoice-form" class="form-validate">
-        <div class="form-horizontal row-fluid">
-            <div class="span6">
+         <div class="jsContents form-horizontal row-fluid jscustom12">
+            <div class="jscustom6 field3">
                 <legend><?php echo JText::_('Detail');?></legend>
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('title'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('title'); ?></div>
-                </div>
-   
-                <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('cpaid'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('cpaid'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('title'); ?></div>
                 </div>
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('category'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('category'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('category'); ?></div>
                 </div>
         
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('storage_type'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('storage_type'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('storage_type'); ?></div>
                 </div>
                 <div class="control-group" style="<?php if($this->item->storage_type == 'remote') echo 'display:none;'?>">
-                    <div class="control-label"><?php echo $this->form->getLabel('storage_path_file'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('storage_path_file'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('storage_path_file'); ?></div>
                 </div>
                 <div class="control-group" style="<?php if(!$this->item->storage_type || $this->item->storage_type == 'file') echo 'display:none;'?>">
-                    <div class="control-label"><?php echo $this->form->getLabel('storage_path_remote'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('storage_path_remote'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('storage_path_remote'); ?></div>
                 </div>
                 <legend><?php echo JText::_('Description');?></legend>
-                <div>
+                <div style="padding-right:10px;">
                     <?php echo $this->form->getInput('description'); ?>
                 </div>
             </div>
-            <div class="span6">
+            <div class="jscustom6 field3">
                 <legend><?php echo JText::_('Metadata');?></legend>
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('company'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('company'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('company'); ?></div>
                 </div>
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('access'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('access'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('access'); ?></div>
                 </div>
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('state'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('state'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('state'); ?></div>
                 </div>
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('image'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('image'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('image'); ?></div>
                 </div>
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('icon'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('icon'); ?></div>
+                    <div class="controlsx">Icon : <?php echo $this->form->getInput('icon'); ?></div>
                 </div>
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('publish_on'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('publish_on'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('publish_on'); ?></div>
                 </div>
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('unpublish_on'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('unpublish_on'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('unpublish_on'); ?></div>
                 </div>
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('created_by'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('created_by'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('created_by'); ?></div>
                 </div>
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('created'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('created'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('created'); ?></div>
                 </div>
                 <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('modified_by'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('modified_by'); ?></div>
-                </div>
-                <div class="control-group">
-                    <div class="control-label"><?php echo $this->form->getLabel('modified'); ?></div>
-                    <div class="controls"><?php echo $this->form->getInput('modified'); ?></div>
+                    <div class="controlsx"><?php echo $this->form->getInput('modified'); ?></div>
                 </div>
                 
               
@@ -136,12 +113,4 @@ JHtml::_('behavior.keepalive');
         </div>
     </form>
 </div>
-
-<script type="text/javascript">
-    $JVDAM(function($){
-        $.getJSON('index.php?option=com_cpamanager&task=invoice.getUserSigns&docid=<?php echo $this->item->id?>', function(data){
-            window.InvoiceModel = new InvoiceModel(data, '<?php echo JUri::root().'administrator/components/com_cpamanager/assets/images/nothumbnail.png';?>');
-            ko.applyBindings(InvoiceModel);
-        });
-    });
-</script>
+<?php echo JST::footer(); ?>

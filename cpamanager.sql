@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2017 at 06:08 PM
+-- Generation Time: Mar 22, 2017 at 06:11 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -94,7 +94,7 @@ INSERT INTO `cpa_assets` (`id`, `parent_id`, `lft`, `rgt`, `level`, `name`, `tit
 (52, 18, 70, 71, 2, 'com_modules.module.79', 'Multilanguage status', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
 (53, 18, 72, 73, 2, 'com_modules.module.86', 'Joomla Version', '{"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
 (54, 16, 38, 39, 2, 'com_menus.menu.1', 'Main Menu', '{}'),
-(55, 1, 105, 106, 1, 'com_cpamanager', 'com_cpamanager', '{}'),
+(55, 1, 105, 106, 1, 'com_cpamanager', 'com_cpamanager', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1,"2":1},"core.delete":{"2":1},"core.edit":{"4":1,"2":1},"core.edit.state":{"5":1,"2":1},"core.edit.own":{"2":1}}'),
 (56, 27, 19, 20, 3, 'com_content.article.1', 'test', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}'),
 (57, 1, 107, 108, 1, 'com_cpamanager.cpa.1', 'com_cpamanager.cpa.1', '{}');
 
@@ -488,7 +488,7 @@ CREATE TABLE `cpa_cpamanager_cpas` (
 --
 
 INSERT INTO `cpa_cpamanager_cpas` (`id`, `asset_id`, `ordering`, `userid`, `company`, `firstname`, `midname`, `lastname`, `address1`, `address2`, `city`, `zip`, `phone`, `cell_phone`, `fax`, `email`, `url`, `logo`, `serverip`, `dbname`, `dbuser`, `dbpass`, `banner`, `notes`, `created`, `account`, `featured`, `location_id`, `state`) VALUES
-(1, 57, 1, 911, '43423', '343242', '423423', '43243', '4324', '4324', '2432', '432423423', '432', '432423', '432432423', '423432', '43432', 'images/cpamanager/1489249459_anh-nen-canh-dong-hoa-huong-duong.jpg', '43423', '312', '312', '24342', 'images/cpamanager/1489249444_1471514129602_3899.jpg', '4324', '2017-03-19 15:04:21', 0, 0, 3, '33333333');
+(1, 57, 1, 911, '43423zzzyy', '34324242', '423423', '43243', '4324', '4324', '2432432', '432423423', '432', '432423', '432432423', '423432', '43432', 'images/cpamanager/1489249459_anh-nen-canh-dong-hoa-huong-duong.jpg', '43423', '312', '312', '24342', 'images/cpamanager/1489249444_1471514129602_3899.jpg', '4324', '2017-03-21 14:57:59', 0, 0, 2, '33333333');
 
 -- --------------------------------------------------------
 
@@ -529,15 +529,17 @@ CREATE TABLE `cpa_cpamanager_customers` (
   `created` datetime NOT NULL,
   `account` tinyint(2) NOT NULL,
   `featured` tinyint(2) NOT NULL,
-  `location_id` int(11) NOT NULL
+  `location_id` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cpa_cpamanager_customers`
 --
 
-INSERT INTO `cpa_cpamanager_customers` (`id`, `userid`, `cpaid`, `company`, `firstname`, `midname`, `lastname`, `address1`, `address2`, `city`, `state`, `zip`, `phone`, `cell_phone`, `fax`, `email`, `url`, `federal_id`, `first_tax`, `first_fiscal`, `income_tax_form`, `tax_exempt_form`, `logo`, `serverip`, `dbname`, `dbuser`, `dbpass`, `banner`, `notes`, `created`, `account`, `featured`, `location_id`) VALUES
-(1, 912, 1, '43423', 'Dinh', 'Van', 'Nam', '13 duong dinh dinh, tinh tinh dinh', '', 'Ho Chi MInh', '432', '432432', '4234242442342', '4242343442', '423432442422', 'knigherrant@gm43ail.com', '43432', '4234324234242', '4234324324242', '44233244242', '4242342342342342', 'images/cpamanager/1489327914_Captura.JPG', 'images/cpamanager/1489327914_1471514128408_3893.jpg', '3424242', '44242342342', '42342342342432', '423423434242', 'images/cpamanager/1489327914_1471514129462_3898.jpg', '4444444444444444444444444444444444444444444', '2017-03-12 14:15:07', 0, 0, 2);
+INSERT INTO `cpa_cpamanager_customers` (`id`, `userid`, `cpaid`, `company`, `firstname`, `midname`, `lastname`, `address1`, `address2`, `city`, `state`, `zip`, `phone`, `cell_phone`, `fax`, `email`, `url`, `federal_id`, `first_tax`, `first_fiscal`, `income_tax_form`, `tax_exempt_form`, `logo`, `serverip`, `dbname`, `dbuser`, `dbpass`, `banner`, `notes`, `created`, `account`, `featured`, `location_id`, `created_by`) VALUES
+(1, 912, 1, '43423zzuuzziiiiiiiiiiiiii', 'Dinh', 'Van', 'Nam', '13 duong dinh dinh, tinh tinh dinh', '', 'Ho Chi MInh', '432', '432432', '4234242442342', '4242343442', '423432442422', 'knigherrant@gm43ail.com', '43432', '4234324234242', '4234324324242', '44233244242', '4242342342342342', 'images/cpamanager/1489327914_Captura.JPG', 'images/cpamanager/1489327914_1471514128408_3893.jpg', '3424242', '44242342342', '42342342342432', '423423434242', 'images/cpamanager/1489327914_1471514129462_3898.jpg', '4444444444444444444444444444444444444444444', '2017-03-21 17:17:02', 0, 0, 2, 911),
+(2, 0, 1, 'tttt', 't', 't', 't', '', '', '', '', '', '', '', '', 'ttt@tt.xom', '', '', '', '', '', '', '', '', '', '', '', '', '', '2017-03-21 15:14:59', 0, 0, 0, 911);
 
 -- --------------------------------------------------------
 
@@ -563,15 +565,17 @@ CREATE TABLE `cpa_cpamanager_expenses` (
   `rate` varchar(225) NOT NULL,
   `odometer_start` varchar(225) NOT NULL,
   `odometer_end` varchar(225) NOT NULL,
-  `total_mileage` varchar(225) NOT NULL
+  `total_mileage` varchar(225) NOT NULL,
+  `created_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cpa_cpamanager_expenses`
 --
 
-INSERT INTO `cpa_cpamanager_expenses` (`id`, `cpaid`, `company`, `merchant`, `created`, `comments`, `category`, `image`, `billable`, `reimbursable`, `total`, `start_point`, `destination`, `mileage_id`, `rate`, `odometer_start`, `odometer_end`, `total_mileage`) VALUES
-(1, 1, '43423xxxxxxxx', 'xxxxxxxxxxxxxxxxx', '2017-03-12 00:00:00', 'ffffffffffffffffffffffff', 'Expenses 1', 'images/powered_by.png', 1, 0, '111', '33333', '333333333333', '', '55555', '66666', '77777', '888888');
+INSERT INTO `cpa_cpamanager_expenses` (`id`, `cpaid`, `company`, `merchant`, `created`, `comments`, `category`, `image`, `billable`, `reimbursable`, `total`, `start_point`, `destination`, `mileage_id`, `rate`, `odometer_start`, `odometer_end`, `total_mileage`, `created_by`) VALUES
+(1, 1, '43423xxxxxxxx', 'xxxxxxxxxxxxxxxxx', '2017-03-21 15:18:41', 'ffffffffffffffffffffffff', 'Expenses 1', 'images/powered_by.png', 1, 0, '111', '33333', '333333333333', '', '55555', '66666', '77777', '888888', 911),
+(2, 1, 'tessyyy', 'yyyyyy', '2017-03-21 15:19:04', '', 'Expenses 1', 'images/joomla_black.png', 0, 0, '333', '', '', '', '', '', '', '', 911);
 
 -- --------------------------------------------------------
 
@@ -627,15 +631,16 @@ CREATE TABLE `cpa_cpamanager_links` (
   `image` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
-  `state` tinyint(1) NOT NULL
+  `state` tinyint(1) NOT NULL,
+  `created_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cpa_cpamanager_links`
 --
 
-INSERT INTO `cpa_cpamanager_links` (`id`, `company`, `cpaid`, `title`, `image`, `link`, `created`, `state`) VALUES
-(1, '', 0, 'tessttt', '', 'http://phpkungfu.club/advertise', '0000-00-00 00:00:00', 1);
+INSERT INTO `cpa_cpamanager_links` (`id`, `company`, `cpaid`, `title`, `image`, `link`, `created`, `state`, `created_by`) VALUES
+(1, '', 0, 'tessttt', '', 'http://phpkungfu.club/advertise', '0000-00-00 00:00:00', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -667,7 +672,8 @@ INSERT INTO `cpa_cpamanager_locations` (`id`, `name`, `address`, `latitude`, `lo
 (5, 'Location 1', 'Ho chi minh', '', '', 0, '123456', 911, 'dev@joomlavi.com22', '2017-03-11 00:00:00'),
 (6, 'Location 1', '44444444444444tret', '', '', 0, '012345678922222', 911, 'dev@joomlavi.com2', '2017-03-11 00:00:00'),
 (7, 'Location 2222', '44444444444444tret', '', '', 0, '012345678933', 911, 'dev@joomlavi.com22', '2017-03-11 00:00:00'),
-(8, 'Location 222243', '44444444444444444444', '', '', 0, '42342342', 911, 'dev@joomlavi.com2', '0000-00-00 00:00:00');
+(8, 'Location 222243', '44444444444444444444', '', '', 0, '42342342', 911, 'dev@joomlavi.com2', '0000-00-00 00:00:00'),
+(9, 'test 111', '111', '', '', 0, '111', 912, 'aa@aaa.com', '2017-03-22 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -686,15 +692,17 @@ CREATE TABLE `cpa_cpamanager_mileages` (
   `odometer_start` varchar(255) NOT NULL,
   `odometer_end` varchar(255) NOT NULL,
   `total_mileage` varchar(255) NOT NULL,
-  `created` datetime NOT NULL
+  `created` datetime NOT NULL,
+  `created_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cpa_cpamanager_mileages`
 --
 
-INSERT INTO `cpa_cpamanager_mileages` (`id`, `cpaid`, `company`, `start_point`, `destination`, `mileage`, `rate`, `odometer_start`, `odometer_end`, `total_mileage`, `created`) VALUES
-(1, 1, '43423xxxxxxxx', 'ewqeq', '333333333333', 'Mileage 1111', '55555', '66666', '77777', '888888', '2017-03-18 08:28:00');
+INSERT INTO `cpa_cpamanager_mileages` (`id`, `cpaid`, `company`, `start_point`, `destination`, `mileage`, `rate`, `odometer_start`, `odometer_end`, `total_mileage`, `created`, `created_by`) VALUES
+(1, 1, '43423xxxxxxxx', 'ewqeq', '333333333333', 'Mileage 1111', '55555', '66666', '77777', '888888', '2017-03-18 08:28:00', 0),
+(2, 1, '423423', '432423', '423', '432', '432', '', '', '', '2017-03-21 15:19:45', 911);
 
 -- --------------------------------------------------------
 
@@ -720,15 +728,17 @@ CREATE TABLE `cpa_cpamanager_receipts` (
   `rate` varchar(225) NOT NULL,
   `odometer_start` varchar(225) NOT NULL,
   `odometer_end` varchar(225) NOT NULL,
-  `total_mileage` varchar(225) NOT NULL
+  `total_mileage` varchar(225) NOT NULL,
+  `created_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cpa_cpamanager_receipts`
 --
 
-INSERT INTO `cpa_cpamanager_receipts` (`id`, `cpaid`, `company`, `merchant`, `created`, `comments`, `category`, `image`, `billable`, `reimbursable`, `total`, `start_point`, `destination`, `mileage_id`, `rate`, `odometer_start`, `odometer_end`, `total_mileage`) VALUES
-(1, 1, '43423xxxxxxxx', 'xxxxxxxxxxxxxxxxx', '2017-03-18 00:00:00', '', 'ewqewq', 'images/joomla_black.png', 0, 0, '', 'ewqeq', 'ewqeqw', '', '', '', '', '');
+INSERT INTO `cpa_cpamanager_receipts` (`id`, `cpaid`, `company`, `merchant`, `created`, `comments`, `category`, `image`, `billable`, `reimbursable`, `total`, `start_point`, `destination`, `mileage_id`, `rate`, `odometer_start`, `odometer_end`, `total_mileage`, `created_by`) VALUES
+(1, 1, '43423xxxxxxxx', 'xxxxxxxxxxxxxxxxx', '2017-03-18 00:00:00', '', 'ewqewq', 'images/joomla_black.png', 0, 0, '', 'ewqeq', 'ewqeqw', '', '', '', '', '', 0),
+(2, 1, '42342', '43242', '2017-03-21 15:19:34', '', '4324', 'images/powered_by.png', 0, 0, '43423', '', '', '', '', '', '', '', 911);
 
 -- --------------------------------------------------------
 
@@ -813,15 +823,17 @@ CREATE TABLE `cpa_cpamanager_taxreturns` (
   `cpa` varchar(255) NOT NULL,
   `cpa_location` varchar(255) NOT NULL,
   `cpa_email` varchar(255) NOT NULL,
-  `created` datetime DEFAULT NULL
+  `created` datetime NOT NULL,
+  `created_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `cpa_cpamanager_taxreturns`
 --
 
-INSERT INTO `cpa_cpamanager_taxreturns` (`id`, `tax_firstname`, `tax_midname`, `tax_lastname`, `tax_birthday`, `tax_social_number`, `tax_filing_status`, `tax_license_id`, `tax_issue_date`, `tax_expiration_date`, `tax_occupation`, `tax_dependents`, `spouse_firstname`, `spouse_midname`, `spouse_lastname`, `spouse_birthday`, `spouse_social_number`, `spouse_filing_status`, `spouse_license_id`, `spouse_issue_date`, `spouse_expiration_date`, `spouse_occupation`, `address`, `apartment`, `city`, `state`, `zip`, `phone`, `email`, `dependent1_firstname`, `dependent1_midname`, `dependent1_lastname`, `dependent1_birthday`, `dependent1_social_number`, `dependent1_relationship`, `dependent1_is_student`, `dependent1_is_disable`, `dependent2_firstname`, `dependent2_midname`, `dependent2_lastname`, `dependent2_birthday`, `dependent2_social_number`, `dependent2_relationship`, `dependent2_is_student`, `dependent2_is_disable`, `dependent3_firstname`, `dependent3_midname`, `dependent3_lastname`, `dependent3_birthday`, `dependent3_social_number`, `dependent3_relationship`, `dependent3_is_student`, `dependent3_is_disable`, `dependent4_firstname`, `dependent4_midname`, `dependent4_lastname`, `dependent4_birthday`, `dependent4_social_number`, `dependent4_relationship`, `dependent4_is_student`, `dependent4_is_disable`, `dependent5_firstname`, `dependent5_midname`, `dependent5_lastname`, `dependent5_birthday`, `dependent5_social_number`, `dependent5_relationship`, `dependent5_is_student`, `dependent5_is_disable`, `image`, `company`, `company_location`, `company_email`, `cpa`, `cpa_location`, `cpa_email`, `created`) VALUES
-(1, '4234211', '423423111', '4234111', '2017-03-18 00:00:00', '42341111', '4324231111', '423423111', '2017-03-16 00:00:00', '2011-11-11 00:00:00', '4242111', '4234231111', '42422222', '4242222', '423423222', '0000-00-00 00:00:00', '423432222222', '424232222', '423422222', '2017-03-18 00:00:00', '2017-03-23 00:00:00', '4234232222', '4242333', '4242342333', '42342333', '423423333', '423423333', '423423333', '42423433', '424236444', '423423444', '4242444', '2017-03-17 00:00:00', '42423444', '42423444', '0', '0', '555555555', '55555555555555', '5555555555555', '2017-03-18 00:00:00', '555555555555', '055555555555555555555', '0', '0', '66666666666', '6666666666666666', '66666666666666666666', '2017-03-18 00:00:00', '6666666666666', '06666666666666666', '0', '0', '77777777777', '777777777777777777', '777777777777777777', '2017-03-24 00:00:00', '77777777777777', '07777777777777', '0', '0', '8888888888888888888888', '88888888888888888', '8888888888888', '2017-03-17 00:00:00', '8888888888888', '088888888888888', '0', '0', '', '9999', '9999', '9999', '999', '9999', '99999', '2017-03-18 15:01:02');
+INSERT INTO `cpa_cpamanager_taxreturns` (`id`, `tax_firstname`, `tax_midname`, `tax_lastname`, `tax_birthday`, `tax_social_number`, `tax_filing_status`, `tax_license_id`, `tax_issue_date`, `tax_expiration_date`, `tax_occupation`, `tax_dependents`, `spouse_firstname`, `spouse_midname`, `spouse_lastname`, `spouse_birthday`, `spouse_social_number`, `spouse_filing_status`, `spouse_license_id`, `spouse_issue_date`, `spouse_expiration_date`, `spouse_occupation`, `address`, `apartment`, `city`, `state`, `zip`, `phone`, `email`, `dependent1_firstname`, `dependent1_midname`, `dependent1_lastname`, `dependent1_birthday`, `dependent1_social_number`, `dependent1_relationship`, `dependent1_is_student`, `dependent1_is_disable`, `dependent2_firstname`, `dependent2_midname`, `dependent2_lastname`, `dependent2_birthday`, `dependent2_social_number`, `dependent2_relationship`, `dependent2_is_student`, `dependent2_is_disable`, `dependent3_firstname`, `dependent3_midname`, `dependent3_lastname`, `dependent3_birthday`, `dependent3_social_number`, `dependent3_relationship`, `dependent3_is_student`, `dependent3_is_disable`, `dependent4_firstname`, `dependent4_midname`, `dependent4_lastname`, `dependent4_birthday`, `dependent4_social_number`, `dependent4_relationship`, `dependent4_is_student`, `dependent4_is_disable`, `dependent5_firstname`, `dependent5_midname`, `dependent5_lastname`, `dependent5_birthday`, `dependent5_social_number`, `dependent5_relationship`, `dependent5_is_student`, `dependent5_is_disable`, `image`, `company`, `company_location`, `company_email`, `cpa`, `cpa_location`, `cpa_email`, `created`, `created_by`) VALUES
+(1, '4234211', '423423111', '4234111', '2017-03-18 00:00:00', '42341111', '4324231111', '423423111', '2017-03-16 00:00:00', '2011-11-11 00:00:00', '4242111', '4234231111', '42422222', '4242222', '423423222', '0000-00-00 00:00:00', '423432222222', '424232222', '423422222', '2017-03-18 00:00:00', '2017-03-23 00:00:00', '4234232222', '4242333', '4242342333', '42342333', '423423333', '423423333', '423423333', '42423433', '424236444', '423423444', '4242444', '2017-03-17 00:00:00', '42423444', '42423444', '0', '0', '555555555', '55555555555555', '5555555555555', '2017-03-18 00:00:00', '555555555555', '055555555555555555555', '0', '0', '66666666666', '6666666666666666', '66666666666666666666', '2017-03-18 00:00:00', '6666666666666', '06666666666666666', '0', '0', '77777777777', '777777777777777777', '777777777777777777', '2017-03-24 00:00:00', '77777777777777', '07777777777777', '0', '0', '8888888888888888888888', '88888888888888888', '8888888888888', '2017-03-17 00:00:00', '8888888888888', '088888888888888', '0', '0', '', '9999', '9999', '9999', '999', '9999', '99999', '2017-03-18 15:01:02', 0),
+(2, '444', '555', '6666', '2017-03-21 00:00:00', '4234', '77', '888', '2017-03-21 00:00:00', '2017-03-22 00:00:00', '99', '0000', '31231', '312', '3131', '0000-00-00 00:00:00', '313', '31', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '', '', '0', '0', '', '', '', '0000-00-00 00:00:00', '', '', '0', '0', '', '', '', '0000-00-00 00:00:00', '', '', '0', '0', '', '', '', '0000-00-00 00:00:00', '', '', '0', '0', '', '', '', '0000-00-00 00:00:00', '', '', '0', '0', '', '', '', '', '', '', '', '2017-03-21 15:21:12', 911);
 
 -- --------------------------------------------------------
 
@@ -979,7 +991,7 @@ INSERT INTO `cpa_extensions` (`extension_id`, `name`, `type`, `element`, `folder
 (449, 'plg_authentication_cookie', 'plugin', 'cookie', 'authentication', 0, 1, 1, 0, '{"name":"plg_authentication_cookie","type":"plugin","creationDate":"July 2013","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_AUTH_COOKIE_XML_DESCRIPTION","group":"","filename":"cookie"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (450, 'plg_twofactorauth_yubikey', 'plugin', 'yubikey', 'twofactorauth', 0, 0, 1, 0, '{"name":"plg_twofactorauth_yubikey","type":"plugin","creationDate":"September 2013","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.2.0","description":"PLG_TWOFACTORAUTH_YUBIKEY_XML_DESCRIPTION","group":"","filename":"yubikey"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (451, 'plg_search_tags', 'plugin', 'tags', 'search', 0, 1, 1, 0, '{"name":"plg_search_tags","type":"plugin","creationDate":"March 2014","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_SEARCH_TAGS_XML_DESCRIPTION","group":"","filename":"tags"}', '{"search_limit":"50","show_tagged_items":"1"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(452, 'plg_system_updatenotification', 'plugin', 'updatenotification', 'system', 0, 1, 1, 0, '{"name":"plg_system_updatenotification","type":"plugin","creationDate":"May 2015","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_SYSTEM_UPDATENOTIFICATION_XML_DESCRIPTION","group":"","filename":"updatenotification"}', '{"lastrun":1489934018}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(452, 'plg_system_updatenotification', 'plugin', 'updatenotification', 'system', 0, 1, 1, 0, '{"name":"plg_system_updatenotification","type":"plugin","creationDate":"May 2015","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_SYSTEM_UPDATENOTIFICATION_XML_DESCRIPTION","group":"","filename":"updatenotification"}', '{"lastrun":1490197959}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (453, 'plg_editors-xtd_module', 'plugin', 'module', 'editors-xtd', 0, 1, 1, 0, '{"name":"plg_editors-xtd_module","type":"plugin","creationDate":"October 2015","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_MODULE_XML_DESCRIPTION","group":"","filename":"module"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (454, 'plg_system_stats', 'plugin', 'stats', 'system', 0, 1, 1, 0, '{"name":"plg_system_stats","type":"plugin","creationDate":"November 2013","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_SYSTEM_STATS_XML_DESCRIPTION","group":"","filename":"stats"}', '{"mode":3,"lastrun":1488530582,"unique_id":"7de989aaf3ca83f10ca02950c505aee4d24e18c0","interval":12}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (455, 'plg_installer_packageinstaller', 'plugin', 'packageinstaller', 'installer', 0, 1, 1, 1, '{"name":"plg_installer_packageinstaller","type":"plugin","creationDate":"May 2016","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.0","description":"PLG_INSTALLER_PACKAGEINSTALLER_PLUGIN_XML_DESCRIPTION","group":"","filename":"packageinstaller"}', '', '', '', 0, '0000-00-00 00:00:00', 1, 0),
@@ -1847,9 +1859,8 @@ CREATE TABLE `cpa_session` (
 --
 
 INSERT INTO `cpa_session` (`session_id`, `client_id`, `guest`, `time`, `data`, `userid`, `username`) VALUES
-('2mgfvsiufpkuik299htqlfcfa6', 0, 0, '1489943307', 'joomla|s:1216:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo0OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aToxMDg7czo1OiJ0aW1lciI7Tzo4OiJzdGRDbGFzcyI6Mzp7czo1OiJzdGFydCI7aToxNDg5ODUyNjY5O3M6NDoibGFzdCI7aToxNDg5OTQzMDcwO3M6Mzoibm93IjtpOjE0ODk5NDMzMDc7fXM6NToidG9rZW4iO3M6MzI6IjhJZFBRRWZaWndob3A2N2lqSEROU1lYd1FHdGlVSVhlIjt9czo4OiJyZWdpc3RyeSI7TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjI6e3M6NToidXNlcnMiO086ODoic3RkQ2xhc3MiOjE6e3M6NToibG9naW4iO086ODoic3RkQ2xhc3MiOjE6e3M6NDoiZm9ybSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo0OiJkYXRhIjthOjA6e31zOjY6InJldHVybiI7czoyODoiaHR0cDovL2xvY2FsaG9zdC9jcGFtYW5hZ2VyLyI7fX19czoxNDoiY29tX2NwYW1hbmFnZXIiO086ODoic3RkQ2xhc3MiOjE6e3M6NDoiZWRpdCI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo3OiJleHBlbnNlIjtPOjg6InN0ZENsYXNzIjoxOntzOjQ6ImRhdGEiO047fXM6MzoiY3BhIjtPOjg6InN0ZENsYXNzIjoxOntzOjQ6ImRhdGEiO047fX19fXM6MTQ6IgAqAGluaXRpYWxpemVkIjtiOjE7czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fXM6NDoidXNlciI7Tzo1OiJKVXNlciI6MTp7czoyOiJpZCI7czozOiI5MTEiO31zOjExOiJhcHBsaWNhdGlvbiI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJxdWV1ZSI7Tjt9fX1zOjE0OiIAKgBpbml0aWFsaXplZCI7YjowO3M6OToic2VwYXJhdG9yIjtzOjE6Ii4iO30=";', 911, 'admin'),
-('ceed43se4ctsohdq5rjptotor7', 1, 0, '1489939962', 'joomla|s:7696:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo1OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aTozMTQ7czo1OiJ0aW1lciI7Tzo4OiJzdGRDbGFzcyI6Mzp7czo1OiJzdGFydCI7aToxNDg5ODA1NTI5O3M6NDoibGFzdCI7aToxNDg5OTM5OTAxO3M6Mzoibm93IjtpOjE0ODk5Mzk5NjI7fXM6NToidG9rZW4iO3M6MzI6IldFWGdzVDV1dnRRVzJtZDRSRDZ6eWlVNUxlYUNGTmlLIjt9czo4OiJyZWdpc3RyeSI7TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjU6e3M6MTM6ImNvbV9pbnN0YWxsZXIiO086ODoic3RkQ2xhc3MiOjM6e3M6NzoibWVzc2FnZSI7czowOiIiO3M6MTc6ImV4dGVuc2lvbl9tZXNzYWdlIjtzOjA6IiI7czoxMjoicmVkaXJlY3RfdXJsIjtOO31zOjE0OiJjb21fY3BhbWFuYWdlciI7Tzo4OiJzdGRDbGFzcyI6Mzp7czo0OiJlZGl0IjtPOjg6InN0ZENsYXNzIjo2OntzOjc6Imludm9pY2UiO086ODoic3RkQ2xhc3MiOjI6e3M6NDoiZGF0YSI7TjtzOjI6ImlkIjthOjA6e319czo3OiJyZWNlaXB0IjtPOjg6InN0ZENsYXNzIjoyOntzOjQ6ImRhdGEiO047czoyOiJpZCI7YTowOnt9fXM6NzoibWlsZWFnZSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo0OiJkYXRhIjtOO3M6MjoiaWQiO2E6MDp7fX1zOjk6InRheHJldHVybiI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo0OiJkYXRhIjtOO3M6MjoiaWQiO2E6MDp7fX1zOjQ6ImxpbmsiO086ODoic3RkQ2xhc3MiOjE6e3M6NDoiZGF0YSI7Tjt9czozOiJjcGEiO086ODoic3RkQ2xhc3MiOjI6e3M6MjoiaWQiO2E6MTp7aTowO2k6MTt9czo0OiJkYXRhIjtOO319czo1OiJsaW5rcyI7Tzo4OiJzdGRDbGFzcyI6MTp7czo4OiJvcmRlcmNvbCI7czo0OiJhLmlkIjt9czo4OiJpbnZvaWNlcyI7Tzo4OiJzdGRDbGFzcyI6NDp7czo2OiJmaWx0ZXIiO086ODoic3RkQ2xhc3MiOjE6e3M6Njoic2VhcmNoIjtzOjA6IiI7fXM6ODoib3JkZXJjb2wiO3M6OToiYS5jb21wYW55IjtzOjk6Im9yZGVyZGlybiI7czo0OiJkZXNjIjtzOjEwOiJsaW1pdHN0YXJ0IjtpOjA7fX1zOjY6Imdsb2JhbCI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJsaXN0IjtPOjg6InN0ZENsYXNzIjoxOntzOjU6ImxpbWl0IjtpOjIwO319czo5OiJjb21fbWVudXMiO086ODoic3RkQ2xhc3MiOjI6e3M6NToiaXRlbXMiO086ODoic3RkQ2xhc3MiOjM6e3M6ODoibWVudXR5cGUiO3M6ODoibWFpbm1lbnUiO3M6MTA6ImxpbWl0c3RhcnQiO2k6MDtzOjQ6Imxpc3QiO2E6NDp7czo5OiJkaXJlY3Rpb24iO3M6MzoiYXNjIjtzOjU6ImxpbWl0IjtpOjIwO3M6ODoib3JkZXJpbmciO3M6NToiYS5sZnQiO3M6NToic3RhcnQiO2Q6MDt9fXM6NDoiZWRpdCI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJpdGVtIjtPOjg6InN0ZENsYXNzIjo0OntzOjI6ImlkIjthOjA6e31zOjQ6ImRhdGEiO047czo0OiJ0eXBlIjtOO3M6NDoibGluayI7Tjt9fX1zOjEwOiJjb21fY29uZmlnIjtPOjg6InN0ZENsYXNzIjoxOntzOjY6ImNvbmZpZyI7Tzo4OiJzdGRDbGFzcyI6MTp7czo2OiJnbG9iYWwiO086ODoic3RkQ2xhc3MiOjE6e3M6NDoiZGF0YSI7YTo5MTp7czo3OiJvZmZsaW5lIjtzOjE6IjAiO3M6MTU6Im9mZmxpbmVfbWVzc2FnZSI7czo2OToiVGhpcyBzaXRlIGlzIGRvd24gZm9yIG1haW50ZW5hbmNlLjxiciAvPlBsZWFzZSBjaGVjayBiYWNrIGFnYWluIHNvb24uIjtzOjIzOiJkaXNwbGF5X29mZmxpbmVfbWVzc2FnZSI7czoxOiIxIjtzOjEzOiJvZmZsaW5lX2ltYWdlIjtzOjA6IiI7czo4OiJzaXRlbmFtZSI7czoxMToiQ1BBIE1hbmFnZXIiO3M6NjoiZWRpdG9yIjtzOjc6InRpbnltY2UiO3M6NzoiY2FwdGNoYSI7czoxOiIwIjtzOjEwOiJsaXN0X2xpbWl0IjtzOjI6IjIwIjtzOjY6ImFjY2VzcyI7czoxOiIxIjtzOjU6ImRlYnVnIjtzOjE6IjAiO3M6MTA6ImRlYnVnX2xhbmciO3M6MToiMCI7czo2OiJkYnR5cGUiO3M6NjoibXlzcWxpIjtzOjQ6Imhvc3QiO3M6OToibG9jYWxob3N0IjtzOjQ6InVzZXIiO3M6NDoicm9vdCI7czo4OiJwYXNzd29yZCI7czowOiIiO3M6MjoiZGIiO3M6MTA6ImNwYW1hbmFnZXIiO3M6ODoiZGJwcmVmaXgiO3M6NDoiY3BhXyI7czo5OiJsaXZlX3NpdGUiO3M6MDoiIjtzOjY6InNlY3JldCI7czoxNjoidlpNT0R2T1VHUjF1b3k0bCI7czo0OiJnemlwIjtzOjE6IjAiO3M6MTU6ImVycm9yX3JlcG9ydGluZyI7czo3OiJkZWZhdWx0IjtzOjc6ImhlbHB1cmwiO3M6ODA6Imh0dHBzOi8vaGVscC5qb29tbGEub3JnL3Byb3h5P2tleXJlZj1IZWxwe21ham9yfXttaW5vcn06e2tleXJlZn0mbGFuZz17bGFuZ2NvZGV9IjtzOjg6ImZ0cF9ob3N0IjtzOjA6IiI7czo4OiJmdHBfcG9ydCI7czowOiIiO3M6ODoiZnRwX3VzZXIiO3M6MDoiIjtzOjg6ImZ0cF9wYXNzIjtzOjA6IiI7czo4OiJmdHBfcm9vdCI7czowOiIiO3M6MTA6ImZ0cF9lbmFibGUiO3M6MToiMCI7czo2OiJvZmZzZXQiO3M6MzoiVVRDIjtzOjEwOiJtYWlsb25saW5lIjtzOjE6IjEiO3M6NjoibWFpbGVyIjtzOjQ6Im1haWwiO3M6ODoibWFpbGZyb20iO3M6MjE6ImtuaWdoZXJyYW50QGdtYWlsLmNvbSI7czo4OiJmcm9tbmFtZSI7czoxMToiQ1BBIE1hbmFnZXIiO3M6ODoic2VuZG1haWwiO3M6MTg6Ii91c3Ivc2Jpbi9zZW5kbWFpbCI7czo4OiJzbXRwYXV0aCI7czoxOiIwIjtzOjg6InNtdHB1c2VyIjtzOjA6IiI7czo4OiJzbXRwcGFzcyI7czowOiIiO3M6ODoic210cGhvc3QiO3M6OToibG9jYWxob3N0IjtzOjEwOiJzbXRwc2VjdXJlIjtzOjQ6Im5vbmUiO3M6ODoic210cHBvcnQiO3M6MjoiMjUiO3M6NzoiY2FjaGluZyI7czoxOiIwIjtzOjEzOiJjYWNoZV9oYW5kbGVyIjtzOjQ6ImZpbGUiO3M6OToiY2FjaGV0aW1lIjtzOjI6IjE1IjtzOjIwOiJjYWNoZV9wbGF0Zm9ybXByZWZpeCI7czoxOiIwIjtzOjg6Ik1ldGFEZXNjIjtzOjA6IiI7czo4OiJNZXRhS2V5cyI7czowOiIiO3M6OToiTWV0YVRpdGxlIjtzOjE6IjEiO3M6MTA6Ik1ldGFBdXRob3IiO3M6MToiMSI7czoxMToiTWV0YVZlcnNpb24iO3M6MToiMCI7czo2OiJyb2JvdHMiO3M6MDoiIjtzOjM6InNlZiI7czoxOiIwIjtzOjExOiJzZWZfcmV3cml0ZSI7czoxOiIwIjtzOjEwOiJzZWZfc3VmZml4IjtzOjE6IjAiO3M6MTI6InVuaWNvZGVzbHVncyI7czoxOiIwIjtzOjEwOiJmZWVkX2xpbWl0IjtzOjI6IjEwIjtzOjEwOiJmZWVkX2VtYWlsIjtzOjQ6Im5vbmUiO3M6ODoibG9nX3BhdGgiO3M6NDA6IkQ6XHBocC5kZXZcY3BhbWFuYWdlclxhZG1pbmlzdHJhdG9yL2xvZ3MiO3M6ODoidG1wX3BhdGgiO3M6MjU6IkQ6XHBocC5kZXZcY3BhbWFuYWdlci90bXAiO3M6ODoibGlmZXRpbWUiO3M6NDoiMTUwMCI7czoxNToic2Vzc2lvbl9oYW5kbGVyIjtzOjg6ImRhdGFiYXNlIjtzOjE2OiJtZW1jYWNoZV9wZXJzaXN0IjtzOjE6IjEiO3M6MTc6Im1lbWNhY2hlX2NvbXByZXNzIjtzOjE6IjAiO3M6MjA6Im1lbWNhY2hlX3NlcnZlcl9ob3N0IjtzOjk6ImxvY2FsaG9zdCI7czoyMDoibWVtY2FjaGVfc2VydmVyX3BvcnQiO3M6NToiMTEyMTEiO3M6MTc6Im1lbWNhY2hlZF9wZXJzaXN0IjtzOjE6IjEiO3M6MTg6Im1lbWNhY2hlZF9jb21wcmVzcyI7czoxOiIwIjtzOjIxOiJtZW1jYWNoZWRfc2VydmVyX2hvc3QiO3M6OToibG9jYWxob3N0IjtzOjIxOiJtZW1jYWNoZWRfc2VydmVyX3BvcnQiO3M6NToiMTEyMTEiO3M6MTM6InJlZGlzX3BlcnNpc3QiO3M6MToiMSI7czoxNzoicmVkaXNfc2VydmVyX2hvc3QiO3M6OToibG9jYWxob3N0IjtzOjE3OiJyZWRpc19zZXJ2ZXJfcG9ydCI7czo0OiI2Mzc5IjtzOjE3OiJyZWRpc19zZXJ2ZXJfYXV0aCI7czowOiIiO3M6MTU6InJlZGlzX3NlcnZlcl9kYiI7czoxOiIwIjtzOjEyOiJwcm94eV9lbmFibGUiO3M6MToiMCI7czoxMDoicHJveHlfaG9zdCI7czowOiIiO3M6MTA6InByb3h5X3BvcnQiO3M6MDoiIjtzOjEwOiJwcm94eV91c2VyIjtzOjA6IiI7czoxMDoicHJveHlfcGFzcyI7czowOiIiO3M6MTE6Im1hc3NtYWlsb2ZmIjtzOjE6IjAiO3M6MTA6Ik1ldGFSaWdodHMiO3M6MDoiIjtzOjE5OiJzaXRlbmFtZV9wYWdldGl0bGVzIjtzOjE6IjAiO3M6OToiZm9yY2Vfc3NsIjtzOjE6IjAiO3M6Mjg6InNlc3Npb25fbWVtY2FjaGVfc2VydmVyX2hvc3QiO3M6OToibG9jYWxob3N0IjtzOjI4OiJzZXNzaW9uX21lbWNhY2hlX3NlcnZlcl9wb3J0IjtzOjU6IjExMjExIjtzOjI5OiJzZXNzaW9uX21lbWNhY2hlZF9zZXJ2ZXJfaG9zdCI7czo5OiJsb2NhbGhvc3QiO3M6Mjk6InNlc3Npb25fbWVtY2FjaGVkX3NlcnZlcl9wb3J0IjtzOjU6IjExMjExIjtzOjEyOiJmcm9udGVkaXRpbmciO3M6MToiMSI7czoxMzoiY29va2llX2RvbWFpbiI7czowOiIiO3M6MTE6ImNvb2tpZV9wYXRoIjtzOjA6IiI7czo4OiJhc3NldF9pZCI7aToxO3M6NzoiZmlsdGVycyI7YTo5OntpOjE7YTozOntzOjExOiJmaWx0ZXJfdHlwZSI7czoyOiJOSCI7czoxMToiZmlsdGVyX3RhZ3MiO3M6MDoiIjtzOjE3OiJmaWx0ZXJfYXR0cmlidXRlcyI7czowOiIiO31pOjk7YTozOntzOjExOiJmaWx0ZXJfdHlwZSI7czoyOiJCTCI7czoxMToiZmlsdGVyX3RhZ3MiO3M6MDoiIjtzOjE3OiJmaWx0ZXJfYXR0cmlidXRlcyI7czowOiIiO31pOjY7YTozOntzOjExOiJmaWx0ZXJfdHlwZSI7czoyOiJCTCI7czoxMToiZmlsdGVyX3RhZ3MiO3M6MDoiIjtzOjE3OiJmaWx0ZXJfYXR0cmlidXRlcyI7czowOiIiO31pOjc7YTozOntzOjExOiJmaWx0ZXJfdHlwZSI7czo0OiJOT05FIjtzOjExOiJmaWx0ZXJfdGFncyI7czowOiIiO3M6MTc6ImZpbHRlcl9hdHRyaWJ1dGVzIjtzOjA6IiI7fWk6MjthOjM6e3M6MTE6ImZpbHRlcl90eXBlIjtzOjI6Ik5IIjtzOjExOiJmaWx0ZXJfdGFncyI7czowOiIiO3M6MTc6ImZpbHRlcl9hdHRyaWJ1dGVzIjtzOjA6IiI7fWk6MzthOjM6e3M6MTE6ImZpbHRlcl90eXBlIjtzOjI6IkJMIjtzOjExOiJmaWx0ZXJfdGFncyI7czowOiIiO3M6MTc6ImZpbHRlcl9hdHRyaWJ1dGVzIjtzOjA6IiI7fWk6NDthOjM6e3M6MTE6ImZpbHRlcl90eXBlIjtzOjI6IkJMIjtzOjExOiJmaWx0ZXJfdGFncyI7czowOiIiO3M6MTc6ImZpbHRlcl9hdHRyaWJ1dGVzIjtzOjA6IiI7fWk6NTthOjM6e3M6MTE6ImZpbHRlcl90eXBlIjtzOjI6IkJMIjtzOjExOiJmaWx0ZXJfdGFncyI7czowOiIiO3M6MTc6ImZpbHRlcl9hdHRyaWJ1dGVzIjtzOjA6IiI7fWk6ODthOjM6e3M6MTE6ImZpbHRlcl90eXBlIjtzOjQ6Ik5PTkUiO3M6MTE6ImZpbHRlcl90YWdzIjtzOjA6IiI7czoxNzoiZmlsdGVyX2F0dHJpYnV0ZXMiO3M6MDoiIjt9fX19fX19czoxNDoiACoAaW5pdGlhbGl6ZWQiO2I6MTtzOjk6InNlcGFyYXRvciI7czoxOiIuIjt9czo0OiJ1c2VyIjtPOjU6IkpVc2VyIjoxOntzOjI6ImlkIjtzOjM6IjkxMSI7fXM6OToiY29tX21lZGlhIjtPOjg6InN0ZENsYXNzIjoxOntzOjEwOiJyZXR1cm5fdXJsIjtzOjEyMDoiaW5kZXgucGhwP29wdGlvbj1jb21fbWVkaWEmdmlldz1pbWFnZXMmdG1wbD1jb21wb25lbnQmZmllbGRpZD1qZm9ybV9pbWFnZSZlX25hbWU9JmFzc2V0PWNvbV9jcGFtYW5hZ2VyJmF1dGhvcj1jcmVhdGVkX2J5Ijt9czoxMToiYXBwbGljYXRpb24iO086ODoic3RkQ2xhc3MiOjE6e3M6NToicXVldWUiO047fX19czoxNDoiACoAaW5pdGlhbGl6ZWQiO2I6MDtzOjk6InNlcGFyYXRvciI7czoxOiIuIjt9";', 911, 'admin'),
-('kk8i3gev5raje2r40tgo87tr26', 0, 0, '1489940037', 'joomla|s:1088:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo0OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aToxMjtzOjU6InRpbWVyIjtPOjg6InN0ZENsYXNzIjozOntzOjU6InN0YXJ0IjtpOjE0ODk5MzUyODY7czo0OiJsYXN0IjtpOjE0ODk5MzkyODY7czozOiJub3ciO2k6MTQ4OTk0MDAzNzt9czo1OiJ0b2tlbiI7czozMjoieml4eUlQZ1hyM3N4RmxOVVFnWHBzdjRhS0tXWjVQeTYiO31zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjM6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJ1c2VycyI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJsb2dpbiI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJmb3JtIjtPOjg6InN0ZENsYXNzIjoyOntzOjQ6ImRhdGEiO2E6MDp7fXM6NjoicmV0dXJuIjtzOjkxOiJodHRwOi8vbG9jYWxob3N0L2NwYW1hbmFnZXIvaW5kZXgucGhwP29wdGlvbj1jb21fY3BhbWFuYWdlciZ2aWV3PWNwYSZsYXlvdXQ9ZWRpdCZJdGVtaWQ9MTAxIjt9fX19czoxNDoiACoAaW5pdGlhbGl6ZWQiO2I6MTtzOjk6InNlcGFyYXRvciI7czoxOiIuIjt9czo0OiJ1c2VyIjtPOjU6IkpVc2VyIjoxOntzOjI6ImlkIjtzOjM6IjkxMSI7fXM6MTE6ImFwcGxpY2F0aW9uIjtPOjg6InN0ZENsYXNzIjoxOntzOjU6InF1ZXVlIjtOO319fXM6MTQ6IgAqAGluaXRpYWxpemVkIjtiOjA7czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fQ==";', 911, 'admin');
+('836c46hr7umramoqh6ciqmq2u1', 0, 0, '1490202633', 'joomla|s:1104:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjozOntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aTozMztzOjU6InRpbWVyIjtPOjg6InN0ZENsYXNzIjozOntzOjU6InN0YXJ0IjtpOjE0OTAyMDA2MDA7czo0OiJsYXN0IjtpOjE0OTAyMDI2Mjk7czozOiJub3ciO2k6MTQ5MDIwMjYzMzt9czo1OiJ0b2tlbiI7czozMjoiRDgzM3JKS01aMUFFdkVHUHlqUXZzUzJaZWpXczVZRmEiO31zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjM6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo1OiJ1c2VycyI7Tzo4OiJzdGRDbGFzcyI6MTp7czo1OiJsb2dpbiI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJmb3JtIjtPOjg6InN0ZENsYXNzIjoyOntzOjQ6ImRhdGEiO2E6MDp7fXM6NjoicmV0dXJuIjtzOjM5OiJpbmRleC5waHA/b3B0aW9uPWNvbV91c2VycyZ2aWV3PXByb2ZpbGUiO319fXM6MTQ6ImNvbV9jcGFtYW5hZ2VyIjtPOjg6InN0ZENsYXNzIjoxOntzOjQ6ImVkaXQiO086ODoic3RkQ2xhc3MiOjE6e3M6NzoiaW52b2ljZSI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJkYXRhIjtOO319fX1zOjE0OiIAKgBpbml0aWFsaXplZCI7YjoxO3M6OToic2VwYXJhdG9yIjtzOjE6Ii4iO31zOjQ6InVzZXIiO086NToiSlVzZXIiOjE6e3M6MjoiaWQiO3M6MzoiOTExIjt9fX1zOjE0OiIAKgBpbml0aWFsaXplZCI7YjowO3M6OToic2VwYXJhdG9yIjtzOjE6Ii4iO30=";', 911, 'admin'),
+('ceed43se4ctsohdq5rjptotor7', 1, 0, '1490200215', 'joomla|s:7912:"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo1OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aTozNzI7czo1OiJ0aW1lciI7Tzo4OiJzdGRDbGFzcyI6Mzp7czo1OiJzdGFydCI7aToxNDg5ODA1NTI5O3M6NDoibGFzdCI7aToxNDkwMTk5OTA5O3M6Mzoibm93IjtpOjE0OTAyMDAyMTQ7fXM6NToidG9rZW4iO3M6MzI6IldFWGdzVDV1dnRRVzJtZDRSRDZ6eWlVNUxlYUNGTmlLIjt9czo4OiJyZWdpc3RyeSI7TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjY6e3M6MTM6ImNvbV9pbnN0YWxsZXIiO086ODoic3RkQ2xhc3MiOjM6e3M6NzoibWVzc2FnZSI7czowOiIiO3M6MTc6ImV4dGVuc2lvbl9tZXNzYWdlIjtzOjA6IiI7czoxMjoicmVkaXJlY3RfdXJsIjtOO31zOjE0OiJjb21fY3BhbWFuYWdlciI7Tzo4OiJzdGRDbGFzcyI6Mzp7czo0OiJlZGl0IjtPOjg6InN0ZENsYXNzIjo3OntzOjc6Imludm9pY2UiO086ODoic3RkQ2xhc3MiOjI6e3M6NDoiZGF0YSI7TjtzOjI6ImlkIjthOjA6e319czo3OiJyZWNlaXB0IjtPOjg6InN0ZENsYXNzIjoyOntzOjQ6ImRhdGEiO047czoyOiJpZCI7YTowOnt9fXM6NzoibWlsZWFnZSI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo0OiJkYXRhIjtOO3M6MjoiaWQiO2E6MDp7fX1zOjk6InRheHJldHVybiI7Tzo4OiJzdGRDbGFzcyI6Mjp7czo0OiJkYXRhIjtOO3M6MjoiaWQiO2E6MDp7fX1zOjQ6ImxpbmsiO086ODoic3RkQ2xhc3MiOjE6e3M6NDoiZGF0YSI7Tjt9czozOiJjcGEiO086ODoic3RkQ2xhc3MiOjI6e3M6MjoiaWQiO2E6MDp7fXM6NDoiZGF0YSI7Tjt9czo4OiJjdXN0b21lciI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJkYXRhIjtOO319czo1OiJsaW5rcyI7Tzo4OiJzdGRDbGFzcyI6MTp7czo4OiJvcmRlcmNvbCI7czo0OiJhLmlkIjt9czo4OiJpbnZvaWNlcyI7Tzo4OiJzdGRDbGFzcyI6NDp7czo2OiJmaWx0ZXIiO086ODoic3RkQ2xhc3MiOjE6e3M6Njoic2VhcmNoIjtzOjA6IiI7fXM6ODoib3JkZXJjb2wiO3M6OToiYS5jb21wYW55IjtzOjk6Im9yZGVyZGlybiI7czo0OiJkZXNjIjtzOjEwOiJsaW1pdHN0YXJ0IjtpOjA7fX1zOjY6Imdsb2JhbCI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJsaXN0IjtPOjg6InN0ZENsYXNzIjoxOntzOjU6ImxpbWl0IjtpOjIwO319czo5OiJjb21fbWVudXMiO086ODoic3RkQ2xhc3MiOjI6e3M6NToiaXRlbXMiO086ODoic3RkQ2xhc3MiOjM6e3M6ODoibWVudXR5cGUiO3M6ODoibWFpbm1lbnUiO3M6MTA6ImxpbWl0c3RhcnQiO2k6MDtzOjQ6Imxpc3QiO2E6NDp7czo5OiJkaXJlY3Rpb24iO3M6MzoiYXNjIjtzOjU6ImxpbWl0IjtpOjIwO3M6ODoib3JkZXJpbmciO3M6NToiYS5sZnQiO3M6NToic3RhcnQiO2Q6MDt9fXM6NDoiZWRpdCI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJpdGVtIjtPOjg6InN0ZENsYXNzIjo0OntzOjI6ImlkIjthOjA6e31zOjQ6ImRhdGEiO047czo0OiJ0eXBlIjtOO3M6NDoibGluayI7Tjt9fX1zOjEwOiJjb21fY29uZmlnIjtPOjg6InN0ZENsYXNzIjoxOntzOjY6ImNvbmZpZyI7Tzo4OiJzdGRDbGFzcyI6MTp7czo2OiJnbG9iYWwiO086ODoic3RkQ2xhc3MiOjE6e3M6NDoiZGF0YSI7YTo5MTp7czo3OiJvZmZsaW5lIjtzOjE6IjAiO3M6MTU6Im9mZmxpbmVfbWVzc2FnZSI7czo2OToiVGhpcyBzaXRlIGlzIGRvd24gZm9yIG1haW50ZW5hbmNlLjxiciAvPlBsZWFzZSBjaGVjayBiYWNrIGFnYWluIHNvb24uIjtzOjIzOiJkaXNwbGF5X29mZmxpbmVfbWVzc2FnZSI7czoxOiIxIjtzOjEzOiJvZmZsaW5lX2ltYWdlIjtzOjA6IiI7czo4OiJzaXRlbmFtZSI7czoxMToiQ1BBIE1hbmFnZXIiO3M6NjoiZWRpdG9yIjtzOjc6InRpbnltY2UiO3M6NzoiY2FwdGNoYSI7czoxOiIwIjtzOjEwOiJsaXN0X2xpbWl0IjtzOjI6IjIwIjtzOjY6ImFjY2VzcyI7czoxOiIxIjtzOjU6ImRlYnVnIjtzOjE6IjAiO3M6MTA6ImRlYnVnX2xhbmciO3M6MToiMCI7czo2OiJkYnR5cGUiO3M6NjoibXlzcWxpIjtzOjQ6Imhvc3QiO3M6OToibG9jYWxob3N0IjtzOjQ6InVzZXIiO3M6NDoicm9vdCI7czo4OiJwYXNzd29yZCI7czowOiIiO3M6MjoiZGIiO3M6MTA6ImNwYW1hbmFnZXIiO3M6ODoiZGJwcmVmaXgiO3M6NDoiY3BhXyI7czo5OiJsaXZlX3NpdGUiO3M6MDoiIjtzOjY6InNlY3JldCI7czoxNjoidlpNT0R2T1VHUjF1b3k0bCI7czo0OiJnemlwIjtzOjE6IjAiO3M6MTU6ImVycm9yX3JlcG9ydGluZyI7czo3OiJkZWZhdWx0IjtzOjc6ImhlbHB1cmwiO3M6ODA6Imh0dHBzOi8vaGVscC5qb29tbGEub3JnL3Byb3h5P2tleXJlZj1IZWxwe21ham9yfXttaW5vcn06e2tleXJlZn0mbGFuZz17bGFuZ2NvZGV9IjtzOjg6ImZ0cF9ob3N0IjtzOjA6IiI7czo4OiJmdHBfcG9ydCI7czowOiIiO3M6ODoiZnRwX3VzZXIiO3M6MDoiIjtzOjg6ImZ0cF9wYXNzIjtzOjA6IiI7czo4OiJmdHBfcm9vdCI7czowOiIiO3M6MTA6ImZ0cF9lbmFibGUiO3M6MToiMCI7czo2OiJvZmZzZXQiO3M6MzoiVVRDIjtzOjEwOiJtYWlsb25saW5lIjtzOjE6IjEiO3M6NjoibWFpbGVyIjtzOjQ6Im1haWwiO3M6ODoibWFpbGZyb20iO3M6MjE6ImtuaWdoZXJyYW50QGdtYWlsLmNvbSI7czo4OiJmcm9tbmFtZSI7czoxMToiQ1BBIE1hbmFnZXIiO3M6ODoic2VuZG1haWwiO3M6MTg6Ii91c3Ivc2Jpbi9zZW5kbWFpbCI7czo4OiJzbXRwYXV0aCI7czoxOiIwIjtzOjg6InNtdHB1c2VyIjtzOjA6IiI7czo4OiJzbXRwcGFzcyI7czowOiIiO3M6ODoic210cGhvc3QiO3M6OToibG9jYWxob3N0IjtzOjEwOiJzbXRwc2VjdXJlIjtzOjQ6Im5vbmUiO3M6ODoic210cHBvcnQiO3M6MjoiMjUiO3M6NzoiY2FjaGluZyI7czoxOiIwIjtzOjEzOiJjYWNoZV9oYW5kbGVyIjtzOjQ6ImZpbGUiO3M6OToiY2FjaGV0aW1lIjtzOjI6IjE1IjtzOjIwOiJjYWNoZV9wbGF0Zm9ybXByZWZpeCI7czoxOiIwIjtzOjg6Ik1ldGFEZXNjIjtzOjA6IiI7czo4OiJNZXRhS2V5cyI7czowOiIiO3M6OToiTWV0YVRpdGxlIjtzOjE6IjEiO3M6MTA6Ik1ldGFBdXRob3IiO3M6MToiMSI7czoxMToiTWV0YVZlcnNpb24iO3M6MToiMCI7czo2OiJyb2JvdHMiO3M6MDoiIjtzOjM6InNlZiI7czoxOiIwIjtzOjExOiJzZWZfcmV3cml0ZSI7czoxOiIwIjtzOjEwOiJzZWZfc3VmZml4IjtzOjE6IjAiO3M6MTI6InVuaWNvZGVzbHVncyI7czoxOiIwIjtzOjEwOiJmZWVkX2xpbWl0IjtzOjI6IjEwIjtzOjEwOiJmZWVkX2VtYWlsIjtzOjQ6Im5vbmUiO3M6ODoibG9nX3BhdGgiO3M6NDA6IkQ6XHBocC5kZXZcY3BhbWFuYWdlclxhZG1pbmlzdHJhdG9yL2xvZ3MiO3M6ODoidG1wX3BhdGgiO3M6MjU6IkQ6XHBocC5kZXZcY3BhbWFuYWdlci90bXAiO3M6ODoibGlmZXRpbWUiO3M6NDoiMTUwMCI7czoxNToic2Vzc2lvbl9oYW5kbGVyIjtzOjg6ImRhdGFiYXNlIjtzOjE2OiJtZW1jYWNoZV9wZXJzaXN0IjtzOjE6IjEiO3M6MTc6Im1lbWNhY2hlX2NvbXByZXNzIjtzOjE6IjAiO3M6MjA6Im1lbWNhY2hlX3NlcnZlcl9ob3N0IjtzOjk6ImxvY2FsaG9zdCI7czoyMDoibWVtY2FjaGVfc2VydmVyX3BvcnQiO3M6NToiMTEyMTEiO3M6MTc6Im1lbWNhY2hlZF9wZXJzaXN0IjtzOjE6IjEiO3M6MTg6Im1lbWNhY2hlZF9jb21wcmVzcyI7czoxOiIwIjtzOjIxOiJtZW1jYWNoZWRfc2VydmVyX2hvc3QiO3M6OToibG9jYWxob3N0IjtzOjIxOiJtZW1jYWNoZWRfc2VydmVyX3BvcnQiO3M6NToiMTEyMTEiO3M6MTM6InJlZGlzX3BlcnNpc3QiO3M6MToiMSI7czoxNzoicmVkaXNfc2VydmVyX2hvc3QiO3M6OToibG9jYWxob3N0IjtzOjE3OiJyZWRpc19zZXJ2ZXJfcG9ydCI7czo0OiI2Mzc5IjtzOjE3OiJyZWRpc19zZXJ2ZXJfYXV0aCI7czowOiIiO3M6MTU6InJlZGlzX3NlcnZlcl9kYiI7czoxOiIwIjtzOjEyOiJwcm94eV9lbmFibGUiO3M6MToiMCI7czoxMDoicHJveHlfaG9zdCI7czowOiIiO3M6MTA6InByb3h5X3BvcnQiO3M6MDoiIjtzOjEwOiJwcm94eV91c2VyIjtzOjA6IiI7czoxMDoicHJveHlfcGFzcyI7czowOiIiO3M6MTE6Im1hc3NtYWlsb2ZmIjtzOjE6IjAiO3M6MTA6Ik1ldGFSaWdodHMiO3M6MDoiIjtzOjE5OiJzaXRlbmFtZV9wYWdldGl0bGVzIjtzOjE6IjAiO3M6OToiZm9yY2Vfc3NsIjtzOjE6IjAiO3M6Mjg6InNlc3Npb25fbWVtY2FjaGVfc2VydmVyX2hvc3QiO3M6OToibG9jYWxob3N0IjtzOjI4OiJzZXNzaW9uX21lbWNhY2hlX3NlcnZlcl9wb3J0IjtzOjU6IjExMjExIjtzOjI5OiJzZXNzaW9uX21lbWNhY2hlZF9zZXJ2ZXJfaG9zdCI7czo5OiJsb2NhbGhvc3QiO3M6Mjk6InNlc3Npb25fbWVtY2FjaGVkX3NlcnZlcl9wb3J0IjtzOjU6IjExMjExIjtzOjEyOiJmcm9udGVkaXRpbmciO3M6MToiMSI7czoxMzoiY29va2llX2RvbWFpbiI7czowOiIiO3M6MTE6ImNvb2tpZV9wYXRoIjtzOjA6IiI7czo4OiJhc3NldF9pZCI7aToxO3M6NzoiZmlsdGVycyI7YTo5OntpOjE7YTozOntzOjExOiJmaWx0ZXJfdHlwZSI7czoyOiJOSCI7czoxMToiZmlsdGVyX3RhZ3MiO3M6MDoiIjtzOjE3OiJmaWx0ZXJfYXR0cmlidXRlcyI7czowOiIiO31pOjk7YTozOntzOjExOiJmaWx0ZXJfdHlwZSI7czoyOiJCTCI7czoxMToiZmlsdGVyX3RhZ3MiO3M6MDoiIjtzOjE3OiJmaWx0ZXJfYXR0cmlidXRlcyI7czowOiIiO31pOjY7YTozOntzOjExOiJmaWx0ZXJfdHlwZSI7czoyOiJCTCI7czoxMToiZmlsdGVyX3RhZ3MiO3M6MDoiIjtzOjE3OiJmaWx0ZXJfYXR0cmlidXRlcyI7czowOiIiO31pOjc7YTozOntzOjExOiJmaWx0ZXJfdHlwZSI7czo0OiJOT05FIjtzOjExOiJmaWx0ZXJfdGFncyI7czowOiIiO3M6MTc6ImZpbHRlcl9hdHRyaWJ1dGVzIjtzOjA6IiI7fWk6MjthOjM6e3M6MTE6ImZpbHRlcl90eXBlIjtzOjI6Ik5IIjtzOjExOiJmaWx0ZXJfdGFncyI7czowOiIiO3M6MTc6ImZpbHRlcl9hdHRyaWJ1dGVzIjtzOjA6IiI7fWk6MzthOjM6e3M6MTE6ImZpbHRlcl90eXBlIjtzOjI6IkJMIjtzOjExOiJmaWx0ZXJfdGFncyI7czowOiIiO3M6MTc6ImZpbHRlcl9hdHRyaWJ1dGVzIjtzOjA6IiI7fWk6NDthOjM6e3M6MTE6ImZpbHRlcl90eXBlIjtzOjI6IkJMIjtzOjExOiJmaWx0ZXJfdGFncyI7czowOiIiO3M6MTc6ImZpbHRlcl9hdHRyaWJ1dGVzIjtzOjA6IiI7fWk6NTthOjM6e3M6MTE6ImZpbHRlcl90eXBlIjtzOjI6IkJMIjtzOjExOiJmaWx0ZXJfdGFncyI7czowOiIiO3M6MTc6ImZpbHRlcl9hdHRyaWJ1dGVzIjtzOjA6IiI7fWk6ODthOjM6e3M6MTE6ImZpbHRlcl90eXBlIjtzOjQ6Ik5PTkUiO3M6MTE6ImZpbHRlcl90YWdzIjtzOjA6IiI7czoxNzoiZmlsdGVyX2F0dHJpYnV0ZXMiO3M6MDoiIjt9fX19fX1zOjk6ImNvbV91c2VycyI7Tzo4OiJzdGRDbGFzcyI6MTp7czo0OiJlZGl0IjtPOjg6InN0ZENsYXNzIjoxOntzOjQ6InVzZXIiO086ODoic3RkQ2xhc3MiOjI6e3M6MjoiaWQiO2E6MDp7fXM6NDoiZGF0YSI7Tjt9fX19czoxNDoiACoAaW5pdGlhbGl6ZWQiO2I6MTtzOjk6InNlcGFyYXRvciI7czoxOiIuIjt9czo0OiJ1c2VyIjtPOjU6IkpVc2VyIjoxOntzOjI6ImlkIjtzOjM6IjkxMSI7fXM6OToiY29tX21lZGlhIjtPOjg6InN0ZENsYXNzIjoxOntzOjEwOiJyZXR1cm5fdXJsIjtzOjEyMDoiaW5kZXgucGhwP29wdGlvbj1jb21fbWVkaWEmdmlldz1pbWFnZXMmdG1wbD1jb21wb25lbnQmZmllbGRpZD1qZm9ybV9pbWFnZSZlX25hbWU9JmFzc2V0PWNvbV9jcGFtYW5hZ2VyJmF1dGhvcj1jcmVhdGVkX2J5Ijt9czoxMToiYXBwbGljYXRpb24iO086ODoic3RkQ2xhc3MiOjE6e3M6NToicXVldWUiO047fX19czoxNDoiACoAaW5pdGlhbGl6ZWQiO2I6MDtzOjk6InNlcGFyYXRvciI7czoxOiIuIjt9";', 911, 'admin');
 
 -- --------------------------------------------------------
 
@@ -2047,8 +2058,8 @@ CREATE TABLE `cpa_update_sites` (
 --
 
 INSERT INTO `cpa_update_sites` (`update_site_id`, `name`, `type`, `location`, `enabled`, `last_check_timestamp`, `extra_query`) VALUES
-(1, 'Joomla! Core', 'collection', 'https://update.joomla.org/core/list.xml', 1, 1489934020, ''),
-(2, 'Joomla! Extension Directory', 'collection', 'https://update.joomla.org/jed/list.xml', 1, 1489934020, ''),
+(1, 'Joomla! Core', 'collection', 'https://update.joomla.org/core/list.xml', 1, 1490197961, ''),
+(2, 'Joomla! Extension Directory', 'collection', 'https://update.joomla.org/jed/list.xml', 1, 1490197961, ''),
 (3, 'Accredited Joomla! Translations', 'collection', 'https://update.joomla.org/language/translationlist_3.xml', 1, 0, ''),
 (4, 'Joomla! Update Component Update Site', 'extension', 'https://update.joomla.org/core/extensions/com_joomlaupdate.xml', 1, 0, '');
 
@@ -2132,8 +2143,10 @@ CREATE TABLE `cpa_users` (
 --
 
 INSERT INTO `cpa_users` (`id`, `name`, `username`, `email`, `password`, `block`, `sendEmail`, `registerDate`, `lastvisitDate`, `activation`, `params`, `lastResetTime`, `resetCount`, `otpKey`, `otep`, `requireReset`) VALUES
-(911, 'Super User', 'admin', 'knigherrant@gmail.com', '$2y$10$R/URjqaGUPSNaZJSnzt21e2KAYTwmWVMopeGYXgvB2iB9EKPnBboG', 0, 1, '2017-03-03 07:31:25', '2017-03-19 14:55:05', '0', '', '0000-00-00 00:00:00', 0, '', '', 0),
-(912, 'Test Customer', 'dev', 'dev@joomlavi.com22', '$2y$10$9VVX4Olt0O9vkqR9ThIMWeI84eAKpucjf9OhjdeO90izDi1edsOMy', 0, 0, '2017-03-12 14:06:55', '0000-00-00 00:00:00', '', '{"admin_style":"","admin_language":"","language":"","editor":"","helpsite":"","timezone":""}', '0000-00-00 00:00:00', 0, '', '', 0);
+(911, 'Super User', 'admin', 'knigherrant@gmail.com', '$2y$10$R/URjqaGUPSNaZJSnzt21e2KAYTwmWVMopeGYXgvB2iB9EKPnBboG', 0, 1, '2017-03-03 07:31:25', '2017-03-22 16:36:46', '0', '', '0000-00-00 00:00:00', 0, '', '', 0),
+(912, 'Test Customer', 'dev', 'dev@joomlavi.com22', '$2y$10$ead92kHV3EfpWV3CwANi4e4OhWZ29GCQQ9jHoCg0xlTGbQ2urE1gm', 0, 0, '2017-03-12 14:06:55', '2017-03-22 16:36:40', '', '{"admin_style":"","admin_language":"","language":"","editor":"","helpsite":"","timezone":""}', '0000-00-00 00:00:00', 0, '', '', 0),
+(913, 't t t', 'ttt@tt.xom', 'ttt@tt.xom', '$2y$10$x9gf3ZE0JOnR4yvCWDl1wO1WTrmvPubeNp/br39oHR/x/XYmqd3kG', 0, 0, '2017-03-21 15:14:59', '0000-00-00 00:00:00', '', '{}', '0000-00-00 00:00:00', 0, '', '', 0),
+(914, 'Dinh Van Nam', 'knigherrant@gm43ail.com', 'knigherrant@gm43ail.com', '$2y$10$dxpLIQ8tGAEDVfqDVFgW3eRmmS5EV.j2DZQbViz57ZWeURKpclt1e', 0, 0, '2017-03-21 16:55:40', '0000-00-00 00:00:00', '', '{}', '0000-00-00 00:00:00', 0, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2205,7 +2218,9 @@ CREATE TABLE `cpa_user_usergroup_map` (
 
 INSERT INTO `cpa_user_usergroup_map` (`user_id`, `group_id`) VALUES
 (911, 8),
-(912, 2);
+(912, 2),
+(913, 2),
+(914, 2);
 
 -- --------------------------------------------------------
 
@@ -2927,12 +2942,12 @@ ALTER TABLE `cpa_cpamanager_cpas`
 -- AUTO_INCREMENT for table `cpa_cpamanager_customers`
 --
 ALTER TABLE `cpa_cpamanager_customers`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `cpa_cpamanager_expenses`
 --
 ALTER TABLE `cpa_cpamanager_expenses`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `cpa_cpamanager_invoices`
 --
@@ -2947,22 +2962,22 @@ ALTER TABLE `cpa_cpamanager_links`
 -- AUTO_INCREMENT for table `cpa_cpamanager_locations`
 --
 ALTER TABLE `cpa_cpamanager_locations`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `cpa_cpamanager_mileages`
 --
 ALTER TABLE `cpa_cpamanager_mileages`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `cpa_cpamanager_receipts`
 --
 ALTER TABLE `cpa_cpamanager_receipts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `cpa_cpamanager_taxreturns`
 --
 ALTER TABLE `cpa_cpamanager_taxreturns`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `cpa_extensions`
 --
@@ -3077,7 +3092,7 @@ ALTER TABLE `cpa_usergroups`
 -- AUTO_INCREMENT for table `cpa_users`
 --
 ALTER TABLE `cpa_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=913;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=915;
 --
 -- AUTO_INCREMENT for table `cpa_user_keys`
 --

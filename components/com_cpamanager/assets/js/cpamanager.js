@@ -27,4 +27,8 @@ var JST = (function($){
         }
     };
     return fn;
-})(jQuery)
+})(jQuery);
+
+jQuery(function($){
+    $('#jform_created_by').parents('.control-group').hide();
+})

@@ -27,13 +27,16 @@ class JST extends jSont{
                     <button onclick="Joomla.submitbutton('<?php echo $task; ?>.add')" class="btn btn-small btn-success">
                         <span class="icon-new icon-white"></span> New
                     </button>
+                    <button onclick="if (document.adminForm.boxchecked.value==0){alert('Please first make a selection from the list.');}else{ Joomla.submitbutton('<?php echo $task; ?>s.delete')}" class="btn btn-small">
+                        <span class="icon-delete"></span> Delete
+                    </button>
                 <?php } else{ ?>
                     <div class="btn-group">
                             <button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('<?php echo $task;?>.save')">
                                     <span class="icon-ok"></span><?php echo JText::_('JSAVE') ?>
                             </button>
                     </div>
-                    <?php if($task !=='cpa'){ ?>
+                    <?php if($task !=='cpa' && $task !=='customer'){ ?>
                     <div class="btn-group">
                             <button type="button" class="btn" onclick="Joomla.submitbutton('<?php echo $task;?>.cancel')">
                                     <span class="icon-cancel"></span><?php echo JText::_('JCANCEL') ?>
@@ -44,6 +47,14 @@ class JST extends jSont{
             </div>
             <?php
         }
+        
+    public static function checkCPA($userid = 0){
+        if(!$userid) $userid = JFactory::getUser ()->id;
+        if(!$userid) return false;
+        $cpa = self::isCPA($userid);
+        if(!$cpa->id) die('You are not permission');
+    }
+        
     public static function cpaLeft(){
         echo self::Menu();
         echo self::logo();

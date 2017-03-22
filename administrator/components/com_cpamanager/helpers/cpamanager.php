@@ -218,7 +218,7 @@ class jSont extends CPAManagerHelper{
     
     public static function upgradePermission(){
         $db = JFactory::getDbo();
-        $db->setQuery('UPDATE #__assets SET rules=' . $db->quote('{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}') . ' WHERE name=' . $db->quote('com_cpamanager'))->execute(); 
+        $db->setQuery('UPDATE #__assets SET rules=' . $db->quote('{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1,"2":1},"core.delete":{"2":1},"core.edit":{"4":1,"2":1},"core.edit.state":{"5":1,"2":1},"core.edit.own":{"2":1}}') . ' WHERE name=' . $db->quote('com_cpamanager'))->execute(); 
     }
     
     public static function getTable($table){

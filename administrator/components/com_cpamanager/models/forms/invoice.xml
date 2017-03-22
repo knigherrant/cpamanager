@@ -2,35 +2,35 @@
 <form>
     <fieldset>
         <field name="id" type="hidden" default="0" label="COM_CPAMANAGER_FORM_LBL_ID" description="JGLOBAL_FIELD_ID_DESC" />
-        <field name="title" type="text" label="Title" description="Title" required="true" /> 
-        <field name="cpaid" type="cpa" label="CPA" description="CPA" />
-        <field name="company" type="text" label="Company" description="Company"  />
-        <field name="category" type="categoryinvoices" label="Category" description="Category"/>
-        <field name="storage_type" type="list" label="File From" description="File From">
+        <field name="title" type="text" hint="Title" label="Title" description="Title" required="true" /> 
+        <field name="cpaid" type="cpa" hint="CPA" label="CPA" description="CPA" />
+        <field name="company" type="text" hint="Company" label="Company" description="Company"  />
+        <field name="category" hint="Category" type="categoryinvoices" label="Category" description="Category"/>
+        <field name="storage_type" hint="File From" type="list" label="File From" description="File From">
             <option value="file">Local</option>
             <option value="remote">Link</option>
         </field>
-        <field name="storage_path_file" type="selectfile" label="File Path" description="File Path"/>
-        <field name="storage_path_remote" type="text" label="Path Remote" description="Path Remote" filter="url" />
-        <field name="image" type="thumbnail" label="Thumb" description="Thumb" />
-        <field name="icon" type="icon" label="Icon" description="Icon" />
-        <field name="description" type="editor" label="Description" description="Description" filter="raw"/>
-        <field name="access" type="list" label="Access" description="Access">
+        <field name="storage_path_file" hint="File Path" type="selectfile" label="File Path" description="File Path"/>
+        <field name="storage_path_remote" hint="Path Remote" type="text" label="Path Remote" description="Path Remote" filter="url" />
+        <field name="image" type="thumbnail" hint="Thumb" label="Thumb" description="Thumb" />
+        <field name="icon" type="icon" hint="Icon" label="Icon" description="Icon" />
+        <field name="description" type="editor" hint="Description" label="Description" description="Description" filter="raw"/>
+        <field name="access" type="list" hint="Access" label="Access" description="Access">
             <option value="0">Private</option>
             <option value="1">Public</option>
         </field>
-        <field name="publish_on" type="calendar" default="0000-00-00 00:00:00" label=" Start publishing on" description=" Start publishing on" format="%Y-%m-%d %H:%M:%S" />
-        <field name="unpublish_on" type="calendar" default="0000-00-00 00:00:00" label="Stop publishing on" description="Stop publishing on" format="%Y-%m-%d %H:%M:%S" />
-        <field name="created" type="calendar" default="0000-00-00 00:00:00" label=" Created Date" description=" Created Date" format="%Y-%m-%d %H:%M:%S" readonly="true" class="readonly"/>
-        <field name="created_by" type="user" label="Owner" description="Owner" />
-        <field name="modified" type="calendar" default="0000-00-00 00:00:00" label=" Modified Date" description=" Modified Date" format="%Y-%m-%d %H:%M:%S" readonly="true" class="readonly"/>
-        <field name="modified_by" type="user" label=" Modified by" description=" Modified by" readonly="true" class="readonly"/>
+        <field name="publish_on" type="calendar" hint="Start publishing on" default="0000-00-00 00:00:00" label=" Start publishing on" description=" Start publishing on" format="%Y-%m-%d %H:%M:%S" />
+        <field name="unpublish_on" type="calendar" hint="Stop publishing on" default="0000-00-00 00:00:00" label="Stop publishing on" description="Stop publishing on" format="%Y-%m-%d %H:%M:%S" />
+        <field name="created" type="calendar" hint="Created Date" default="0000-00-00 00:00:00" label=" Created Date" description=" Created Date" format="%Y-%m-%d %H:%M:%S" readonly="true" class="readonly"/>
+        <field name="created_by" type="user" hint="Owner" label="Owner" description="Owner" />
+        <field name="modified" type="calendar" hint="Modified Date" default="0000-00-00 00:00:00" label=" Modified Date" description=" Modified Date" format="%Y-%m-%d %H:%M:%S" readonly="true" class="readonly"/>
+        <field name="modified_by" type="user" hint="Modified by" label=" Modified by" description=" Modified by" readonly="true" class="readonly"/>
         
-        <field name="state" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" size="1" default="1">
+        <field name="state" type="list" hint="JSTATUS" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" size="1" default="1">
             <option value="1">JPUBLISHED</option>
             <option value="0">JUNPUBLISHED</option>
         </field>
-        <field name="created_by" type="user" class="inputbox" hint="Created By" label="Created By" description="Created By"  filter="safehtml" /> 
+        <field name="created_by" type="user" hint="Created By" class="inputbox"  label="Created By" description="Created By"  filter="safehtml" /> 
         <field name="icon_custom" type="hidden" default="0"/>
         <field name="ext" type="hidden" default=""/>
         <field name="filesize" type="hidden" default="0"/>

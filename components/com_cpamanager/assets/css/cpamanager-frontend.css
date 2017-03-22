@@ -111,7 +111,7 @@ body.site,
 #cpaMain #mainContent .field3 input{
     width: 92%;
 }
-
+#cpaMain #mainContent .field3 select{width: 96%;}
 #cpaMain #mainContent .field2 input{
     width: 96%;
 }
