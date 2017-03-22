@@ -121,7 +121,7 @@ class CPAManagerModelCustomers extends JModelList {
             }
         }
      
-
+        $query->where('created_by = ' . JFactory::getUser()->id);
         // Add the list ordering clause.
         $orderCol = $this->state->get('list.ordering');
         $orderDirn = $this->state->get('list.direction');

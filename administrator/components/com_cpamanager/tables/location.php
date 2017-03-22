@@ -37,7 +37,7 @@ class CPAManagerTableLocation extends JTable
 	public function bind($array, $ignore = '')
 	{
 
-		
+           
             if(!$array['created_by']) $array['created_by'] = JFactory::getUser ()->id;
                
 		if (isset($array['params']) && is_array($array['params']))

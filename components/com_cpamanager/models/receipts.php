@@ -113,7 +113,7 @@ class CPAManagerModelReceipts extends JModelList {
                 $query->where('LOWER(a.company) LIKE ' . $search . ' OR LOWER(cpa) LIKE ' . $search);
             }
         }
-        
+        $query->where('created_by = ' . JFactory::getUser()->id);
         // Add the list ordering clause.
         $orderCol = $this->state->get('list.ordering');
         $orderDirn = $this->state->get('list.direction');

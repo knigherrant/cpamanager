@@ -6,8 +6,8 @@
             readonly="true" class="readonly"
             description="JGLOBAL_FIELD_ID_DESC" /> 
 
-       <field name="userid" type="user" required="true" hint="Select User" label="Select User" description="Select User"  filter="safehtml" /> 
-       <field name="cpaid" type="cpa" required="true" hint="Select CPA" label="Select CPA" description="Select CPA"  filter="safehtml" /> 
+       <field name="userid" type="user" hint="Select User" label="Select User" description="Select User"  filter="safehtml" /> 
+       <field name="cpaid" type="cpa" hint="Select CPA" label="Select CPA" description="Select CPA"  filter="safehtml" /> 
        <field name="company" type="text" required="true" size="40" class="inputbox" hint="Company" label="Company" description="Company"   filter="safehtml" /> 
        <field name="firstname" type="text" required="true" size="40" class="inputbox" hint="First Name" label="First Name" description="First Name"   filter="safehtml" /> 
        <field name="midname" type="text" required="true" size="40" class="inputbox" hint="Middle Name" label="Middle Name" description="Middle Name"  filter="safehtml" /> 
@@ -20,7 +20,7 @@
        <field name="phone" type="text" size="40" class="inputbox" hint="Phone" label="Phone" description="Phone"   default=""  filter="safehtml" /> 
        <field name="cell_phone" type="text" size="40" class="inputbox" hint="Cell Phone" label="Cell Phone" description="Cell Phone"  filter="safehtml" /> 
        <field name="fax" type="text" label="Fax" description="Fax" hint="Fax"  filter="safehtml" /> 
-       <field name="email" type="text" size="40" class="inputbox" hint="Email" label="Email" description="Email"   filter="safehtml" /> 
+       <field name="email" type="text" required="true" size="40" class="inputbox" hint="Email" label="Email" description="Email"   filter="safehtml" /> 
        <field name="url" type="text"  size="40" class="inputbox" hint="Url" label="Url" description="Url"   filter="safehtml" /> 
        
        <field name="federal_id" type="text"  size="40" class="inputbox" hint="Federal ID" label="Federal ID" description="Federal ID"  filter="safehtml" /> 

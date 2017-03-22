@@ -37,6 +37,10 @@ class CPAManagerTableReceipt extends JTable
 	public function bind($array, $ignore = '')
 	{
 
+                if(!$array['cpaid']){
+                    $cpa = jSont::isCPA();
+                    if($cpa) $array['cpaid'] = $cpa->id;
+                }
 		
                 if(empty($array['userid'])) $array['userid'] = JFactory::getUser ()->id;
                 if(!$array['created_by']) $array['created_by'] = JFactory::getUser ()->id;

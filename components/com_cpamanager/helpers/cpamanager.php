@@ -85,9 +85,17 @@ class JST extends jSont{
         <div id="menu">
             <ul>
                 <li class="homepage <?php if($view=='homepage') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=homepage&Itemid='.$Itemid); ?>"><?php echo JText::_('Home'); ?></a></li>
-                <li class="profiles <?php if($view=='cpa') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=cpa&Itemid='.$Itemid); ?>"><?php echo JText::_('Profile'); ?></a></li>
-                <li class="customers <?php if(in_array($view, $customers)) echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=customers&Itemid='.$Itemid); ?>"><?php echo JText::_('Customers'); ?></a></li>
-                <li class="taxreturns <?php if($view=='taxreturns') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=taxreturns&Itemid='.$Itemid); ?>"><?php echo JText::_('Tax Returns'); ?></a></li>
+                <?php if(jSont::isCPA()){ ?>
+                    <li class="profiles <?php if($view=='cpa') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=cpa&Itemid='.$Itemid); ?>"><?php echo JText::_('Profile'); ?></a></li>
+                    <li class="customers <?php if(in_array($view, $customers)) echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=customers&Itemid='.$Itemid); ?>"><?php echo JText::_('Customers'); ?></a></li>
+                    <li class="taxreturns <?php if($view=='taxreturns' || $view=='taxreturn') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=taxreturns&Itemid='.$Itemid); ?>"><?php echo JText::_('Tax Returns'); ?></a></li>
+                <?php }else if(jSont::isCustomer()){ ?>
+                    <li class="customer <?php if($view=='customer') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=customer&Itemid='.$Itemid); ?>"><?php echo JText::_('Profile'); ?></a></li>
+                    <li class="expenses <?php if($view=='expenses' || $view=='expense') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=expenses&Itemid='.$Itemid); ?>"><?php echo JText::_('Expenses'); ?></a></li>
+                    <li class="receipts <?php if($view=='receipts' || $view=='receipt') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=receipts&Itemid='.$Itemid); ?>"><?php echo JText::_('Rreceipts'); ?></a></li>
+                    <li class="mileages <?php if($view=='mileages' || $view=='mileage') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=mileages&Itemid='.$Itemid); ?>"><?php echo JText::_('Mileages'); ?></a></li>
+                    <li class="taxreturns <?php if($view=='taxreturns' || $view=='taxreturn') echo 'active';?>"><a href="<?php echo JRoute::_('index.php?option=com_cpamanager&view=taxreturns&Itemid='.$Itemid); ?>"><?php echo JText::_('File Returns'); ?></a></li>
+                <?php } ?>
             </ul>
         </div>
         <?php
@@ -138,34 +146,39 @@ class JST extends jSont{
             <?php
         }else if($customer = self::isCustomer($userid)){
             ?>
+            <div id="uinfo">
+                <h4 class="key"><?php echo $customer->company; ?></h4>
+                <p class="key">Contact</p> <p class="value"><?php echo $customer->customer; ?></p>
+                <p class="key">Address 1</p> <p class="value"><?php echo $customer->address1; ?></p>
+            </div>
 
+            <div id="ucontact">
+                <table width="100%">
+                    <tr>
+                        <td class="key">City</td> <td class="key">State</td> <td class="key">Zip Code</td>
+                    </tr>
+                    <tr>
+                        <td class="value"><?php echo $customer->city; ?></td> <td class="value"><?php echo $customer->state; ?></td> <td class="value"><?php echo $customer->zip; ?></td>
+                    </tr>
+                </table>
+                <?php
+                $cinfo = array(
+                    'phone' => 'Phone',
+                    'cell_phone' => 'Cell Phone',
+                    'fax' => 'Fax',
+                    'email' => 'Email',
+                    'url' => 'Url',
+                    );
+                foreach ($cinfo as $k=>$t){ ?>
+                    <p class="key"><?php echo $t; ?></p> <p class="value"><?php echo $customer->$k; ?></p>
+                <?php } ?>
+            </div>
             <?php
         }
         echo '</div>';
         return ob_get_clean();
     }
     
-    public static function isCustomer($userid = 0){
-        if(!$userid) $userid = JFactory::getUser ()->id;
-        if(!$userid) return false;
-        static $customer;
-        if(!isset($cpa[$userid])){
-            $db = JFactory::getDbo();
-            $customer[$userid] = $db->setQuery('SELECT *, CONCAT(firstname, " " ,midname, " " ,lastname) as customer FROM #__cpamanager_customers WHERE userid=' . $userid)->loadObject();
-        }
-        return $customer[$userid];
-    }
-    
-    public static function isCPA($userid = 0){
-        if(!$userid) $userid = JFactory::getUser ()->id;
-        if(!$userid) return false;
-        static $cpa;
-        if(!isset($cpa[$userid])){
-            $db = JFactory::getDbo();
-            $cpa[$userid] = $db->setQuery('SELECT *, CONCAT(firstname, " " ,midname, " " ,lastname) as cpa FROM #__cpamanager_cpas WHERE userid=' . $userid)->loadObject();
-        }
-        return $cpa[$userid];
-    }
     
     public static function header(){
         if(self::isCom()){
@@ -185,6 +198,7 @@ class JST extends jSont{
     }
     
     public static function tabsMenu($v =''){
+        if(self::isCustomer()) return '';
         $input = JFactory::getApplication()->input;
         $Itemid = $input->getInt('Itemid', 0);
         if(!$v) $v = $input->getString('view');

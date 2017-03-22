@@ -133,7 +133,7 @@ $query->select('CONCAT(c.firstname, " " ,c.midname, " " ,c.lastname) as cpa ' );
             $query->where('a.catid = ' . (int) $category);
         }
 
-      
+        $query->where('created_by = ' . JFactory::getUser()->id);
         // Filter by search in title
         $search = $this->getState('filter.search');
         if (!empty($search)) {

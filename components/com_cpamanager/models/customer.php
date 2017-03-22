@@ -91,6 +91,11 @@ class CPAManagerModelCustomer extends JModelAdmin
 	 */
 	public function getItem($pk = null)
 	{
+                if(!$pk){
+                    if($customer = jSont::isCustomer()){
+                        $pk = $customer->id;
+                    }
+                }
 		if ($item = parent::getItem($pk)) {
                         $item->user = JFactory::getUser($item->userid);
                         $item->location = jSont::getLocation($item->location_id);
@@ -131,7 +136,23 @@ class CPAManagerModelCustomer extends JModelAdmin
                     }
                 }
             }
-            return parent::save($data);
+            if(jSont::isCPA() && !$data['userid']){
+                $user = new JUser();
+                $uData = array(
+                    'username' => $data['email'],
+                    'email' => $data['email'],
+                    'name'  => $data['firstname'] . ' ' . $data['midname'] . ' ' .$data['lastname'],
+                    'groups' => array(2),
+                );
+                if($user->bind($uData)){
+                    if($user->save()){
+                        $data['userid'] = $user->id;
+                        return parent::save($data);
+                    }
+                }
+                return false;
+            }else return parent::save($data);
+            
         }
 
 }

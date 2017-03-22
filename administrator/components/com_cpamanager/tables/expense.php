@@ -37,6 +37,12 @@ class CPAManagerTableExpense extends JTable
 	public function bind($array, $ignore = '')
 	{
 
+            
+                 if(!$array['cpaid']){
+                    $cpa = jSont::isCPA();
+                    if($cpa) $array['cpaid'] = $cpa->id;
+                }
+		
 		
                 if(empty($array['userid'])) $array['userid'] = JFactory::getUser ()->id;
 				if(!$array['created'] || $array['created'] = '0000-00-00 00:00:00') $array['created'] = JFactory::getDate ()->toSql ();

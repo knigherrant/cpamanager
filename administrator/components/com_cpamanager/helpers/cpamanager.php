@@ -26,6 +26,8 @@ defined('_JEXEC') or die;
  }
 class jSont extends CPAManagerHelper{
     
+    
+    
     public static $file_ext =  array(
         'archive' => array('7z', 'ace', 'bz2', 'dmg', 'gz', 'rar', 'tgz', 'zip'),
         'document' => array('csv', 'doc', 'docx', 'html', 'key', 'keynote', 'odp', 'ods', 'odt', 'pages', 'pdf', 'pps', 'ppt', 'pptx', 'rtf', 'tex', 'txt', 'xls', 'xlsx', 'xml'),
@@ -33,6 +35,31 @@ class jSont extends CPAManagerHelper{
         'audio' => array('aac', 'aif', 'aiff', 'alac', 'amr', 'au', 'cdda', 'flac', 'm3u', 'm3u', 'm4a', 'm4a', 'm4p', 'mid', 'mp3', 'mp4', 'mpa', 'ogg', 'pac', 'ra', 'wav', 'wma'),
         'video' => array('3gp', 'asf', 'avi', 'flv', 'm4v', 'mkv', 'mov', 'mp4', 'mpeg', 'mpg', 'ogg', 'rm', 'swf', 'vob', 'wmv')
     );
+    
+    public static function isCustomer($userid = 0){
+        if(!$userid) $userid = JFactory::getUser ()->id;
+        if(!$userid) return false;
+        static $customer;
+        if(!isset($cpa[$userid])){
+            $db = JFactory::getDbo();
+            $customer[$userid] = $db->setQuery('SELECT *, CONCAT(firstname, " " ,midname, " " ,lastname) as customer FROM #__cpamanager_customers WHERE userid=' . $userid)->loadObject();
+        }
+        return $customer[$userid];
+    }
+    
+    public static function isCPA($userid = 0){
+        if(!$userid) $userid = JFactory::getUser ()->id;
+        if(!$userid) return false;
+        static $cpa;
+        if(!isset($cpa[$userid])){
+            $db = JFactory::getDbo();
+            $cpa[$userid] = $db->setQuery('SELECT *, CONCAT(firstname, " " ,midname, " " ,lastname) as cpa FROM #__cpamanager_cpas WHERE userid=' . $userid)->loadObject();
+        }
+        return $cpa[$userid];
+    }
+    
+   
+    
 	public static function getFileType($file){
         $pathinfo = pathinfo($file);
         $extension = strtolower(@$pathinfo['extension']);
@@ -175,7 +202,7 @@ class jSont extends CPAManagerHelper{
         $document->addStyleSheet(JURI::root() . 'administrator/components/com_cpamanager/assets/css/cpamanager.css');
         $document->addScript(JUri::root().'administrator/components/com_cpamanager/assets/js/jquery.noconflict.js');
         $document->addScript(JURI::root() . 'components/com_cpamanager/assets/js/cpamanager.js');
-        //self::upgradePermission();
+        self::upgradePermission();
 		
     }
     
@@ -188,7 +215,7 @@ class jSont extends CPAManagerHelper{
     
     public static function upgradePermission(){
         $db = JFactory::getDbo();
-        $db->setQuery('UPDATE #__assets SET rules=' . $db->quote('{"core.create":{"2":1},"core.edit":{"2":1},"core.edit.state":{"2":1},"core.edit.own":{"2":1}}') . ' WHERE name=' . $db->quote('com_cpamanager'))->execute(); 
+        $db->setQuery('UPDATE #__assets SET rules=' . $db->quote('{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}') . ' WHERE name=' . $db->quote('com_cpamanager'))->execute(); 
     }
     
     public static function getTable($table){
@@ -294,68 +321,6 @@ class jSont extends CPAManagerHelper{
         return JHtml::_('date', $date, JText::_('DATE_FORMAT_LC3'), false);
     }
     
-    
-    public static  function getPrayerRequest($userid = 0, $limit = 1){
-        if(!$userid) $userid = JFactory::getUser ()->id;
-        $db = JFactory::getDbo();
-        $where = '';
-        //if($userid) $where = ' WHERE userid= ' . $userid;
-        $prayer = $db->setQuery('SELECT a.*,u.name as userRequest FROM #__cpamanager_requests as a '
-                . 'LEFT JOIN #__users as u ON u.id=a.userid ' . $where . ' ORDER BY a.id DESC LIMIT 0,' . $limit)->loadObjectList();
-        if($limit == 1) return @$prayer[0];
-        return $prayer;
-    } 
-    
-    public static  function getPrayingFor($userid = 0, $limit = 1){
-        if(!$userid) $userid = JFactory::getUser ()->id;
-        $db = JFactory::getDbo();
-        $where = '';
-        //if($userid) $where = ' WHERE userid= ' . $userid;
-        $prayer = $db->setQuery('SELECT w.*,u.name as prayforUser FROM #__cpamanager_warriors as w '
-                . 'LEFT JOIN #__users as u ON u.id=w.prayfor ORDER BY w.id DESC LIMIT 0,' . $limit)->loadObjectList();
-        if($limit == 1) return @$prayer[0];
-        return $prayer;
-    } 
-    
-    
-    public static  function getBibleStudy($userid = 0, $limit = 1){
-        if(!$userid) $userid = JFactory::getUser ()->id;
-        $db = JFactory::getDbo();
-        $where = '';
-        //if($userid) $where = ' WHERE created_by= ' . $userid;
-        $wa = $db->setQuery('SELECT * FROM #__cpamanager_bibles ' . $where . ' ORDER BY id DESC LIMIT 0,' . $limit)->loadObjectList();
-        if($limit == 1) return @$wa[0];
-        return $wa;
-    } 
-    
-    
-    public static  function getUser($userid = 0){
-        if(!$userid) $userid = JFactory::getUser ()->id;
-        static $uProfile;
-        if(!isset($uProfile[$userid])){
-            $db = JFactory::getDbo();
-            $user = JFactory::getUser($userid);
-            $profile = $db->setQuery('SELECT * FROM #__cpamanager_profiles WHERE userid=' . $userid)->loadObject();
-            if(!$profile){
-                JFactory::getApplication()->enqueueMessage('Please Create profile cpamanager first.', 'error');
-                $profile = new stdClass();
-            }
-            $profile->user = $user;
-                    if(isset($profile->avatar) && $profile->avatar) $profile->avatar = JURI::root() . $profile->avatar;
-                    else $profile->avatar = JURI::root() . 'administrator/components/com_cpamanager/assets/images/avatar.jpg';
-            $uProfile[$userid] =  $profile;
-        }
-        return $uProfile[$userid];
-    }
-    
-    public static  function getAvatar($avatar = ''){
-        if($avatar){
-			$pos = strpos($avatar, 'http');
-			if ($pos === false)return JURI::root() . $avatar;
-			else return $avatar;
-		}
-		return JURI::root() . 'administrator/components/com_cpamanager/assets/images/avatar.jpg';
-    }
 	
     public static  function getCategory($type = 'category_expenses'){
         $category = jSont::getConfig()->$type;

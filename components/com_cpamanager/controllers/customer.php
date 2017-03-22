@@ -19,7 +19,8 @@ class CPAManagerControllerCustomer extends JControllerForm
 {
 
     function __construct() {
-        $this->view_list = 'customers';
+        if(jSont::isCPA()) $this->view_list = 'customers';
+        else $this->view_list = 'customer';
         parent::__construct();
     }
 
