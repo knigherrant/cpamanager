@@ -19,6 +19,31 @@ require_once JPATH_ADMINISTRATOR.'/components/com_cpamanager/helpers/cpamanager.
 class JST extends jSont{
     
    
+    public static function profile($userid = 0){
+        if(!$userid) $userid = JFactory::getUser ()->id;
+        if(!$userid) return false;
+        $cpa = self::isCPA($userid);
+        if($cpa){
+            ?>
+            <div class="span12">
+                <div class="profile-logo span3">
+                    <img src="<?php echo $cpa->logo; ?>" />
+                </div>
+                <div class="profile-info span3">
+                    <h3><?php echo $cpa->company ;?></h3>
+                    <p><?php echo $cpa->cpa ;?></p>
+                </div>
+                <div class="profile-contact span3">
+                    <p><span class="key">Email</span> <span class="value"><?php echo $cpa->email; ?></span></p>
+                    <p><span class="key">Phone</span> <span class="value"><?php echo $cpa->phone; ?></span></p>
+                    <p><span class="key">Website</span> <span class="value"><?php echo $cpa->url; ?></span></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <?php
+        }
+    }
+    
     public static function toolbar($task = '',$bnt = ''){
         if(!$task) return;
             ?>

@@ -54,6 +54,9 @@ class jSont extends CPAManagerHelper{
         if(!isset($cpa[$userid])){
             $db = JFactory::getDbo();
             $cpa[$userid] = $db->setQuery('SELECT *, CONCAT(firstname, " " ,midname, " " ,lastname) as cpa FROM #__cpamanager_cpas WHERE userid=' . $userid)->loadObject();
+            if($cpa[$userid]){
+                if(!$cpa[$userid]->logo) $cpa[$userid]->logo = JUri::root () . 'components/com_cpamanager/assets/images/no_logo.png';
+            }
         }
         return $cpa[$userid];
     }

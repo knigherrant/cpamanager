@@ -25,7 +25,41 @@ $saveOrder = $listOrder == 'a.ordering';
 <?php echo JST::header(); ?>
 <?php echo JST::toolbar(); ?>
 <form action="<?php echo JRoute::_('index.php?option=com_cpamanager&view=expenses'); ?>" method="post" name="adminForm" id="adminForm">
-    <div></div>
+    <div class="wrapcontent">
+        <div id="profile">
+            <?php echo JST::profile(); ?>
+        </div>
+        <div class="clearfix"></div>
+        <div id="static">
+            <div class="block block1">
+                <div class="bcontent">
+                    <p class="key">Total Invoices</p>
+                    <p class="value">116</p>
+                </div>
+            </div>
+            <div class="block block2">
+                <div class="bcontent">
+                    <p class="key">Tax Returns</p>
+                    <p class="value">116</p>
+                </div>
+            </div>
+            <div class="block block3">
+                <div class="bcontent">
+                    <p class="key">Customer</p>
+                    <p class="value">116</p>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="chartContent">
+            <div class="heading">
+                <h4>STATISTICS</h4>
+            </div>
+            <div class="chartx">
+                
+            </div>
+        </div>
+    </div>
     <div>
         <input type="hidden" name="task" value="" />
         <input type="hidden" name="boxchecked" value="0" />
