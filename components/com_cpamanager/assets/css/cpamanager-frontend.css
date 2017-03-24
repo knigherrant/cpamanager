@@ -99,7 +99,6 @@ body.site,
    
 }
 
-
 #cpaMain #mainContent input[type="file"]{
     width: 64% !important;
 }
@@ -199,16 +198,43 @@ body.site,
     -height: 400px;
 }
 
-.chartContent .heading{
+#cpaMain .chartContent .heading{
     background-color: #fbac2b;
     height: 40px;
     padding: 15px 35px;
 }
-.chartContent .heading h4{
+#cpaMain .chartContent .heading h4{
     font-size: 20px;
     color: #fff;
 }
-.chartContent .chartx{
+#cpaMain .chartContent .chartx{
     background-color: #3c3c3c;
     height: 350px;
+}
+
+#cpaMain .message{
+    background-color: #3c3c3c;
+    min-height: 200px;
+    margin: 10px 20px;
+}
+#cpaMain .message .inbox h4{
+    color: #fff;
+    font-size: 18px;
+}
+#cpaMain .message .inbox .inbox-head{
+    background-color: #fbac2b;
+    height: 40px;
+    padding: 1px 20px;
+}
+#cpaMain .message .inbox{
+    float: left;
+    padding-top: 10px;
+    width: 30%;
+}
+    
+#cpaMain .message .sendmsg{
+    float: left;
+    padding-left: 13px;
+    padding-top: 10px;
+    width: 67%;
 }

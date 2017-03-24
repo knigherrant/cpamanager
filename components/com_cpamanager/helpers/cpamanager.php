@@ -18,6 +18,239 @@ defined('_JEXEC') or die;
 require_once JPATH_ADMINISTRATOR.'/components/com_cpamanager/helpers/cpamanager.php';
 class JST extends jSont{
     
+    public static function getExpenses(){
+        static $data;
+        if(!$data){
+            $db = JFactory::getDbo();
+            $total = $db->setQuery('SELECT SUM(total) FROM #__cpamanager_expenses WHERE created_by=' . JFactory::getUser()->id)->loadResult();
+            $cYear = date('Y');
+            $lists = $db->setQuery("SELECT * FROM #__cpamanager_expenses WHERE YEAR(created) = '$cYear' AND created_by=" . JFactory::getUser()->id)->loadObjectList();
+            $lists = self::parseChart($lists);
+            $data = (object) array('total' => $total, 'lists' => $lists);
+        }
+        return $data;
+    } 
+    
+    public static function getReceipts(){
+        static $data;
+        if(!$data){
+            $db = JFactory::getDbo();
+            $total = $db->setQuery('SELECT SUM(total) FROM #__cpamanager_receipts WHERE created_by=' . JFactory::getUser()->id)->loadResult();
+            $cYear = date('Y');
+            $lists = $db->setQuery("SELECT * FROM #__cpamanager_receipts WHERE YEAR(created) = '$cYear' AND created_by=" . JFactory::getUser()->id )->loadObjectList();
+            $lists = self::parseChart($lists);
+            $data = (object)  array('total' => $total, 'lists' => $lists);
+        }
+        return $data;
+    } 
+    
+    public static function getMileages(){
+        static $data;
+        if(!$data){
+            $db = JFactory::getDbo();
+            $total = $db->setQuery('SELECT COUNT(*) FROM #__cpamanager_mileages WHERE created_by=' . JFactory::getUser()->id)->loadResult();
+            $cYear = date('Y');
+            $lists = $db->setQuery("SELECT * FROM #__cpamanager_mileages WHERE YEAR(created) = '$cYear' AND created_by=" . JFactory::getUser()->id)->loadObjectList();
+            $lists = self::parseChart($lists);
+            $data = (object) array('total' => $total, 'lists' => $lists);
+        }
+        return $data;
+    } 
+    
+    
+    public static function getInvoices(){
+        static $data;
+        if(!$data){
+            $db = JFactory::getDbo();
+            $total = $db->setQuery('SELECT COUNT(*) FROM #__cpamanager_invoices WHERE created_by=' . JFactory::getUser()->id)->loadResult();
+            $cYear = date('Y');
+            $lists = $db->setQuery("SELECT * FROM #__cpamanager_invoices WHERE YEAR(created) = '$cYear' AND created_by=" . JFactory::getUser()->id)->loadObjectList();
+            $lists = self::parseChart($lists);
+            $data = (object) array('total' => $total, 'lists' => $lists);
+        }
+        return $data;
+    } 
+    
+    public static function getTaxs(){
+        static $data;
+        if(!$data){
+            $db = JFactory::getDbo();
+            $total = $db->setQuery('SELECT COUNT(*) FROM #__cpamanager_taxreturns WHERE created_by=' . JFactory::getUser()->id)->loadResult();
+            $cYear = date('Y');
+            $lists = $db->setQuery("SELECT * FROM #__cpamanager_taxreturns WHERE YEAR(created) = '$cYear' AND created_by=" . JFactory::getUser()->id )->loadObjectList();
+            $lists = self::parseChart($lists);
+            $data = (object)  array('total' => $total, 'lists' => $lists);
+        }
+        return $data;
+    } 
+    
+    public static function getCustomer(){
+        static $data;
+        if(!$data){
+            $db = JFactory::getDbo();
+            $total = $db->setQuery('SELECT COUNT(*) FROM #__cpamanager_customers WHERE created_by=' . JFactory::getUser()->id)->loadResult();
+            $cYear = date('Y');
+            $lists = $db->setQuery("SELECT * FROM #__cpamanager_customers WHERE YEAR(created) = '$cYear' AND created_by=" . JFactory::getUser()->id)->loadObjectList();
+            $lists = self::parseChart($lists);
+            $data = (object) array('total' => $total, 'lists' => $lists);
+        }
+        return $data;
+    } 
+    
+    
+    public static function parseChart($list){
+        $month = array(
+            'Jan' => 0,
+            'Feb' => 0,
+            'Mar' => 0,
+            'Apr' => 0,
+            'May' => 0,
+            'Jul' => 0,
+            'Jun' => 0,
+            'Aug' => 0,
+            'Sep' => 0,
+            'Oct' => 0,
+            'Nov' => 0,
+            'Dec' => 0,
+        );
+        foreach ($list as $l){
+            if(JFactory::getDate($l->created)->format('m') == '01') $month['Jan'] = $month['Jan'] + 1;
+            if(JFactory::getDate($l->created)->format('m') == '02') $month['Feb'] = $month['Feb'] + 1;
+            if(JFactory::getDate($l->created)->format('m') == '03') $month['Mar'] = $month['Mar'] + 1;
+            if(JFactory::getDate($l->created)->format('m') == '04') $month['Apr'] = $month['Apr'] + 1;
+            if(JFactory::getDate($l->created)->format('m') == '05') $month['May'] = $month['May'] + 1;
+            if(JFactory::getDate($l->created)->format('m') == '06') $month['Jul'] = $month['Jul'] + 1;
+            if(JFactory::getDate($l->created)->format('m') == '07') $month['Jun'] = $month['Jun'] + 1;
+            if(JFactory::getDate($l->created)->format('m') == '08') $month['Aug'] = $month['Aug'] + 1;
+            if(JFactory::getDate($l->created)->format('m') == '09') $month['Sep'] = $month['Sep'] + 1;
+            if(JFactory::getDate($l->created)->format('m') == '10') $month['Oct'] = $month['Oct'] + 1;
+            if(JFactory::getDate($l->created)->format('m') == '11') $month['Nov'] = $month['Nov'] + 1;
+            if(JFactory::getDate($l->created)->format('m') == '12') $month['Dec'] = $month['Dec'] + 1;
+        }
+        //foreach ($month as &$m) $m = $m/1000;
+        return (object)$month;
+    }
+    
+    public static function getChart($userid = 0){
+        if(!$userid) $userid = JFactory::getUser ()->id;
+        if(!$userid) return false;
+        $cpa = self::isCPA($userid);
+        $document = JFactory::getDocument();
+        $document->addScript(JURI::root() . 'components/com_cpamanager/assets/js/canvasjs.min.js');
+        if($cpa){
+            $chart1 = self::getInvoices()->lists;
+            $chart1->name = 'Invoices';
+            $chart2 = self::getTaxs()->lists;
+            $chart2->name = 'Tax Returns';
+            $chart3 = self::getCustomer()->lists;
+            $chart3->name = 'Customers';
+        }else if(self::isCustomer()){
+            $chart1 = self::getExpenses()->lists;
+            $chart1->name = 'Expenses';
+            $chart2 = self::getReceipts()->lists;
+            $chart2->name = 'Receipts';
+            $chart3 = self::getMileages()->lists;
+            $chart3->name = 'Mileages';
+        }else return;
+            
+            ?>
+            <script type="text/javascript">
+                window.onload = function () {
+                  var chart = new CanvasJS.Chart("chartContainer",
+                  {
+                    theme: "theme2",
+                    animationEnabled: true,
+                    axisX: {
+                      valueFormatString: "MMM",
+                      interval:1,
+                      intervalType: "month"
+
+                    },
+                    axisY:{
+                      includeZero: false,
+                      background : '#000'
+                    },
+                    data: [
+                    {        
+                      type: "line",
+                      name: "<?php echo $chart1->name; ?>",
+                      showInLegend: true,
+                      color: "#fbac2b",
+                      //lineThickness: 3,        
+                      dataPoints: [
+                      { x: new Date(2012, 00, 1), y: '<?php echo $chart1->Jan; ?>' },
+                      { x: new Date(2012, 01, 1), y: '<?php echo $chart1->Feb; ?>'},
+                      { x: new Date(2012, 02, 1), y: '<?php echo $chart1->Mar; ?>'},
+                      { x: new Date(2012, 03, 1), y: '<?php echo $chart1->Apr; ?>' },
+                      { x: new Date(2012, 04, 1), y: '<?php echo $chart1->May; ?>' },
+                      { x: new Date(2012, 05, 1), y: '<?php echo $chart1->Jul; ?>' },
+                      { x: new Date(2012, 06, 1), y: '<?php echo $chart1->Jun; ?>' },
+                      { x: new Date(2012, 07, 1), y: '<?php echo $chart1->Aug; ?>' },
+                      { x: new Date(2012, 08, 1), y: '<?php echo $chart1->Sep; ?>' },
+                      { x: new Date(2012, 09, 1), y: '<?php echo $chart1->Oct; ?>' },
+                      { x: new Date(2012, 10, 1), y: '<?php echo $chart1->Nov; ?>' },
+                      { x: new Date(2012, 11, 1), y: '<?php echo $chart1->Dec; ?>' }
+
+                      ]
+                    },
+                    {        
+                      type: "line",
+                      name: "<?php echo $chart2->name; ?>",
+                      showInLegend: true,
+                      color: "#91908f",
+                      //lineThickness: 3,        
+                      dataPoints: [
+                      { x: new Date(2012, 00, 1), y: '<?php echo $chart2->Jan; ?>' },
+                      { x: new Date(2012, 01, 1), y: '<?php echo $chart2->Feb; ?>'},
+                      { x: new Date(2012, 02, 1), y: '<?php echo $chart2->Mar; ?>'},
+                      { x: new Date(2012, 03, 1), y: '<?php echo $chart2->Apr; ?>' },
+                      { x: new Date(2012, 04, 1), y: '<?php echo $chart2->May; ?>' },
+                      { x: new Date(2012, 05, 1), y: '<?php echo $chart2->Jul; ?>' },
+                      { x: new Date(2012, 06, 1), y: '<?php echo $chart2->Jun; ?>' },
+                      { x: new Date(2012, 07, 1), y: '<?php echo $chart2->Aug; ?>' },
+                      { x: new Date(2012, 08, 1), y: '<?php echo $chart2->Sep; ?>' },
+                      { x: new Date(2012, 09, 1), y: '<?php echo $chart2->Oct; ?>' },
+                      { x: new Date(2012, 10, 1), y: '<?php echo $chart2->Nov; ?>' },
+                      { x: new Date(2012, 11, 1), y: '<?php echo $chart2->Dec; ?>' }
+
+                      ]
+                    },
+                    {        
+                      type: "line",
+                      name: "<?php echo $chart3->name; ?>",
+                      showInLegend: true,
+                    color: "#333",
+                      //lineThickness: 3,        
+                      dataPoints: [
+                      { x: new Date(2012, 00, 1), y: '<?php echo $chart3->Jan; ?>' },
+                      { x: new Date(2012, 01, 1), y: '<?php echo $chart3->Feb; ?>'},
+                      { x: new Date(2012, 02, 1), y: '<?php echo $chart3->Mar; ?>'},
+                      { x: new Date(2012, 03, 1), y: '<?php echo $chart3->Apr; ?>' },
+                      { x: new Date(2012, 04, 1), y: '<?php echo $chart3->May; ?>' },
+                      { x: new Date(2012, 05, 1), y: '<?php echo $chart3->Jul; ?>' },
+                      { x: new Date(2012, 06, 1), y: '<?php echo $chart3->Jun; ?>' },
+                      { x: new Date(2012, 07, 1), y: '<?php echo $chart3->Aug; ?>' },
+                      { x: new Date(2012, 08, 1), y: '<?php echo $chart3->Sep; ?>' },
+                      { x: new Date(2012, 09, 1), y: '<?php echo $chart3->Oct; ?>' },
+                      { x: new Date(2012, 10, 1), y: '<?php echo $chart3->Nov; ?>' },
+                      { x: new Date(2012, 11, 1), y: '<?php echo $chart3->Dec; ?>' }
+
+                      ]
+                    }
+
+
+                    ]
+                  });
+
+              chart.render();
+              }
+              </script>
+            <div id="chartContainer" style="height: 100%; width: 100%;"></div>
+            <?php
+        
+    }
+    
+    
    
     public static function profile($userid = 0){
         if(!$userid) $userid = JFactory::getUser ()->id;
@@ -37,6 +270,24 @@ class JST extends jSont{
                     <p><span class="key">Email</span> <span class="value"><?php echo $cpa->email; ?></span></p>
                     <p><span class="key">Phone</span> <span class="value"><?php echo $cpa->phone; ?></span></p>
                     <p><span class="key">Website</span> <span class="value"><?php echo $cpa->url; ?></span></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <?php
+        }else if($customer = self::isCustomer($userid)){
+            ?>
+            <div class="span12">
+                <div class="profile-logo span3">
+                    <img src="<?php echo $customer->logo; ?>" />
+                </div>
+                <div class="profile-info span3">
+                    <h3><?php echo $customer->company ;?></h3>
+                    <p><?php echo $customer->company ;?></p>
+                </div>
+                <div class="profile-contact span3">
+                    <p><span class="key">Email</span> <span class="value"><?php echo $customer->email; ?></span></p>
+                    <p><span class="key">Phone</span> <span class="value"><?php echo $customer->phone; ?></span></p>
+                    <p><span class="key">Website</span> <span class="value"><?php echo $customer->url; ?></span></p>
                 </div>
                 <div class="clearfix"></div>
             </div>

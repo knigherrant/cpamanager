@@ -33,20 +33,35 @@ $saveOrder = $listOrder == 'a.ordering';
         <div id="static">
             <div class="block block1">
                 <div class="bcontent">
-                    <p class="key">Total Invoices</p>
-                    <p class="value">116</p>
+                    <?php if(JST::isCPA()){ ?>
+                        <p class="key">Total Invoices</p>
+                        <p class="value"><?php echo JST::getInvoices()->total ; ?></p>
+                    <?php }else{ ?>
+                        <p class="key">Total Expenses</p>
+                        <p class="value">$<?php echo (int)JST::getExpenses()->total ; ?></p>
+                    <?php } ?>
                 </div>
             </div>
             <div class="block block2">
                 <div class="bcontent">
-                    <p class="key">Tax Returns</p>
-                    <p class="value">116</p>
+                    <?php if(JST::isCPA()){ ?>
+                        <p class="key">Tax Returns</p>
+                        <p class="value"><?php echo JST::getTaxs()->total ; ?></p>
+                    <?php }else{ ?>
+                        <p class="key">Total Receipts</p>
+                        <p class="value">$<?php echo (int)JST::getReceipts()->total ; ?></p>
+                    <?php } ?>
                 </div>
             </div>
             <div class="block block3">
                 <div class="bcontent">
-                    <p class="key">Customer</p>
-                    <p class="value">116</p>
+                    <?php if(JST::isCPA()){ ?>
+                        <p class="key">Customer</p>
+                        <p class="value"><?php echo JST::getCustomer()->total ; ?></p>
+                    <?php }else{ ?>
+                        <p class="key">Total Mileages</p>
+                        <p class="value"><?php echo JST::getMileages()->total ; ?></p>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -56,6 +71,19 @@ $saveOrder = $listOrder == 'a.ordering';
                 <h4>STATISTICS</h4>
             </div>
             <div class="chartx">
+                <?php echo JST::getChart(); ?>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="message">
+            <div class="inbox">
+                <div class="inbox-head">
+                    <h4>MESSAGE</h4>
+                </div>
+            </div> 
+            
+            <div class="sendmsg">
+                <textarea></textarea>
                 
             </div>
         </div>
