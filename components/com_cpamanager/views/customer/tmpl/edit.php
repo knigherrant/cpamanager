@@ -184,6 +184,7 @@ JHtml::_('formbehavior.chosen', 'select');
     </div>
     <?php echo $this->form->getInput('id'); ?>
     <input type="hidden" name="task" value="" />
+    <input type="hidden" name="jform[userid]" value="<?php echo $this->item->userid; ?>" />
     <?php echo JHtml::_('form.token'); ?>
     <div class="clr"></div>
 </form>
